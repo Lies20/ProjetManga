@@ -1,0 +1,14 @@
+.banniere{
+    width: 100%;
+    position: relative;
+    z-index: -1;
+}
+@media screen and (max-width: 600px) {
+    .title{
+        text-decoration: none;
+        text-align: center;
+    }
+    .banniere{
+        width: 100%;
+    }
+  }
