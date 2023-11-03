@@ -1,15 +1,17 @@
 import './component/navBar/menuBurger.css'
-import BurgerMenu from './component/navBar/menuBurger.jsx'
-import Banner from './component/Banner/banner.jsx'
-import LatestPosts from './component/post/post.jsx'
+import Index from '../Pages/index.jsx'
+import { Routes, Route } from 'react-router-dom'
+import Inscription from '../Pages/Inscription.jsx'
 
 function App() {
 
   return (
     <>
-      <BurgerMenu />
-      <Banner />
-      <LatestPosts/>
+      <Routes>
+        <Route path='/' element={<Index />}/>
+        <Route path='/inscription' element={<Inscription/>}/>
+      </Routes>
+      
     </>
   )
 }
