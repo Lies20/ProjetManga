@@ -3,15 +3,18 @@ DROP DATABASE IF EXISTS DreamangaDataBase;
 CREATE DATABASE DreamangaDataBase;
 
 CREATE TABLE IF NOT EXISTS DreamangaDataBase.User (
-  idUser INT NOT NULL AUTO_INCREMENT,
-  pseudo VARCHAR(20) NULL,
-  birthday DATE NULL,
-  email VARCHAR(45) NULL,
-  password VARCHAR(200) NULL,
+  idUser INT AUTO_INCREMENT,
+  pseudo VARCHAR(20),
+  birthday DATETIME NULL,
+  email VARCHAR(45),
+  password VARCHAR(255),
   PRIMARY KEY (idUser)
 );
 
-INSERT INTO DreamangaDataBase.User VALUE(1,"bobom",2000-04-23,"jesuisunemerde","boumboum");
+-- INSERT INTO DreamangaDataBase.User VALUES (NULL,'Morley','1992-08-13 00:04:37','mjimenez2@so-net.ne.jp','dsdsd');
+-- INSERT INTO DreamangaDataBase.User VALUES (NULL,'Brnaby','1991-03-09 06:32:04','bwhales0@last.fm','oV4}G|KQ6V');
+-- INSERT INTO DreamangaDataBase.User VALUES (NULL,'Brion','1996-05-22 22:55:11','bbatalini4@google.com.au','dY8$wV|_@O!KV8f');
+-- INSERT INTO DreamangaDataBase.User VALUES (NULL,'Marve','1998-01-06 03:52:59','mdorton5@theguardian.com','rU0+V/?J');
 
 CREATE TABLE IF NOT EXISTS DreamangaDataBase.Post (
   idPost INT NOT NULL AUTO_INCREMENT,
