@@ -1,48 +1,5 @@
-/* input {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
-  label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  button {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  @media screen and (max-width: 768px) {
-    input {
-      width: 80%;
-    }
-    
-    button {
-      margin: 0 auto;
-      display: block;
-    }
-  }
-   */
-   /* Ajoutez ces styles à votre fichier CSS (inscription.css) */
-
-/* Style de base */
-
 div {
-  margin: 10px 0;
+  margin: 10px auto;
 }
 
 label {
@@ -60,20 +17,35 @@ input {
 #form {
   background: red;
   margin: 0 auto;
+ 
 }
 
-/* Styles responsives */
+.form_signup {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  width: 50%;
+}
+
 @media (max-width: 768px) {
   input {
-    width: 100%; /* Pour les écrans étroits, occuper la largeur complète */
+    width: 100%;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-  /* Styles spécifiques pour les écrans de taille moyenne */
   input {
-    width: 50%; /* Occupe 50% de la largeur pour les écrans de taille moyenne */
+    width: 50%;
   }
 }
 
-/* Ajoutez d'autres règles CSS selon vos besoins pour d'autres tailles d'écran */
+.erreur {
+  color: red;
+}
+
+.submit:hover{
+  background: blue;
+}
+
