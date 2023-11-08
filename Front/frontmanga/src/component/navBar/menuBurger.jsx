@@ -18,8 +18,8 @@ function Header() {
         <a href="#home" className="active">
         </a>
         <a href="#S'inscrire"> <Link to="/inscription"> S'inscrire</Link>  </a>
-        <a href="#Connexion"><Link to="/"> Connexion</Link> </a>
-        <a href="#Accueil"><Link to="/"> Accueil</Link></a>
+        <a href="#Connexion"><Link to="/connexion"> Connexion</Link> </a>
+        <a href="#Accueil"><Link to="/#"> Accueil</Link></a>
         <a href="javascript:void(0);" className="icon" onClick={myFunction}>
           <i>///</i>
         </a>

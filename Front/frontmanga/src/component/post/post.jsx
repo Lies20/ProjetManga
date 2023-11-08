@@ -1,27 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import './post.css';
 
 const LatestPosts = () => {
-  const posts = [
-    {
-      id: 1,
-      title: 'Titre du premier post',
-      description: 'Description du premier post',
-      date: '02/05/2023',
-    },
-    {
-      id: 2,
-      title: 'Titre du deuxième post',
-      description: 'Description du deuxième post',
-      date: '01/05/2023',
-    },
-    {
-      id: 3,
-      title: 'Titre du troisième post',
-      description: 'Description du troisième post',
-      date: '30/04/2023',
-    },
-  ];
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    axios.get('/api/posts')
+      .then((response) => {
+        setPosts(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        console.log("hihih",posts)
+      });
+  }, []);
 
   return (
     <section className="latest-posts">
@@ -34,6 +27,8 @@ const LatestPosts = () => {
                 <h3>{post.title}</h3>
                 <p>{post.description}</p>
                 <span className="date">{post.date}</span>
+                <span className="author">Posté par {post.pseudo}</span>
+                <span className="rubrique">Rubrique : {post.rubrique}</span>
               </a>
             </li>
           ))}
@@ -44,3 +39,4 @@ const LatestPosts = () => {
 };
 
 export default LatestPosts;
+
