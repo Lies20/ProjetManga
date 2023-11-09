@@ -47,6 +47,9 @@ Connexion.css
   button:hover {
     background-color: #0056b3;
   }
+  .erreur {
+    color: red;
+  }
   
   @media (max-width: 768px) {
     .container {

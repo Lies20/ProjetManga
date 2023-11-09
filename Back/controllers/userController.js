@@ -43,7 +43,7 @@ const userController = {
                 })
         }
     },
-    uptade : async  (req, res) => {
+    update : async  (req, res) => {
         try {
             const { pseudo, birthday, email, password } = req.body
             const {id} = req.params

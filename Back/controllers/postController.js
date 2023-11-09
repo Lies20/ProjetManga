@@ -29,22 +29,40 @@ const postController = {
         }
     },
 
-    create: async  (req, res) => {
-        try {
-            const { title, description, datePublication, idUser } = req.body;
-            const sql = "insert into post(title, description, datePublication, idUser) value (?, ?, ?, ?)"
-            const [rows, fields] = await pool.query(sql, [title, description, datePublication, idUser])
-            res.json({
-                data: rows
-            })
-        } catch(error) {
-            console.log(error)
-            res.json({
-                state : "error"
-                })
-        }
-    },
-    uptade : async  (req, res) => {
+    // create: async  (req, res) => {
+    //     try {
+    //         const { title, description, datePublication, idUser } = req.body;
+    //         const sql = "insert into post(title, description, datePublication, idUser) value (?, ?, ?, ?)"
+    //         const [rows, fields] = await pool.query(sql, [title, description, datePublication, idUser])
+    //         res.json({
+    //             data: rows
+    //         })
+    //     } catch(error) {
+    //         console.log(error)
+    //         res.json({
+    //             state : "error"
+    //             })
+    //     }
+    // },
+    // 
+create: async (req, res) => {
+    try {
+        const { title, description, datePublication, idUser } = req.body;
+        const sql = "insert into post(title, description, datePublication, idUser) value (?, ?, ?, ?)";
+        const [rows, fields] = await pool.query(sql, [title, description, new Date(datePublication), idUser]);
+        res.json({
+            data: rows
+        });
+    } catch(error) {
+        console.log(error);
+        res.json({
+            state: "error"
+        });
+    }
+},
+// ...
+
+    update : async  (req, res) => {
         try {
             const { title, description, datePublication, idUser } = req.body
             const {id} = req.params

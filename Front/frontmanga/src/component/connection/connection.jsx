@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import './connexion.css'
+import './connection.css'
 
 function Connection() {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
+  const [erreurMotDePasse, setErreurMotDePasse] = ('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -12,7 +13,25 @@ function Connection() {
   const handleMotDePasseChange = (e) => {
     setMotDePasse(e.target.value);
   }
+  
+  function isEmailValid(email) {
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    return emailRegex.test(email);
+  }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (motDePasse.length < 7 || !isEmailValid(email)) {
+      if (motDePasse.length < 7) {
+        setErreurMotDePasse('mot de passe invalide');
+      }
+      if (!isEmailValid(email)) {
+        setErreurEmail('L\'adresse e-mail n\'est pas valide.');
+      }
+      return;
+    }
+  }
+ 
   return (
     <div>
       <h2>Connexion</h2>
@@ -32,9 +51,11 @@ function Connection() {
             value={motDePasse}
             onChange={handleMotDePasseChange}
           />
+          {erreurMotDePasse && <p className="erreur">{erreurMotDePasse}</p>}
         </div>
         <div>
-          <button type="submit">Se connecter</button>
+          <button onSubmit={handleSubmit} type="submit">Se connecter</button>
+
         </div>
       </form>
     </div>
