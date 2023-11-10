@@ -8,17 +8,19 @@ const LatestPosts = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await axios.get('/api/posts');
-        setPosts(response.data);
-      } catch (error) {
-        console.error(error.response);
-        setError('Une erreur s\'est produite lors du chargement des derniers posts.');
-      }
+        try {
+            const response = await axios.get('/api/post');
+            setPosts(response.data);
+        } catch (error) {
+            console.error(error);
+            console.log("Error details", error.response);
+            setError('Une erreur s\'est produite lors du chargement des derniers posts.');
+        }
     };
 
     fetchData();
-  }, []); // Le tableau vide signifie que cela ne dépend d'aucune dépendance et ne doit être exécuté qu'une seule fois
+}, []);
+
 
   return (
     <section className="latest-posts">

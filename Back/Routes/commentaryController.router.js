@@ -6,7 +6,7 @@ const commentaryController = require("../controllers/commentaryController.js")
 router.get("/", commentaryController.getAll)
 router.get("/:id", commentaryController.getById)
 router.post("/", commentaryController.create)
-router.put("/:id", commentaryController.uptade)
+router.put("/:id", commentaryController.update)
 router.delete("/:id", commentaryController.delete)
 
 

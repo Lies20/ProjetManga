@@ -1,5 +1,8 @@
-const pool = require("../Databases/index.js")
+const pool = require("../Databases/index.js");
+
+
 const userController = {
+    
     getAll: async  (req, res) => {
         try {
             const [rows] = await pool.query("select * from user")

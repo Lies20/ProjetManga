@@ -1,4 +1,5 @@
-const pool = require("../Databases/index.js")
+const pool = require("../Databases/index.js");
+
 const commentaryController = {
     getAll: async  (req, res) => {
         try {
