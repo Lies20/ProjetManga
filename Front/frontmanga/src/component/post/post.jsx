@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './post.css';
 
+
 const LatestPosts = () => {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(null);
@@ -9,18 +10,19 @@ const LatestPosts = () => {
   useEffect(() => {
     const fetchData = async () => {
         try {
-            const response = await axios.get('/api/post');
-            setPosts(response.data);
+            const response = await axios.get('http://localhost:3006/api/post');
+            console.log('Réponse API', response.data);
+            // Assurez-vous que response.data contient le tableau des posts
+            setPosts(response.data.data || []);
         } catch (error) {
             console.error(error);
-            console.log("Error details", error.response);
-            setError('Une erreur s\'est produite lors du chargement des derniers posts.');
+            console.log("Détails de l'erreur", error.response);
+            setError("Une erreur s'est produite lors du chargement des derniers posts.");
         }
     };
 
     fetchData();
 }, []);
-
 
   return (
     <section className="latest-posts">
@@ -46,3 +48,4 @@ const LatestPosts = () => {
 };
 
 export default LatestPosts;
+
