@@ -3,7 +3,9 @@ const pool = require("../Databases/index.js");
 const postController = {
     getAll: async (req, res) => {
         try {
-            const [rows] = await pool.query("SELECT * FROM Post");
+            const [rows] = await pool.query(
+                "SELECT Post.*, User.pseudo FROM Post JOIN User ON Post.idUser = User.idUser"
+            );
             res.json({ data: rows });
         } catch (error) {
             handleError(res, error);
@@ -13,7 +15,10 @@ const postController = {
     getById: async (req, res) => {
         try {
             const { id } = req.params;
-            const [rows] = await pool.query("SELECT * FROM Post WHERE idPost = ?", [id]);
+            const [rows] = await pool.query(
+                "SELECT Post.*, User.pseudo FROM Post JOIN User ON Post.idUser = User.idUser WHERE idPost = ?",
+                [id]
+            );
             res.json({ data: rows });
         } catch (error) {
             handleError(res, error);

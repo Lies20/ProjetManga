@@ -1,45 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './post.css';
-
 
 const LatestPosts = () => {
   const [posts, setPosts] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            const response = await axios.get('http://localhost:3006/api/post');
-            console.log('Réponse API', response.data);
-            // Assurez-vous que response.data contient le tableau des posts
-            setPosts(response.data.data || []);
-        } catch (error) {
-            console.error(error);
-            console.log("Détails de l'erreur", error.response);
-            setError("Une erreur s'est produite lors du chargement des derniers posts.");
-        }
+      try {
+        const response = await axios.get('http://localhost:3006/api/post');
+        console.log('reponse Api', response.data);
+        setPosts(response.data.data || []);
+      } catch (error) {
+        console.error(error);
+        console.log("Error details", error.response);
+      }
     };
 
     fetchData();
-}, []);
+  }, []);
+
+  const formatDate = (dateString) => {
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString('fr-FR', options);
+  };
 
   return (
     <section className="latest-posts">
       <div className="container">
         <h2>Les derniers posts</h2>
-        {error && <p>{error}</p>}
         <ul>
-          {posts.map((post) => (
-            <li key={post.id}>
-              <div>
-                <h3>{post.title}</h3>
-                <p>{post.description}</p>
-                <span className="date">{post.date}</span>
-                <span className="author">Posté par {post.pseudo}</span>
-                <span className="rubrique">Rubrique : {post.rubrique}</span>
-              </div>
-            </li>
+          {posts.map((post, index) => (
+            <React.Fragment key={post.id}>
+              {index !== 0 && <hr />}
+              <li>
+                <Link to={`/posts/${post.id}`}>
+                  <div>
+                    <h3>{post.title}</h3>
+                    <p>{post.description}</p>
+                    <p>Date de publication:{formatDate(post.datePublication)}</p>
+                    <p>Auteur: {post.pseudo}</p>
+                    <p>Rubrique: {post.rubrique}</p>
+                  </div>
+                </Link>
+              </li>
+            </React.Fragment>
           ))}
         </ul>
       </div>
@@ -48,4 +54,3 @@ const LatestPosts = () => {
 };
 
 export default LatestPosts;
-
