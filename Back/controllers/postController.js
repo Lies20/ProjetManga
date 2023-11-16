@@ -27,10 +27,18 @@ const postController = {
 
     create: async (req, res) => {
         try {
-            const { title, description, datePublication, idUser } = req.body;
+            const { title, description,idUser } = req.body;
+            const [existingPosts] = await pool.query(
+                "SELECT * FROM Post WHERE title = ? AND description = ?",
+                [title, description]
+              );
+              if (existingPosts.length > 0) {
+                return res.status(400).json({ message: "Ce post existe déja." });
+              }
+            const datePublication = new Date();
             const sql = "INSERT INTO Post (title, description, datePublication, idUser) VALUES (?, ?, ?, ?)";
-            const [rows] = await pool.query(sql, [title, description, new Date(datePublication), idUser]);
-            res.json({ data: rows });
+            const [rows] = await pool.query(sql, [title, description, datePublication, idUser]);
+            res.json({  message :"Publication créée", data: rows });
         } catch (error) {
             handleError(res, error);
         }
@@ -61,7 +69,8 @@ const postController = {
 
 function handleError(res, error) {
     console.error(error);
-    res.json({ state: "error" });
+    res.json({ state: "error", message: error.message });
 }
+
 
 module.exports = postController;

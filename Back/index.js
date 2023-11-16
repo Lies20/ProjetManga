@@ -21,5 +21,5 @@ app.use("/api/post", postRouter)
 app.use("/api/commentary", commentaryController)
 
 app.listen(PORT, () => {
-    console.log("le serveur est bien lancée")
+    console.log("le serveur est bien lancé")
 })

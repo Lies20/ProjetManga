@@ -32,3 +32,18 @@
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+.create-post-btn {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #f90f26;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-post-btn:hover {
+  background-color: #45a049;
+}

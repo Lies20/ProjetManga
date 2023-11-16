@@ -10,6 +10,8 @@ const LatestPosts = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3006/api/post');
+        const sortedPosts = response.data.data.sort((a, b) => new Date(b.datePublication) - new Date(a.datePublication));
+        setPosts(sortedPosts || []);
         console.log('reponse Api', response.data);
         setPosts(response.data.data || []);
       } catch (error) {
@@ -29,7 +31,8 @@ const LatestPosts = () => {
   return (
     <section className="latest-posts">
       <div className="container">
-        <h2>Les derniers posts</h2>
+        <Link to="/create-post" className="create-post-btn">Créer un post</Link>
+        <h2>Les Mangas Existants</h2>
         <ul>
           {posts.map((post, index) => (
             <React.Fragment key={post.id}>
@@ -41,7 +44,6 @@ const LatestPosts = () => {
                     <p>{post.description}</p>
                     <p>Date de publication:{formatDate(post.datePublication)}</p>
                     <p>Auteur: {post.pseudo}</p>
-                    <p>Rubrique: {post.rubrique}</p>
                   </div>
                 </Link>
               </li>
