@@ -81,21 +81,8 @@ login: async (req, res) => {
             return res.status(401).json({ message: "Utilisateur non trouvé." });
         }
 
-        // const isPasswordValid = await bcrypt.compare(password, user[0].password);
-        const isPasswordValid = await bcrypt.compare(password.trim(), user[0].password);
-
-        console.log('Mot de passe stocké dans la base de données :', user[0].password);
-        console.log('Mot de passe fourni dans la requête :', password);
-        console.log('La comparaison de mot de passe est-elle valide ?', isPasswordValid);
-        console.log('Longueur du mot de passe stocké :', user[0].password.length);
-        console.log('Longueur du mot de passe fourni :', password.length);
-        console.log('Mot de passe fourni :', password);
-        console.log('Données reçues dans la route de connexion :', req.body);
-        console.log('Mot de passe stocké dans la base de données :', user[0].password);
-        console.log('Mot de passe fourni dans la requête :', password);
-
-
-
+        const isPasswordValid = await bcrypt.compare(password, user[0].password);
+        
         if (!isPasswordValid) {
             return res.status(401).json({ message: "Mot de passe incorrect." });
         }
