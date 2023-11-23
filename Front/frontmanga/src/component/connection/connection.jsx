@@ -1,41 +1,62 @@
 import React, { useState } from 'react';
-import './connection.css'
+import axios from 'axios';
+import './connection.css';
 
 function Connection() {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
-  const [erreurMotDePasse, setErreurMotDePasse] = ('');
+  const [erreurEmail, setErreurEmail] = useState('');
+  const [erreurMotDePasse, setErreurMotDePasse] = useState('');
+  const [token, setToken] = useState(null);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
-  }
+    setErreurEmail('');
+  };
 
   const handleMotDePasseChange = (e) => {
     setMotDePasse(e.target.value);
-  }
-  
+    setErreurMotDePasse('');
+  };
+
   function isEmailValid(email) {
     const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
     return emailRegex.test(email);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (motDePasse.length < 7 || !isEmailValid(email)) {
       if (motDePasse.length < 7) {
-        setErreurMotDePasse('mot de passe invalide');
+        setErreurMotDePasse('Mot de passe invalide');
       }
       if (!isEmailValid(email)) {
         setErreurEmail('L\'adresse e-mail n\'est pas valide.');
       }
       return;
     }
-  }
- 
+    
+    try {
+      const response = await axios.post('http://localhost:3006/api/users/login', {
+        email: email,
+        password:motDePasse
+      });
+      
+
+      const { token } = response.data;
+      setToken(token);
+
+      console.log(response.data);
+    } catch (error) {
+      console.log('Erreur lors de la connexion :', error);
+      setErreurMotDePasse('Mot de passe invalide');
+    }
+  };
+
   return (
     <div>
       <h2>Connexion</h2>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label>Email :</label>
           <input
@@ -43,6 +64,7 @@ function Connection() {
             value={email}
             onChange={handleEmailChange}
           />
+          {erreurEmail && <p className="erreur">{erreurEmail}</p>}
         </div>
         <div>
           <label>Mot de passe :</label>
@@ -54,8 +76,7 @@ function Connection() {
           {erreurMotDePasse && <p className="erreur">{erreurMotDePasse}</p>}
         </div>
         <div>
-          <button onSubmit={handleSubmit} type="submit">Se connecter</button>
-
+          <button type="submit">Se connecter</button>
         </div>
       </form>
     </div>

@@ -16,7 +16,7 @@ const userRouter = require("./Routes/user.router")
 const postRouter = require("./Routes/post.router")
 const commentaryController = require("./Routes/commentaryController.router")
 
-app.use("/api/v1/user", userRouter)
+app.use("/api/users", userRouter)
 app.use("/api/post", postRouter)
 app.use("/api/commentary", commentaryController)
 

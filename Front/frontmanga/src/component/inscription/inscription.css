@@ -1,51 +1,52 @@
-div {
-  margin: 10px auto;
+h2 {
+  text-align: center;
 }
 
-label {
-  display: block;
-  font-weight: bold;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-#form {
-  background: red;
-  margin: 0 auto;
- 
-}
-
-.form_signup {
+form {
   display: flex;
   flex-direction: column;
 }
 
-.input-container {
-  width: 50%;
+label {
+  margin-bottom: 8px;
 }
 
-@media (max-width: 768px) {
-  input {
-    width: 100%;
-  }
+input {
+  margin-bottom: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box; 
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  input {
-    width: 50%;
-  }
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
 }
 
 .erreur {
-  color: red;
+  color: #ff0000;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
-.submit:hover{
-  background: blue;
-}
+/* Responsive styles using media queries */
+@media screen and (max-width: 600px) {
+  div {
+    max-width: 100%;
+    padding: 10px;
+  }
 
+  input,
+  button {
+    width: 100%;
+  }
+}

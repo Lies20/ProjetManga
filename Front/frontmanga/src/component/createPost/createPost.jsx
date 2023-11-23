@@ -6,7 +6,7 @@ import './createPost.css'
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [isPostCreated, setIsPostCreated] = useState(false); 
+  const [isPostCreated, setIsPostCreated] = useState('');
 
   const handleCreatePost = async () => {
     try {
@@ -14,8 +14,11 @@ const CreatePost = () => {
         title,
         description,
       });
-
+      
       setIsPostCreated(true);
+      setTitle('');
+      setDescription('');
+
     } catch (error) {
       console.error('Erreur lors de la création du post :', error);
     }
@@ -25,7 +28,6 @@ const CreatePost = () => {
   return (
     <div>
       <h2>Créer un nouveau post</h2>
-      {!isPostCreated ?(
       <form>
         <label>
           Titre :
@@ -48,12 +50,12 @@ const CreatePost = () => {
           Créer le post
         </button>
       </form>
-      ) : (
+      {isPostCreated && (
         <div>
-        <p>Le post a été créé avec succès !</p>
-        <Link to="/" className="active">Toutes les publications</Link>
-      </div>
-    )}
+          <p>Le post a été créé avec succès !</p>
+          <Link to="/" className="active">Toutes les publications</Link>
+        </div>
+      )}
     </div>
 
   );

@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS DreamangaDataBase.User (
   pseudo VARCHAR(20),
   birthday DATETIME NULL,
   email VARCHAR(45),
-  password VARCHAR(255)
+  password VARCHAR(255),
+  Role VARCHAR(50) NULL
 );
   
 
