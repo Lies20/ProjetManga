@@ -1,6 +1,5 @@
 const pool = require("../Databases/index.js");
 const bcrypt = require('bcrypt');
-const jwtService = require('./jwtController.js');
 
 const userController = {
     
@@ -87,11 +86,8 @@ login: async (req, res) => {
             return res.status(401).json({ message: "Mot de passe incorrect." });
         }
 
-        const token = jwtService.generateToken(user[0].idUser);
-
         res.json({
             message: "Connexion réussie.",
-            token,
             userData: {
                 userId: user[0].idUser,
                 pseudo: user[0].pseudo,

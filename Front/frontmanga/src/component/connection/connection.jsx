@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useUser } from '../../contexte/UserContext.jsx';
 import './connection.css';
+import { useNavigate } from 'react-router-dom';
 
 function Connection() {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
   const [erreurEmail, setErreurEmail] = useState('');
   const [erreurMotDePasse, setErreurMotDePasse] = useState('');
-  const [token, setToken] = useState(null);
+
+
+  const { user, updateUser } = useUser();
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -31,26 +36,31 @@ function Connection() {
         setErreurMotDePasse('Mot de passe invalide');
       }
       if (!isEmailValid(email)) {
-        setErreurEmail('L\'adresse e-mail n\'est pas valide.');
+        setErreurEmail("L'adresse e-mail n'est pas valide.");
       }
       return;
     }
-    
-    try {
+try {
       const response = await axios.post('http://localhost:3006/api/users/login', {
         email: email,
-        password:motDePasse
+        password: motDePasse,
       });
-      
 
-      const { token } = response.data;
-      setToken(token);
+  const {userData } = response.data;
+  console.log('userData:', userData); 
+  updateUser(userData);
 
-      console.log(response.data);
-    } catch (error) {
-      console.log('Erreur lors de la connexion :', error);
-      setErreurMotDePasse('Mot de passe invalide');
-    }
+  console.log(response.data);
+
+  
+  navigate('/');
+
+
+} catch (error) {
+  console.log('Erreur lors de la connexion :', error);
+  setErreurMotDePasse('Mot de passe invalide');
+
+}
   };
 
   return (
@@ -59,20 +69,12 @@ function Connection() {
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email :</label>
-          <input
-            type="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
+          <input type="email" value={email} onChange={handleEmailChange} />
           {erreurEmail && <p className="erreur">{erreurEmail}</p>}
         </div>
         <div>
           <label>Mot de passe :</label>
-          <input
-            type="password"
-            value={motDePasse}
-            onChange={handleMotDePasseChange}
-          />
+          <input type="password" value={motDePasse} onChange={handleMotDePasseChange} />
           {erreurMotDePasse && <p className="erreur">{erreurMotDePasse}</p>}
         </div>
         <div>

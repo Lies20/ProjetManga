@@ -2,17 +2,20 @@ import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './createPost.css'
+import { useUser } from '../../contexte/UserContext';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [isPostCreated, setIsPostCreated] = useState('');
+  const { user, updateUser } = useUser();
 
   const handleCreatePost = async () => {
     try {
       await axios.post(' http://localhost:3006/api/post/createPost', {
         title,
         description,
+        idUser: user.userId
       });
       
       setIsPostCreated(true);

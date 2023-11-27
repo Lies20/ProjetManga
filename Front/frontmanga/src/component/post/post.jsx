@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useUser } from '../../contexte/UserContext';  // Ajout de l'import du contexte utilisateur
 import './post.css';
 
 const LatestPosts = () => {
+  const { user } = useUser();  // Utilisation du contexte utilisateur
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -31,7 +33,9 @@ const LatestPosts = () => {
   return (
     <section className="latest-posts">
       <div className="container">
-        <Link to="/create-post" className="create-post-btn">Créer un post</Link>
+        {user && user.pseudo && (
+          <Link to="/create-post" className="create-post-btn">Créer un post</Link>
+        )}
         <h2>Les Mangas Existants</h2>
         <ul>
           {posts.map((post, index) => (
