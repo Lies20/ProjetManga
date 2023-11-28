@@ -5,7 +5,7 @@ import { useUser } from '../../contexte/UserContext';
 import './post.css';
 
 const LatestPosts = () => {
-  const { user } = useUser();  // Utilisation du contexte utilisateur
+  const { user } = useUser(); 
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const LatestPosts = () => {
         const response = await axios.get('http://localhost:3006/api/post');
         const sortedPosts = response.data.data.sort((a, b) => new Date(b.datePublication) - new Date(a.datePublication));
         setPosts(sortedPosts || []);
-        console.log('reponse Api', response.data);
+        // console.log('reponse Api', response.data);
         setPosts(response.data.data || []);
       } catch (error) {
         console.error(error);

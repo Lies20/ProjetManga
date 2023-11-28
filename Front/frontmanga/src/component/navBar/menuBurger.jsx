@@ -5,7 +5,7 @@ import "./menuBurger.css";
 
 function Header() {
   const { user } = useUser();
-  console.log('État de l utilisateur :', user);
+  // console.log('État de l utilisateur :', user);
 
   const myFunction = () => {
     var x = document.getElementById("myTopnav");

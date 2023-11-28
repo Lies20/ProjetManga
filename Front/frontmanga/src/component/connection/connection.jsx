@@ -47,10 +47,10 @@ try {
       });
 
   const {userData } = response.data;
-  console.log('userData:', userData); 
+  // console.log('userData:', userData); 
   updateUser(userData);
 
-  console.log(response.data);
+  // console.log(response.data);
 
   
   navigate('/');

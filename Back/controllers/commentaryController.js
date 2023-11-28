@@ -32,9 +32,9 @@ const commentaryController = {
 
   create: async (req, res) => {
     try {
-      const { subject, datePublication, idUser, idPost, role, isConnected } = req.body;
-      const sql = "INSERT INTO Commentary (subject, datePublication, idUser, idPost, role, isConnected) VALUES (?, ?, ?, ?, ?, ?)";
-      const [rows, fields] = await pool.query(sql, [subject, datePublication, idUser, idPost, role, isConnected]);
+      const { subject, idUser, idPost } = req.body;
+      const sql = "INSERT INTO Commentary (subject, datePublication, idUser, idPost) VALUES (?, NOW(), ?, ?)";
+      const [rows, fields] = await pool.query(sql, [subject, idUser, idPost]);
       res.json({
         data: rows,
       });
@@ -67,6 +67,21 @@ const commentaryController = {
     try {
       const { id } = req.params;
       const [rows, fields] = await pool.query("DELETE FROM Commentary WHERE idCommentary = ?", [id]);
+      res.json({
+        data: rows,
+      });
+    } catch (error) {
+      console.log(error);
+      res.json({
+        state: "error",
+      });
+    }
+  },
+
+  getCommentsByPostId: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const [rows, fields] = await pool.query("SELECT * FROM Commentary WHERE idPost = ?", [id]);
       res.json({
         data: rows,
       });

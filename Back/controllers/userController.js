@@ -61,11 +61,14 @@ const userController = {
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
-        const sql = "INSERT INTO User (pseudo, birthday, email, password) VALUES (?, ?, ?, ?)";
+        const sql = "INSERT INTO User (pseudo, birthday, email, password, role) VALUES (?, ?, ?, ?, 'user')";
         const [rows] = await pool.query(sql, [pseudo, birthday, email, hashedPassword]);
         res.json({ message: "Compte créé avec succès.", data: rows });
     } catch (error) {
-        handleError(res, error);
+        // handleError(res, error);
+        res.json({
+            state : "error"
+            })
     }
 },
 
