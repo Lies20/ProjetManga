@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useUser } from '../../contexte/UserContext';  // Ajout de l'import du contexte utilisateur
+import { useUser } from '../../contexte/UserContext';
 import './post.css';
 
 const LatestPosts = () => {
@@ -30,6 +30,7 @@ const LatestPosts = () => {
     return new Date(dateString).toLocaleDateString('fr-FR', options);
   };
 
+
   return (
     <section className="latest-posts">
       <div className="container">
@@ -42,7 +43,7 @@ const LatestPosts = () => {
             <React.Fragment key={post.id}>
               {index !== 0 && <hr />}
               <li>
-                <Link to={`/posts/${post.id}`}>
+                <Link to={`/post-detail/${post.idPost}`}>
                   <div>
                     <h3>{post.title}</h3>
                     <p>{post.description}</p>
