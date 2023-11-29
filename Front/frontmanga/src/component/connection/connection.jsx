@@ -31,7 +31,7 @@ function Connection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (motDePasse.length < 7 || !isEmailValid(email)) {
+    if (motDePasse.length < 7 ) {
       if (motDePasse.length < 7) {
         setErreurMotDePasse('Mot de passe invalide');
       }
@@ -47,14 +47,9 @@ try {
       });
 
   const {userData } = response.data;
-  // console.log('userData:', userData); 
   updateUser(userData);
-
-  // console.log(response.data);
-
   
   navigate('/');
-
 
 } catch (error) {
   console.log('Erreur lors de la connexion :', error);

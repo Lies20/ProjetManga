@@ -65,7 +65,6 @@ const userController = {
         const [rows] = await pool.query(sql, [pseudo, birthday, email, hashedPassword]);
         res.json({ message: "Compte créé avec succès.", data: rows });
     } catch (error) {
-        // handleError(res, error);
         res.json({
             state : "error"
             })
@@ -75,7 +74,6 @@ const userController = {
 login: async (req, res) => {
     try {
         const { email, password } = req.body;
-        // console.log('Données reçues dans la route de connexion :', req.body);
 
         const [user] = await pool.query("SELECT * FROM User WHERE email = ?", [email]);
 
@@ -102,9 +100,6 @@ login: async (req, res) => {
         res.status(500).json({ message: "Échec de la connexion.", error: error.message, stack: error.stack });
     }
 },
-
-
-
 
     update : async  (req, res) => {
         try {

@@ -14,7 +14,6 @@ const LatestPosts = () => {
         const response = await axios.get('http://localhost:3006/api/post');
         const sortedPosts = response.data.data.sort((a, b) => new Date(b.datePublication) - new Date(a.datePublication));
         setPosts(sortedPosts || []);
-        // console.log('reponse Api', response.data);
         setPosts(response.data.data || []);
       } catch (error) {
         console.error(error);

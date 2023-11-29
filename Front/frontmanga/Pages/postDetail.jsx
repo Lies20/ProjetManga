@@ -6,8 +6,8 @@ function detailPost () {
 
     return(
         <>
-        <PostDetail/>
         <BurgerMenu/>
+        <PostDetail/>
         </>
     )
 }

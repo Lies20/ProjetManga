@@ -18,8 +18,6 @@ const PostDetail = () => {
           const postResponse = await axios.get(`http://localhost:3006/api/post/${postId}`);
           setPost(postResponse.data.data.shift());
   
-
-
           const commentsResponse = await axios.get(`http://localhost:3006/api/commentary/comments/post/${postId}`);
           setComments(commentsResponse.data.data);
         } catch (error) {
@@ -52,7 +50,6 @@ const PostDetail = () => {
         console.error('Erreur lors du post du commentaire :', error);
       }
     };
-    
   
     return (
       <div className="post-detail-container">
