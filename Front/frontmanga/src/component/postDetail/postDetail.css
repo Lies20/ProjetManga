@@ -58,5 +58,56 @@ h2 {
     button {
       padding: 8px 12px;
     }
+
+.post-detail-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.post-detail {
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.comment-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comment-item {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.comment-item p {
+  margin: 0;
+}
+
+.comment-form {
+  margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .post-detail {
+    padding: 10px;
+  }
+
+  .comment-item {
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .post-detail {
+    padding: 5px;
+  }
+
+  .comment-item {
+    padding: 3px;
+  }
+}
+
   }
   

@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import { useUser } from "../../contexte/UserContext";
 import React, { useState, useEffect } from 'react';
+import './PostDetail.css'
 
 
 const PostDetail = () => {
@@ -12,11 +13,9 @@ const PostDetail = () => {
     const [newComment, setNewComment] = useState('');
   
     useEffect(() => {
-      // console.log(postId);
       const fetchPostAndComments = async () => {
         try {
           const postResponse = await axios.get(`http://localhost:3006/api/post/${postId}`);
-          // console.log(postResponse);
           setPost(postResponse.data.data.shift());
   
 
@@ -29,47 +28,54 @@ const PostDetail = () => {
       };
   
       fetchPostAndComments();
-    }, []);
+    }, [comments]);
+
+    const formatDate = (dateString) => {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(dateString).toLocaleDateString('fr-FR', options);
+    };
   
     const handleCommentSubmit = async () => {
       try {
-        await axios.post(`http://localhost:3006/api/commentary/create`, {
+        const response = await axios.post(`http://localhost:3006/api/commentary/create`, {
           subject: newComment,
-          // datePublication: new Date(),
           idUser: user.userId,
           idPost: postId,
-          // isConnected: user.isConnected ? 1 : 0,
         });
-  
-        const updatedCommentsResponse = await axios.get(`http://localhost:3006/api/post/${postId}/comments`);
-        setComments(updatedCommentsResponse.data);
-        setNewComment(''); 
+    
+        const newCommentData = response.data.data;
+    
+        setComments([...comments, newCommentData]);
+    
+        setNewComment('');
       } catch (error) {
         console.error('Erreur lors du post du commentaire :', error);
       }
     };
+    
   
     return (
-      <div>
+      <div className="post-detail-container">
         {user && (
-          <div>
-            <h2>User id : {user.userId}</h2>
+          <div className="post-detail">
+            <h2> Par : {user.pseudo}</h2>
             <h2>Title : {post.title}</h2>
-            <p>Content : {post.description}</p>
+            <p> Contenue du post: {post.description}</p>
           </div>
         )}
         {user && (
-          <ul>
+          <ul className="comment-list">
             {comments.map((comment) => (
               <li key={comment.idCommentary}>
+                <p>Publié le :{formatDate(comment.datePublication)}</p>
+                <p>Par : {user.pseudo}</p>
                 <p>{comment.subject}</p>
-                <p>Par : {comment.idUser}</p>
               </li>
             ))}
           </ul>
         )}
           {user && (
-          <div>
+          <div className="comment-form">
             <textarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}

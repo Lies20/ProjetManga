@@ -75,7 +75,7 @@ const userController = {
 login: async (req, res) => {
     try {
         const { email, password } = req.body;
-        console.log('Données reçues dans la route de connexion :', req.body);
+        // console.log('Données reçues dans la route de connexion :', req.body);
 
         const [user] = await pool.query("SELECT * FROM User WHERE email = ?", [email]);
 
