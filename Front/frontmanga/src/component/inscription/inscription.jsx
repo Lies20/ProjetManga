@@ -11,7 +11,6 @@ const CreateAccount = () => {
   const [error, setError] = useState('');
   const [isUserCreated, setIsUserCreated] = useState('');
 
-
   const handleCreateAccount = async () => {
     try {
       if (!isValidDate(birthday)) {

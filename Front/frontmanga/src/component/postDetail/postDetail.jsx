@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useUser } from "../../contexte/UserContext";
 import React, { useState, useEffect } from 'react';
 import './PostDetail.css'
+import BurgerMenu from "../navBar/menuBurger"
+
 
 
 const PostDetail = () => {
@@ -53,6 +55,8 @@ const PostDetail = () => {
   
     return (
       <div className="post-detail-container">
+        <BurgerMenu/>
+
         {user && (
           <div className="post-detail">
             <h2> Par : {user.pseudo}</h2>
