@@ -56,7 +56,6 @@ const PostDetail = () => {
     return (
       <div className="post-detail-container">
         <BurgerMenu/>
-
         {user && (
           <div className="post-detail">
             <h2> Par : {user.pseudo}</h2>
