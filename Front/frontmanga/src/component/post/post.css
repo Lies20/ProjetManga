@@ -47,3 +47,17 @@
 .create-post-btn:hover {
   background-color: #45a049;
 }
+
+.latest-posts button.delete-post-btn {
+  background-color: #f44336; 
+  color: white; 
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.latest-posts button.delete-post-btn:hover {
+  background-color: #d32f2f; 
+}
+

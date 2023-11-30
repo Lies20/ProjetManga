@@ -59,6 +59,8 @@ const postController = {
     delete: async (req, res) => {
         try {
             const { id } = req.params;
+            await pool.query("DELETE FROM DreamangaDataBase.Commentary WHERE idPost = ?", [id]);
+
             const [rows] = await pool.query("DELETE FROM Post WHERE idPost = ?", [id]);
             res.json({ data: rows });
         } catch (error) {

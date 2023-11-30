@@ -30,6 +30,12 @@
       float: right;
       display: block;
     }
+    .button{
+      display: none;
+    }
+    .pseudo{
+      display: none;
+    }
   }
   
   @media screen and (max-width: 600px) {
@@ -46,4 +52,8 @@
       display: block;
       text-align: left;
     }
+    .topnav.responsive a.logout-button {
+      display: none; 
+    }
   }
+  

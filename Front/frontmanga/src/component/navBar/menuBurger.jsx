@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import "./menuBurger.css";
 
 function Header() {
-  const { user } = useUser();
-  // console.log('État de l utilisateur :', user);
+  const { user,logOut } = useUser();
+
 
   const myFunction = () => {
     var x = document.getElementById("myTopnav");
@@ -21,7 +21,13 @@ function Header() {
       <div className="topnav" id="myTopnav">
         <Link to="/" className="active">Accueil</Link>
         {user && user.pseudo ? (
-          <p>Bienvenue, {user.pseudo} !</p>
+          <span className="pseudo">
+            <p>Bienvenue, {user.pseudo} !</p>
+            <span className="button">
+            <button onClick={logOut} >Déconnexion</button>
+            </span>
+          </span>
+          
         ) : (
           <>
             <Link to="/inscription">S'inscrire</Link>

@@ -121,6 +121,7 @@ login: async (req, res) => {
     delete : async  (req, res) => {
         try {
             const {id} = req.params
+            await pool.query("delete from post where iduser = ?",[id] )
             const [rows, fields] = await pool.query("delete from user where iduser = ?",[id] )
             res.json({
                 data: rows
