@@ -17,10 +17,15 @@ const PostDetail = () => {
   const [newComment, setNewComment] = useState('');
   const [update, setUpdate] = useState(true);
   const [deleteMessage, setDeleteMessage] = useState('')
-  const [isEditing, setIsEditing] = useState(false);
+  const [isPostEditing, setIsPostEditing] = useState(false);
   const [editedPost, setEditedPost] = useState({
     title: '',
     description: '',
+  });
+  const [isCommentEditing, setIsCommentEditing] = useState(false)
+  const [editedComment, setEditedComment] = useState({
+    idCommentary: null,
+    subject: '',
   });
   const navigate = useNavigate();
 
@@ -53,11 +58,8 @@ const PostDetail = () => {
         idUser: user.userId,
         idPost: postId,
       });
-
       const newCommentData = response.data.data;
-
       setComments([...comments, newCommentData]);
-
       setNewComment('');
       setUpdate(!update);
     } catch (error) {
@@ -80,7 +82,7 @@ const PostDetail = () => {
   };
   
   const handlePostEdit = () => {
-    setIsEditing(true);
+    setIsPostEditing(true);
     setEditedPost({
       title: post.title,
       description: post.description,
@@ -88,14 +90,14 @@ const PostDetail = () => {
   };
   
   const handleEditCancel = () => {
-    setIsEditing(false);
+    setIsPostEditing(false);
   };
 
   const handleEditSave = async () => {
     try {
       await axios.put(`http://localhost:3006/api/post/${postId}`, editedPost);
       setUpdate(!update);
-      setIsEditing(false);
+      setIsPostEditing(false);
     } catch (error) {
       console.error('Erreur lors de la modification du post :', error);
     }
@@ -105,13 +107,40 @@ const PostDetail = () => {
     try {
       await axios.delete(`http://localhost:3006/api/commentary/${commentId}`);
       setDeleteMessage('Le commentaire a été supprimé avec succès.'); 
-      setTimeout(() => {
         setDeleteMessage(''); 
-        setUpdate(!update); // Met à jour la liste des commentaires après la suppression
-      }, 3000); // Affiche le message pendant 3 secondes (ajuste si nécessaire)
+        setUpdate(!update); 
     } catch (error) {
       console.error('Erreur lors de la suppression du commentaire :', error);
     }
+  };
+  const handleCommentEdit = (comment) => {
+    setEditedComment({
+      idCommentary: comment.idCommentary,
+      subject: comment.subject,
+      idPost : postId,
+    });
+    setIsCommentEditing(true);
+  };
+  
+  const handleCommentSaveEdit = async (commentId) => {
+    try {
+      await axios.put(`http://localhost:3006/api/commentary/${commentId}`, {
+        subject: editedComment.subject,
+      });
+  
+      setUpdate(!update);
+      setIsCommentEditing(false);
+    } catch (error) {
+      console.error('Erreur lors de la modification du commentaire :', error);
+    }
+  };
+  
+  const handleCommentCancelEdit = () => {
+    setIsCommentEditing(false);
+    setEditedComment({
+      idCommentary: null,
+      subject: '',
+    });
   };
 
   return (
@@ -120,7 +149,7 @@ const PostDetail = () => {
       {user && (
         <div className="post-detail">
           <h2> Par : {user.pseudo}</h2>
-          {isEditing ? (
+          {isPostEditing ? (
               <>
               <label htmlFor="editedTitle">Nouveau titre :</label>
                 <input
@@ -158,23 +187,45 @@ const PostDetail = () => {
       {user && (
         <ul className="comment-list">
           {comments.map((comment) => (
-            <li key={comment.idCommentary}>
-              <p>Publié le :{formatDate(comment.datePublication)}</p>
-              <p>Par : {comment.pseudo}</p>
-              <p>{comment.subject}</p>
-              {user.pseudo === comment.pseudo && (
-                <>
-                  <button className="edit-comment-btn" onClick={() => handleCommentEdit(comment.idCommentary)}>
-                    Modifier le commentaire
-                  </button>
-                  <button className="delete-comment-btn" onClick={() => handleCommentDelete(comment.idCommentary)}>
-                    Supprimer le commentaire
-                  </button>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
+  <li key={comment.idCommentary}>
+    <p>Publié le : {formatDate(comment.datePublication)}</p>
+    <p>Par : {comment.pseudo}</p>
+    {isCommentEditing && editedComment.idCommentary === comment.idCommentary ? (
+      <>
+        <label htmlFor="editedComment">Modifier le commentaire :</label>
+        <textarea
+          id="editedComment"
+          value={editedComment.subject}
+          onChange={(e) =>
+            setEditedComment({
+              ...editedComment,
+              subject: e.target.value,
+            })
+          }
+        />
+        <button onClick={() => handleCommentSaveEdit(comment.idCommentary)}>
+          Enregistrer les modifications
+        </button>
+        <button onClick={handleCommentCancelEdit}>Annuler</button>
+      </>
+    ) : (
+      <>
+        <p>{comment.subject}</p>
+        {user && user.pseudo === comment.pseudo && (
+          <>
+            <button onClick={() => handleCommentEdit(comment)}>
+              Modifier le commentaire
+            </button>
+            <button onClick={() => handleCommentDelete(comment.idCommentary)}>
+              Supprimer le commentaire
+            </button>
+          </>
+        )}
+      </>
+    )}
+  </li>
+))}
+  </ul>
       )}
       {user && (
         <div className="comment-form">
@@ -198,3 +249,4 @@ const PostDetail = () => {
 };
 
 export default PostDetail;
+
