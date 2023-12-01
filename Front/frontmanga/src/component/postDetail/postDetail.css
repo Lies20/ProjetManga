@@ -109,11 +109,11 @@ h2 {
   }
 }
   }
-/* ... (autres styles) */
+
 
 .delete-post-btn {
-  background-color: #dc3545; /* Couleur de fond pour le bouton de suppression */
-  color: #fff; /* Couleur du texte pour le bouton de suppression */
+  background-color: #dc3545; 
+  color: #fff; 
   border: none;
   padding: 10px 15px;
   cursor: pointer;
@@ -122,20 +122,18 @@ h2 {
 }
 
 .delete-post-btn:hover {
-  background-color: #c82333; /* Couleur de fond au survol pour le bouton de suppression */
+  background-color: #c82333; 
 }
-
-/* ... (autres styles) */
 
 @media screen and (max-width: 600px) {
   .delete-post-btn {
-    padding: 8px 12px; /* Ajuste la taille du bouton pour les écrans plus petits */
+    padding: 8px 12px; 
   }
 }
 
 @media screen and (max-width: 400px) {
   .delete-post-btn {
-    padding: 6px 10px; /* Ajuste la taille du bouton pour les écrans encore plus petits */
+    padding: 6px 10px; 
   }
 }
 

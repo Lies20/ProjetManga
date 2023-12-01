@@ -46,15 +46,16 @@ const postController = {
 
     update: async (req, res) => {
         try {
-            const { title, description, datePublication, idUser } = req.body;
+            const { title, description, datePublication } = req.body;
             const { id } = req.params;
-            const sql = "UPDATE Post SET title = ?, description = ?, datePublication = ?, idUser = ? WHERE idPost = ?";
-            const [rows] = await pool.query(sql, [title, description, new Date(datePublication), idUser, id]);
+            const sql = "UPDATE Post SET title = ?, description = ?, datePublication = ? WHERE idPost = ?";
+            const [rows] = await pool.query(sql, [title, description, new Date(datePublication), id]);
             res.json({ data: rows });
         } catch (error) {
             handleError(res, error);
         }
     },
+    
 
     delete: async (req, res) => {
         try {
