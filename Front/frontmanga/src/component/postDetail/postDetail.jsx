@@ -26,6 +26,8 @@ const PostDetail = () => {
   const [editedComment, setEditedComment] = useState({
     idCommentary: null,
     subject: '',
+    datePublication: '', // Assurez-vous que cette propriété est correctement définie
+    idUser: '',
   });
   const navigate = useNavigate();
 
@@ -113,21 +115,31 @@ const PostDetail = () => {
       console.error('Erreur lors de la suppression du commentaire :', error);
     }
   };
+  
   const handleCommentEdit = (comment) => {
     setEditedComment({
       idCommentary: comment.idCommentary,
       subject: comment.subject,
-      idPost : postId,
+      datePublication: comment.datePublication, // Assurez-vous que cette propriété est correctement définie
+      idUser: comment.idUser,
+      idPost: comment.idPost, // Ajoutez l'ID du post // Assurez-vous que cette propriété est correctement définie
     });
     setIsCommentEditing(true);
   };
+  
   
   const handleCommentSaveEdit = async (commentId) => {
     try {
       await axios.put(`http://localhost:3006/api/commentary/${commentId}`, {
         subject: editedComment.subject,
+        datePublication: new Date(), 
+        idUser: editedComment.idUser,
+        idPost: editedComment.idPost,
       });
-  
+      
+      console.log("datePublication", editedComment.datePublication);
+      console.log("idUser", editedComment.idUser);
+
       setUpdate(!update);
       setIsCommentEditing(false);
     } catch (error) {
@@ -135,10 +147,12 @@ const PostDetail = () => {
     }
   };
   
+  
+  
   const handleCommentCancelEdit = () => {
     setIsCommentEditing(false);
     setEditedComment({
-      idCommentary: null,
+      idCommentary: '',
       subject: '',
     });
   };
