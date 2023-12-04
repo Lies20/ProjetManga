@@ -162,7 +162,7 @@ const PostDetail = () => {
       <BurgerMenu />
       {user && (
         <div className="post-detail">
-          <h2> Par : {user.pseudo}</h2>
+          <h2> Par : {post.pseudo}</h2>
           {isPostEditing ? (
               <>
               <label htmlFor="editedTitle">Nouveau titre :</label>
