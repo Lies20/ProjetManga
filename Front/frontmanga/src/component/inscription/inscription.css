@@ -1,4 +1,4 @@
-h2 {
+.signUp h2 {
   text-align: center;
 }
 
@@ -19,26 +19,12 @@ input {
   box-sizing: border-box; 
 }
 
-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
 .erreur {
   color: #ff0000;
   margin-top: -10px;
   margin-bottom: 10px;
 }
 
-/* Responsive styles using media queries */
 @media screen and (max-width: 600px) {
   div {
     max-width: 100%;

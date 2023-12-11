@@ -59,7 +59,7 @@ try {
   };
 
   return (
-    <div>
+    <div className='login'>
       <h2>Connexion</h2>
       <form onSubmit={handleSubmit}>
         <div>

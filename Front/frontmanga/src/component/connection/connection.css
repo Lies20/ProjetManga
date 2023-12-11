@@ -8,7 +8,7 @@ Connexion.css
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  h2 {
+  .login h2 {
     text-align: center;
   }
   
@@ -35,18 +35,6 @@ Connexion.css
     margin-top: 10px;
   }
   
-  button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
   .erreur {
     color: red;
   }

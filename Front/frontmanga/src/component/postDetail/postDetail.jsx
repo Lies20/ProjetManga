@@ -26,9 +26,15 @@ const PostDetail = () => {
   const [editedComment, setEditedComment] = useState({
     idCommentary: null,
     subject: '',
-    datePublication: '', // Assurez-vous que cette propriété est correctement définie
+    datePublication: '', 
     idUser: '',
   });
+  const [showPostActions, setShowPostActions] = useState(false);
+
+  const handleToggleActions = () => {
+    setShowPostActions(!showPostActions);
+  };
+  
   const navigate = useNavigate();
 
 
@@ -75,8 +81,8 @@ const PostDetail = () => {
         setDeleteMessage('Le post a été supprimé avec succès.'); 
         setTimeout(() => {
           setDeleteMessage(''); 
-          navigate('/'); // Redirige vers la page d'accueil
-        }, 3000); // Affiche le message pendant 3 secondes (ajuste si nécessaire)
+          navigate('/'); 
+        }, 3000); 
       }
     } catch (error) {
       console.error('Erreur lors de la suppression du post :', error);
@@ -120,9 +126,9 @@ const PostDetail = () => {
     setEditedComment({
       idCommentary: comment.idCommentary,
       subject: comment.subject,
-      datePublication: comment.datePublication, // Assurez-vous que cette propriété est correctement définie
+      datePublication: comment.datePublication, 
       idUser: comment.idUser,
-      idPost: comment.idPost, // Ajoutez l'ID du post // Assurez-vous que cette propriété est correctement définie
+      idPost: comment.idPost, 
     });
     setIsCommentEditing(true);
   };
@@ -160,9 +166,9 @@ const PostDetail = () => {
   return (
     <div className="post-detail-container">
       <BurgerMenu />
+      <div className="postBody">
       {user && (
         <div className="post-detail">
-          <h2> Par : {post.pseudo}</h2>
           {isPostEditing ? (
               <>
               <label htmlFor="editedTitle">Nouveau titre :</label>
@@ -187,60 +193,84 @@ const PostDetail = () => {
             </> 
           ) : (
             <>
-              <h2>Title : {post.title}</h2>
+          <div className="card">
+            <div className="container">
+              <h2> Sujet : {post.title}</h2>
+              <hr></hr>
+              <p>  {post.pseudo}</p>
+              <p> Date </p>
               <p> Contenu du post: {post.description}</p>
               {user.pseudo === post.pseudo && (
+                <>
+            <div className="dropdown">
+              <button className="edit-post-btn" onClick={handleToggleActions}>
+              ...
+              </button>
+              {showPostActions && (
+              <div className="post-actions">
                 <button className="edit-post-btn" onClick={handlePostEdit}>
                   Modifier le post
                 </button>
+                <button className="delete-post-btn" onClick={handlePostDelete}>
+                  Supprimer le post
+                </button>
+              </div>
               )}
+            </div>
+              </>
+              )}
+            </div>
+          </div>
             </>
           )}
         </div>
       )}
-      {user && (
-        <ul className="comment-list">
-          {comments.map((comment) => (
-  <li key={comment.idCommentary}>
-    <p>Publié le : {formatDate(comment.datePublication)}</p>
-    <p>Par : {comment.pseudo}</p>
-    {isCommentEditing && editedComment.idCommentary === comment.idCommentary ? (
-      <>
-        <label htmlFor="editedComment">Modifier le commentaire :</label>
-        <textarea
-          id="editedComment"
-          value={editedComment.subject}
-          onChange={(e) =>
-            setEditedComment({
-              ...editedComment,
-              subject: e.target.value,
-            })
-          }
-        />
-        <button onClick={() => handleCommentSaveEdit(comment.idCommentary)}>
-          Enregistrer les modifications
-        </button>
-        <button onClick={handleCommentCancelEdit}>Annuler</button>
-      </>
-    ) : (
-      <>
-        <p>{comment.subject}</p>
-        {user && user.pseudo === comment.pseudo && (
-          <>
-            <button onClick={() => handleCommentEdit(comment)}>
-              Modifier le commentaire
-            </button>
-            <button onClick={() => handleCommentDelete(comment.idCommentary)}>
-              Supprimer le commentaire
-            </button>
-          </>
-        )}
-      </>
-    )}
-  </li>
-))}
-  </ul>
+      </div>
+      <div className="commentBody">
+        {user && (
+          <ul className="comment-list">
+            {comments.map((comment) => (
+            <li key={comment.idCommentary}>
+      <p>Publié le : {formatDate(comment.datePublication)}</p>
+      <p>Par : {comment.pseudo}</p>
+      {isCommentEditing && editedComment.idCommentary === comment.idCommentary ? (
+        <>
+          <label htmlFor="editedComment">Modifier le commentaire :</label>
+          <textarea
+            id="editedComment"
+            value={editedComment.subject}
+            onChange={(e) =>
+              setEditedComment({
+                ...editedComment,
+                subject: e.target.value,
+              })
+            }
+          />
+          <button onClick={() => handleCommentSaveEdit(comment.idCommentary)}>
+            Enregistrer les modifications
+          </button>
+          <button onClick={handleCommentCancelEdit}>Annuler</button>
+        </>
+      ) : (
+        <>
+          <p>{comment.subject}</p>
+          {user && user.pseudo === comment.pseudo && (
+            <>
+              <button onClick={() => handleCommentEdit(comment)}>
+                Modifier le commentaire
+              </button>
+              <button onClick={() => handleCommentDelete(comment.idCommentary)}>
+                Supprimer le commentaire
+              </button>
+            </>
+          )}
+        </>
       )}
+            </li>
+              ))}
+          </ul>
+        )}  
+      </div>
       {user && (
         <div className="comment-form">
           <textarea

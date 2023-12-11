@@ -50,7 +50,7 @@ const CreateAccount = () => {
   };
 
   return (
-    <div>
+    <div className='signUp'>
       <h2>Créer un compte</h2>
       <form>
         <label>Pseudo :</label>
