@@ -60,22 +60,25 @@ try {
 
   return (
     <div className='login'>
-      <h2>Connexion</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email :</label>
-          <input type="email" value={email} onChange={handleEmailChange} />
-          {erreurEmail && <p className="erreur">{erreurEmail}</p>}
-        </div>
-        <div>
-          <label>Mot de passe :</label>
-          <input type="password" value={motDePasse} onChange={handleMotDePasseChange} />
-          {erreurMotDePasse && <p className="erreur">{erreurMotDePasse}</p>}
-        </div>
-        <div>
+      <div className="card-img">
+        <img src='../img/login.png' alt='logo' />
+      </div>
+      <div className="card">
+        <h2>Connexion</h2>
+        <form onSubmit={handleSubmit}>
+          <p> Veuillez vous connecter à votre compte</p>
+          <div>
+            <input type="email" value={email} onChange={handleEmailChange} placeholder="Votre adresse mail"/>
+            {erreurEmail && <p className="erreur">{erreurEmail}</p>}
+          </div>
+          <div>
+            <input type="password" value={motDePasse} onChange={handleMotDePasseChange} placeholder="Votre mot de passe"/>
+            {erreurMotDePasse && <p className="erreur">{erreurMotDePasse}</p>}
+          </div>
           <button type="submit">Se connecter</button>
-        </div>
-      </form>
+        </form>
+        <p>Vous n'avez pas de compte ? <a href="/inscription">Inscrivez-vous</a></p>
+      </div>
     </div>
   );
 }
