@@ -54,11 +54,13 @@
   border-radius: 4px;
   border: none;
   background-color: #FF0000;
+  color: white;
 }
 
 .card button:hover {
   box-shadow: 0 2px 35px rgba(255, 0, 0);
   cursor: pointer;
+  color: black;
 }
 
 .erreur {
