@@ -60,10 +60,10 @@ try {
 
   return (
     <div className='login'>
-      <div className="card-img">
+      <div className="connexion-card-img">
         <img src='../img/login.png' alt='logo' />
       </div>
-      <div className="card">
+      <div className="connexion-card">
         <h2>Connexion</h2>
         <form onSubmit={handleSubmit}>
           <p> Veuillez vous connecter à votre compte</p>
@@ -77,7 +77,9 @@ try {
           </div>
           <button type="submit">Se connecter</button>
         </form>
-        <p>Vous n'avez pas de compte ? <a href="/inscription">Inscrivez-vous</a></p>
+        <div className="inscription-link">
+          <p>Vous n'avez pas de compte ? <a href="/inscription">Inscrivez-vous</a></p>
+        </div>
       </div>
     </div>
   );

@@ -51,26 +51,27 @@ const CreateAccount = () => {
 
   return (
     <div className='signUp'>
-      <h2>Créer un compte</h2>
-      <form>
-        <label>Pseudo :</label>
-        <input type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} />
+      <div className="inscription-card-img">
+        <img src='../img/inscription.png' alt='logo' />
+      </div>
+      <div  className="inscription-card">
+        <h2>Créer un compte</h2>
+        <form>
+          <input type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} placeholder="Pseudo"/>
+          <input type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} placeholder="Date de naissance jj/mm/aaaa"/>
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mot de passe"/>
+          {error && <p className="erreur">{error}</p>}
 
-        <label>Date de naissance :</label>
-        <input type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} />
+          <button type="button" onClick={handleCreateAccount}>
+            Créer le compte
+          </button>
+        </form>
+        <div className="connexion-link">
+          <p>Vous avez déjà un compte ? <a href="/connexion">Connectez-vous</a>  </p>
+        </div>
+      </div>
 
-        <label>Email :</label>
-        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-
-        <label>Mot de passe :</label>
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        
-        {error && <p className="erreur">{error}</p>}  
-
-        <button type="button" onClick={handleCreateAccount}>
-          Créer le compte
-        </button>
-      </form>
       {isUserCreated && (
         <div>
           <p>Votre compte a été créé avec succès !</p>

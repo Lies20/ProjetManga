@@ -19,24 +19,30 @@ function Header() {
   return (
     <nav>
       <div className="topnav" id="myTopnav">
-        <Link to="/" className="active">Accueil</Link>
-        {user && user.pseudo ? (
-          <span className="pseudo">
+        <div className="logo-container" >
+          <img src='../img/logo.png' alt="Dreamanga Logo" className="logo" />
+        </div>
+
+        <div className="nav-options">
+          <Link to="/" className="active">Accueil</Link>
+          {user && user.pseudo ? (
+              <span className="pseudo">
             <p>Bienvenue, {user.pseudo} !</p>
             <span className="button">
             <button onClick={logOut} >Déconnexion</button>
             </span>
           </span>
-          
-        ) : (
-          <>
-            <Link to="/inscription">S'inscrire</Link>
-            <Link to="/connexion">Connexion</Link>
-          </>
-        )}
-        <a href="javascript:void(0);" className="icon" onClick={myFunction}>
-          <i>///</i>
-        </a>
+
+          ) : (
+              <>
+                <Link to="/inscription">Inscription</Link>
+                <Link to="/connexion">Connexion</Link>
+              </>
+          )}
+          <a href="javascript:void(0);" className="icon" onClick={myFunction}>
+            <i>///</i>
+          </a>
+        </div>
       </div>
     </nav>
   );
