@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom';
 import "./menuBurger.css";
 
 function Header() {
-  const { user,logOut } = useUser();
-
+  const { user, logOut } = useUser();
 
   const myFunction = () => {
     var x = document.getElementById("myTopnav");
@@ -19,25 +18,25 @@ function Header() {
   return (
     <nav>
       <div className="topnav" id="myTopnav">
-        <div className="logo-container" >
-          <img src='../img/logo.png' alt="Dreamanga Logo" className="logo" />
+        <div className="logo-container">
+          <Link to="/">
+            <img src='../img/logo.png' alt="Dreamanga Logo" className="logo" />
+          </Link>
         </div>
 
         <div className="nav-options">
-          <Link to="/" className="active">Accueil</Link>
           {user && user.pseudo ? (
-              <span className="pseudo">
-            <p>Bienvenue, {user.pseudo} !</p>
-            <span className="button">
-            <button onClick={logOut} >Déconnexion</button>
+            <span className="pseudo">
+              <p>Bienvenue, {user.pseudo} !</p>
+              <span className="button">
+                <button onClick={logOut} >Déconnexion</button>
+              </span>
             </span>
-          </span>
-
           ) : (
-              <>
-                <Link to="/inscription">Inscription</Link>
-                <Link to="/connexion">Connexion</Link>
-              </>
+            <>
+              <Link to="/inscription">Inscription</Link>
+              <Link to="/connexion">Connexion</Link>
+            </>
           )}
           <a href="javascript:void(0);" className="icon" onClick={myFunction}>
             <i>///</i>

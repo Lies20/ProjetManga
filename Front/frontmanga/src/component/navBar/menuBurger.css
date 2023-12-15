@@ -37,6 +37,8 @@
 .topnav .icon {
   display: none;
 }
+
+
   
 @media screen and (max-width: 600px) {
   .topnav a {
