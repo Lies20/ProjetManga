@@ -13,6 +13,11 @@
   margin-right: 25%;
 }
 
+.nav-options a:hover{
+  color: #f3b632;
+  border-bottom: 2px solid #f3b632;
+}
+
 .topnav {
     overflow: hidden;
     text-align: right;
@@ -29,10 +34,10 @@
   font-weight: bold;
 }
   
-.topnav a:hover {
+/* .topnav a:hover {
   color: #f3b632;
   border-bottom: 2px solid #f3b632;
-}
+} */
   
 .topnav .icon {
   display: none;
