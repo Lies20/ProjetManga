@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './createPost.css';
 import { useUser } from '../../contexte/UserContext';
-import UploadImage from '../upload/upload.jsx'
+
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
@@ -32,40 +32,46 @@ const CreatePost = () => {
     }
   };
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
-  };
-
   return (
-    <div>
-      <h2>Créer un nouveau post</h2>
-      <form>
-        <label>
-          Titre :
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Description :
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </label>
-          <UploadImage/>
-        <br />
-        <button type="button" onClick={handleCreatePost}>
-          Créer le post
-        </button>
-      </form>
+    <div className='create-post-container'>
+      <div className='create-post-title-container'>
+        <h2>Créer un nouveau post</h2>
+      </div>
+      <div className='create-post'>
+        <form>
+          <div className='createpost-title'>
+            <label>
+              Titre :
+              <br/>
+              <input
+                maxLength="50"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </label>
+          </div>
+          <div className='createpost-description'>
+            <label>
+              Description :
+              <br/>
+              <textarea
+                maxLength="1000"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              />
+            </label>
+          </div>
+          <br />
+          <button className='create-post-button' type="button" onClick={handleCreatePost}>
+            Créer le post
+          </button>
+        </form>
+      </div>
       {isPostCreated && (
         <div>
           <p>Le post a été créé avec succès !</p>
-          <Link to="/" className="active">
+          <Link to="/" className="show-all-post">
             Toutes les publications
           </Link>
         </div>

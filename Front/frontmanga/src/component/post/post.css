@@ -59,7 +59,7 @@
 }
 
 .latest-posts a {
-  color: #333;
+  color: #fbf9f9;
   text-decoration: none;
   display: block;
   padding: 5px;
@@ -69,16 +69,14 @@
   display: block;
   margin: 10px 0;
   padding: 10px;
-  background-color: #f90f26;
+  background-color: black;
   color: white;
   text-align: center;
   text-decoration: none;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.create-post-btn:hover {
-  background-color: #45a049;
+  margin-left: 20%;
+  margin-right: 16%;
 }
 
 .latest-posts button.delete-post-btn {
