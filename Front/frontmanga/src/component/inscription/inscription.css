@@ -1,11 +1,26 @@
+.inscription-card-title {
+  text-align: center;
+  font-size: 2rem;
+  margin: 5% 0 0 0;
+  color: #f47521;
+}
+
+.inscription-card-title h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 5% 0 0 0;
+  color: #f47521;
+  font-family: Lato,Helvetica Neue,helvetica,sans-serif;
+}
+
 .signUp {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #F0F0F0;
+  background-color: white;
   width: 50%;
   height: 600px;
-  margin: 5% auto;
+  margin: 2% auto;
 }
 
 .signUp h2 {
@@ -15,7 +30,7 @@
 .inscription-card {
   width: 60%;
   height: 400px;
-  margin-top: 20%;
+  margin-right: 10%;
 }
 
 .inscription-card-img{
@@ -30,20 +45,13 @@
   object-fit: cover;
 }
 
-.inscription-card h2 {
-  text-align: left;
-  font-size: 2rem;
-  margin-top: -20%;
-  margin-bottom: 10%;
-  color: #F3B632;
-}
-
 .inscription-card input {
   width: 80%;
   padding: 1em 2em;
   margin-bottom: 20px;
   border-radius: 4px;
   border: none;
+  background-color: #F2F2F2;
 }
 
 .inscription-card button {
@@ -51,14 +59,14 @@
   padding: 1em 2em;
   margin-top: 4%;
   margin-bottom: 60px;
-  border-radius: 4px;
+  border-radius: 2px;
   border: none;
-  background-color: #FF0000;
+  background-color: #f47521;
   color : black;
 }
 
 .inscription-card button:hover {
-  box-shadow: 0 2px 35px rgba(255, 0, 0);
+  box-shadow: 0 2px 35px #f47521;
   cursor: pointer;
   color: white;
 }
@@ -83,16 +91,15 @@
 
 @media (max-width: 600px) {
   .signUp {
-    margin-top: 20%;
+    margin-top: 5%;
     width: 80%;
     height: 100%;
   }
   .inscription-card {
     width: 100%;
-    margin-top: 10%;
     padding: 10%;
   }
-  .inscription-card h2 {
+  .inscription-card-title h2 {
     margin-top: 10%;
     font-size: 1.5rem;
   }
@@ -109,13 +116,12 @@
 
 @media only screen and (min-width :601px) and ( max-width: 1200px ) {
   .signUp {
-    margin-top: 20%;
+    margin-top: 5%;
     width: 60%;
     height: 100%;
   }
   .inscription-card {
     width: 100%;
-    margin-top: 10%;
     padding: 10%;
   }
   .inscription-card h2 {

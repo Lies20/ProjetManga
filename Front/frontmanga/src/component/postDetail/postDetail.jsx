@@ -167,7 +167,6 @@ const PostDetail = () => {
     <div className="post-detail-container">
       <BurgerMenu />
       <div className="postBody">
-      {user && (
         <div className="post-detail">
           {isPostEditing ? (
               <>
@@ -193,11 +192,11 @@ const PostDetail = () => {
             </> 
           ) : (
             <>
-          <div className="card">
-            <div className="container">
+          <div className="postDetail-card">
+            <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img>
               <h2> Sujet : {post.title}</h2>
               <hr></hr>
-              <p>  {post.pseudo}</p>
+              <p> {post.pseudo}</p>
               <p> Date </p>
               <p> Contenu du post: {post.description}</p>
               {user.pseudo === post.pseudo && (
@@ -219,12 +218,10 @@ const PostDetail = () => {
             </div>
               </>
               )}
-            </div>
           </div>
             </>
           )}
         </div>
-      )}
       </div>
       <div className="commentBody">
         {user && (

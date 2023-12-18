@@ -57,14 +57,16 @@ try {
 
 }
   };
-
   return (
-    <div className='login'>
+    <div className='login-container'>
+      <div className="connexion-card-title">
+        <h2>Se connecter</h2>
+      </div>
+      <div className="login">
       <div className="connexion-card-img">
         <img src='../img/login.png' alt='logo' />
       </div>
       <div className="connexion-card">
-        <h2>Connexion</h2>
         <form onSubmit={handleSubmit}>
           <p> Veuillez vous connecter à votre compte</p>
           <div>
@@ -80,6 +82,7 @@ try {
         <div className="inscription-link">
           <p>Vous n'avez pas de compte ? <a href="/inscription">Inscrivez-vous</a></p>
         </div>
+      </div>
       </div>
     </div>
   );

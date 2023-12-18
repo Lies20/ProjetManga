@@ -32,28 +32,31 @@ const LatestPosts = () => {
 
   return (
     <section className="latest-posts">
-      <div className="container">
-        {user && user.pseudo && (
-          <Link to="/create-post" className="create-post-btn">Créer un post</Link>
-        )}
-        <h2>Les Mangas Existants</h2>
-        <ul>
-          {posts.map((post, index) => (
-            <React.Fragment key={post.id}>
-              {index !== 0 && <hr />}
-              <li>
-                <Link to={`/post-detail/${post.idPost}`}>
-                  <div>
-                    <h3>{post.title}</h3>
-                    <p>{post.description}</p>
-                    <p>Date de publication:{formatDate(post.datePublication)}</p>
-                    <p>Auteur: {post.pseudo}</p>
-                  </div>
-                </Link>
-              </li>
-            </React.Fragment>
-          ))}
-        </ul>
+        <Link to="/create-post" className="create-post-btn">Créer un post</Link>
+      <div className='posts-container-title'>
+          <h2>Nouveautés sur Dreamanga</h2>
+      </div>
+      <div className="posts-container">
+          <ul>
+            {posts.map((post, index) => (
+              <React.Fragment key={post.id}>
+                {index !== 0 && <hr />}
+                <li>
+                  <Link to={`/post-detail/${post.idPost}`}>
+                    <div className='posts'>
+                      <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img>
+                      <div className='posts-info'>
+                        <h3>{post.title}</h3>
+                        <p>{post.description}</p>
+                        <p>Date de publication:{formatDate(post.datePublication)}</p>
+                        <p>Auteur: {post.pseudo}</p>
+                      </div>
+                    </div>
+                  </Link>
+                </li>
+              </React.Fragment>
+            ))}
+          </ul>
       </div>
     </section>
   );

@@ -16,34 +16,34 @@ function Header() {
   };
 
   return (
-    <nav>
-      <div className="topnav" id="myTopnav">
-        <div className="logo-container">
-          <Link to="/">
-            <img src='../img/logo.png' alt="Dreamanga Logo" className="logo" />
-          </Link>
-        </div>
+      <nav>
+        <div className="topnav" id="myTopnav">
+          <div className="logo-container">
+            <Link to="/">
+              <img src='../img/logo.png' alt="Dreamanga Logo" className="logo" />
+            </Link>
+          </div>
 
-        <div className="nav-options">
-          {user && user.pseudo ? (
-            <span className="pseudo">
-              <p>Bienvenue, {user.pseudo} !</p>
-              <span className="button">
-                <button onClick={logOut} >Déconnexion</button>
-              </span>
+          <div className="nav-options">
+            {user && user.pseudo ? (
+              <span className="pseudo">
+                  <p>Bienvenue, {user.pseudo} !</p>
+                  <span className="button">
+                    <button onClick={logOut} >Déconnexion</button>
+                  </span>
             </span>
-          ) : (
-            <>
-              <Link to="/inscription">Inscription</Link>
-              <Link to="/connexion">Connexion</Link>
-            </>
-          )}
-          <a href="javascript:void(0);" className="icon" onClick={myFunction}>
-            <i>///</i>
-          </a>
+            ) : (
+                <>
+                  <Link to="/inscription">Inscription</Link>
+                  <Link to="/connexion">Connexion</Link>
+                </>
+            )}
+            <a href="javascript:void(0);" className="icon" onClick={myFunction}>
+              <i>///</i>
+            </a>
+          </div>
         </div>
-      </div>
-    </nav>
+      </nav>
   );
 }
 

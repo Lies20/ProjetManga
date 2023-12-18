@@ -1,5 +1,5 @@
 import React from 'react'
-import image from '../../img/image.jpg'
+import image from '../../../public/img/banniere.png'
 import './banner.css'
 
 function Banner() {
