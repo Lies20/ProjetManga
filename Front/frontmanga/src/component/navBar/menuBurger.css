@@ -50,8 +50,8 @@
     margin-right: 0;
   }
   .logo-container img {
-    width: 25%;
-    height: 15%;
+    width: 50%;
+    height: 50%;
   }
 
   .nav-options{
@@ -98,10 +98,7 @@
   }
   .nav-options{
     margin-right:50%;
-  }
-  .logo-container img {
-    width: 35%;
-    height: 15%;
+
   }
   .topnav.responsive {
     position: relative;
