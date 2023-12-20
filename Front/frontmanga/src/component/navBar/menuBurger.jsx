@@ -23,7 +23,6 @@ function Header() {
               <img src='../img/logo.png' alt="Dreamanga Logo" className="logo" />
             </Link>
           </div>
-
           <div className="nav-options">
             {user && user.pseudo ? (
               <span className="pseudo">

@@ -42,6 +42,9 @@
 .topnav .icon {
   display: none;
 }
+.pseudo{
+  color: white;
+}
 
 @media screen and (max-width: 600px) {
 
