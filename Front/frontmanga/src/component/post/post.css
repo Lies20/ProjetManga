@@ -4,7 +4,6 @@
   align-items: center;
   background-color: #060202;
   width: 60%;
-  margin: 0 10% 0 20%;
   padding: 2%;
 }
 
@@ -18,14 +17,13 @@
   height: 0%;
 }
 
-.posts-container-title{
+ .posts-container-title{
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   background-color: #060202;
   width: 64%;
-  margin: 0 10% 0 20%;
-}
+} 
 
 .posts-container-title h2 {
   margin-left: 3%;
@@ -99,7 +97,7 @@
     flex-direction: column;
     align-items: flex-start;
     background-color: #060202;
-    width: 64%;
+    width: 95%;
   }
   .posts-container{
     display: flex;
@@ -107,6 +105,7 @@
     align-items: center;
     background-color: #060202;
     padding: 2%;
+    width: 91%;
   }
 
   .posts{
@@ -125,6 +124,8 @@
     align-items: flex-start;
     background-color: #060202;
     width: 64%;
+    margin: 0 10% 0 20%;
+
   }
   .posts-container{
     display: flex;
@@ -132,6 +133,8 @@
     align-items: center;
     background-color: #060202;
     padding: 2%;
+    margin: 0 10% 0 20%;
+
   }
   .posts{
     display: flex;

@@ -56,7 +56,6 @@ const CreatePost = () => {
               Description :
               <br/>
               <textarea
-                maxLength="1000"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               />

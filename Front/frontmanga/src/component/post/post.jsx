@@ -16,7 +16,6 @@ const LatestPosts = () => {
         setPosts(sortedPosts || []);
         setPosts(response.data.data || []);
       } catch (error) {
-        console.error(error);
         console.log("Error details", error.response);
       }
     };
