@@ -194,10 +194,10 @@ const PostDetail = () => {
             <>
           <div className="postDetail-card">
             <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img>
-              <h2> Sujet : {post.title}</h2>
+              <h2> Titre du post : {post.title}</h2>
               <hr></hr>
-              <p> {post.pseudo}</p>
-              <p> Date </p>
+              <p> Fait par : {post.pseudo}</p>
+              <p> Fait le : {formatDate(post.datePublication)}</p>
               <p> Contenu du post: {post.description}</p>
               {user.pseudo === post.pseudo && (
                 <>

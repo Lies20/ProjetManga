@@ -93,6 +93,9 @@ h3{
     border:none;
     background-color: #F2F2F2;
   }
+  .deletePost{
+    color: white;
+  }
   
   @media screen and (max-width: 600px) {
     h2 {

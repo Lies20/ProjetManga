@@ -133,4 +133,8 @@
     background-color: #060202;
     padding: 2%;
   }
+  .posts{
+    display: flex;
+    flex-direction: column;
+  }
 }

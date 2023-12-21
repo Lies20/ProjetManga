@@ -1,44 +1,36 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useRef } from 'react';
+import { Editor } from '@tinymce/tinymce-react';
 
-const CloudinaryUploader = ({ onUpload }) => {
-  const [selectedImage, setSelectedImage] = useState(null);
-
-  const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage(file);
-  };
-
-  const handleUpload = async () => {
-    if (selectedImage) {
-      try {
-        const formData = new FormData();
-        formData.append('file', selectedImage);
-
-        const cloudinaryResponse = await axios.post(
-          'https://api.cloudinary.com/v1_1/your-cloud-name/image/upload', // Remplacez 'your-cloud-name' par votre cloud name
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
-
-        const imageUrl = cloudinaryResponse.data.secure_url;
-        onUpload(imageUrl);
-      } catch (error) {
-        console.error('Erreur lors de l\'upload de l\'image :', error);
-      }
+const Upload = () => {
+   const editorRef = useRef(null);
+  const log = () => {
+    if (editorRef.current) {
+      console.log(editorRef.current.getContent());
     }
   };
-
   return (
-    <div>
-      <input type="file" accept="image/*" onChange={handleImageChange} />
-      <button onClick={handleUpload}>Upload Image</button>
-    </div>
+    <>
+      <Editor
+        onInit={(evt, editor) => editorRef.current = editor}
+        initialValue="<p>This is the initial content of the editor.</p>"
+        init={{
+          height: 500,
+          menubar: false,
+          plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+          ],
+          toolbar: 'undo redo | formatselect | ' +
+          'bold italic backcolor | alignleft aligncenter ' +
+          'alignright alignjustify | bullist numlist outdent indent | ' +
+          'removeformat | help',
+          content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+        }}
+      />
+      <button onClick={log}>Log editor content</button>
+    </>
   );
-};
+}
 
-export default CloudinaryUploader;
+export default Upload;

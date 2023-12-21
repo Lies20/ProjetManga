@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS DreamangaDataBase.User (
 CREATE TABLE IF NOT EXISTS DreamangaDataBase.Post (
   idPost INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(45) NOT NULL,
-  description VARCHAR(200) NOT NULL,
+  description VARCHAR(1000) NOT NULL,
   datePublication DATE NOT NULL,
   idUser INT NOT NULL ,
   CONSTRAINT fk_idUser FOREIGN KEY (idUser) REFERENCES User (idUser)
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS DreamangaDataBase.Post (
 
 CREATE TABLE IF NOT EXISTS DreamangaDataBase.Commentary (
   idCommentary INT AUTO_INCREMENT PRIMARY KEY,
-  subject VARCHAR(200) NOT NULL ,
+  subject VARCHAR(1000) NOT NULL ,
   datePublication DATETIME NOT NULL ,
   idUser INT NOT NULL ,
   idPost INT NOT NULL ,
