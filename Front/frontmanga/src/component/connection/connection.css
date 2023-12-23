@@ -2,14 +2,13 @@
   text-align: center;
   font-size: 2rem;
   margin: 5% 0 0 0;
-  color: #f47521;
 }
 
 .connexion-card-title h2 {
   text-align: center;
   font-size: 2rem;
   margin: 5% 0 0 0;
-  color: #f47521;
+  color: white;
   font-family: Lato,Helvetica Neue,helvetica,sans-serif;
 }
 
@@ -26,7 +25,7 @@
 .connexion-card {
   width: 60%;
   height: 400px;
-  margin-right: 10%;
+  /* margin-right: 10%; */
 }
 
 .connexion-card-img{
@@ -51,14 +50,15 @@
 }
 
 .connexion-card button {
-  width: 50%;
+  width: 100%;
   padding: 1em 2em;
   margin-top: 100px;
   margin-bottom: 60px;
   border-radius: 4px;
+  font-size: 1.2rem;
   border: none;
-  background-color: #f47521;
-  color : black;
+  background-color: black;
+  color : white;
 }
 
 .connexion-card button:hover {
@@ -102,10 +102,10 @@
     display: none;
   }
   .connexion-card button {
-    width: 60%;
+    width: 100%;
     height: 10%;
-    font-size: 0.6rem;
-    margin : 5% 0 10% 0;
+    font-size: 1rem;
+    /* margin : 5% 0 10% 0; */
   }
 }
 
@@ -132,9 +132,10 @@
   }
 
   .connexion-card button {
-    width: 60%;
+    width:100%;
     height: 10%;
-    font-size: 0.6rem;
-    margin: 5% 0 10% 0;
+    margin-bottom:20px;
+    font-size: 1rem;
+    /* margin: 5% 0 10% 0; */
   }
 }

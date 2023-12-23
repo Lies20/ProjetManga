@@ -236,6 +236,7 @@ const PostDetail = () => {
             <li key={comment.idCommentary}>
       <p>Publié le : {formatDate(comment.datePublication)}</p>
       <p>Par : {comment.pseudo}</p>
+      <hr/>
       {isCommentEditing && editedComment.idCommentary === comment.idCommentary ? (
         <div className="editing">
           <textarea
@@ -285,7 +286,7 @@ const PostDetail = () => {
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
           />
-          <button onClick={handleCommentSubmit}>Poster un commentaire</button>
+          <button className="new-comment" onClick={handleCommentSubmit}>Poster un commentaire</button>
         </div>
       )}
       <div className="post-actions">

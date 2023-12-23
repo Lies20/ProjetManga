@@ -49,6 +49,10 @@
   background-color:#FBFBFB;
   padding: 10px; 
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .latest-posts ul {
@@ -71,15 +75,15 @@
 .create-post-btn {
   display: block;
   margin: 10px 0;
-  padding: 10px;
+  width:300px;
+  padding:20px;
+  font-size: 1rem;
   background-color: black;
   color: white;
   text-align: center;
   text-decoration: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 20%;
-  margin-right: 16%;
 }
 
 .latest-posts button.delete-post-btn {
@@ -129,7 +133,7 @@
     align-items: flex-start;
     background-color: #060202;
     width: 64%;
-    margin: 0 10% 0 20%;
+    /* margin: 0 10% 0 20%; */
 
   }
   .posts-container{
@@ -138,7 +142,7 @@
     align-items: center;
     background-color: #060202;
     padding: 2%;
-    margin: 0 10% 0 20%;
+    /* margin: 0 10% 0 20%; */
 
   }
   .posts{

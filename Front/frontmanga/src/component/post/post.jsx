@@ -28,10 +28,20 @@ const LatestPosts = () => {
     return new Date(dateString).toLocaleDateString('fr-FR', options);
   };
 
+  function reduce(paragraphe) {
+    const mots = paragraphe.split(/\s+/);
 
+    const mots50 = mots.slice(0, 50);
+
+    const resultat = mots50.join(' ');
+
+    return resultat;
+}
   return (
     <section className="latest-posts">
-        <Link to="/create-post" className="create-post-btn">Créer un post</Link>
+        <Link to="/create-post">
+          <button  className="create-post-btn" >Créer un post</button>
+        </Link>
       <div className='posts-container-title'>
           <h2>Nouveautés sur Dreamanga</h2>
       </div>
@@ -47,7 +57,7 @@ const LatestPosts = () => {
                       <div className='posts-info'>
                         <h3>{post.title}</h3>
                         <hr/>
-                        <p>{post.description}</p>
+                        <p>{reduce(post.description)}</p>
                         <p>Date de publication:{formatDate(post.datePublication)}</p>
                         <p>Auteur: {post.pseudo}</p>
                       </div>

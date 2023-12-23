@@ -19,9 +19,23 @@
 .button-edit{
   background-color: #F6B339;
 }
+.comment-form textarea{
+  color:black;
+  border:1px solid black ; 
+}
+.new-comment{
+  background:#191919;
+  border:none;
+  outline:none;
+  margin-top:20px;
+  padding:10px;
+  color:white;
+  margin-right:10px;
+  cursor:pointer;
+  border-radius: 30px;
+}
 .post-actions {
   display: none;
-  /* position: absolute; */
   top: 100%;
   right: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -31,7 +45,6 @@ h3{
   color: #F0F0F0;
 }
 
-/* .dropdown:hover  */
 .post-actions {
   display: block;
 }
@@ -51,7 +64,7 @@ h3{
   }
 
   .commentBody{
-    width:100vw;
+    width:100%;
     display: flex;
     justify-content: center;
 
@@ -60,8 +73,6 @@ h3{
     list-style-type: none;
     padding: 10px;
     width:53%;
-
-    
   }
   
   .commentBody li {
@@ -112,8 +123,9 @@ h3{
   }
   .post-title{
     color:#191919;
-
   }
+
+
   
   .postDetail-card img {
     width: 200px;
@@ -147,10 +159,10 @@ h3{
     display: flex;
     flex-direction: column;
   }
-  textarea{
+  .post-detail textarea{
     resize:none !important;
     background:#191919;
-    color:white;
+    color:white !important ;
     outline:none;
   }
 
@@ -176,7 +188,6 @@ h3{
     }
 
   .post-detail-container {
-    /* display: flex; */
     max-width: 800px;
     margin: 0 auto;
   }
@@ -185,11 +196,25 @@ h3{
     border: 1px solid #ddd;
     padding: 20px;
     margin-bottom: 20px;
+    width:80%;
   }
 
-  .comment-list {
+  .post-detail img{
+    width:100px;
+    height:50px;
+  }
+
+  .commentBody ul{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .comment-list li {
     list-style: none;
-    padding: 0;
+    padding: 10px;
+    width:85%;
   }
 
   .comment-item {

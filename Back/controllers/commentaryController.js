@@ -51,7 +51,7 @@ const commentaryController = {
       const { subject, datePublication, idUser, idPost, role, isConnected } = req.body;
       const { id } = req.params;
   
-      const sql = "UPDATE Commentary SET subject = ?, datePublication = NOW(), idUser = ?, idPost = ? WHERE idCommentary = ?";
+      const sql = "UPDATE Commentary SET subject = ?,  idUser = ?, idPost = ? WHERE idCommentary = ?";
       const [rows, fields] = await pool.query(sql, [subject, idUser, idPost, id]);    
 
       res.json({

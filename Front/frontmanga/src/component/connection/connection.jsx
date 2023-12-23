@@ -77,7 +77,7 @@ try {
               <input type="password" value={motDePasse} onChange={handleMotDePasseChange} placeholder="Votre mot de passe"/>
               {erreurMotDePasse && <p className="erreur">{erreurMotDePasse}</p>}
             </div>
-            <button type="submit">Se connecter</button>
+            <button type="submit">Connexion</button>
           </form>
           <div className="inscription-link">
             <p>Vous n'avez pas de compte ? <a href="/inscription">Inscrivez-vous</a></p>
