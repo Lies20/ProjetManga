@@ -35,13 +35,18 @@
   margin-left: 3%;
 }
 
+.posts-info h3{
+  text-align: center;
+  border-bottom: 1px solid white;
+}
+
 .posts-info p {
   color: white;
 }
  
 .latest-posts {
   margin-top: 20px;
-  background-color: #f47521;
+  background-color:#FBFBFB;
   padding: 10px; 
   overflow: hidden;
 }

@@ -46,6 +46,7 @@ const LatestPosts = () => {
                       <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img>
                       <div className='posts-info'>
                         <h3>{post.title}</h3>
+                        <hr/>
                         <p>{post.description}</p>
                         <p>Date de publication:{formatDate(post.datePublication)}</p>
                         <p>Auteur: {post.pseudo}</p>

@@ -48,8 +48,9 @@ const postController = {
         try {
             const { title, description, datePublication } = req.body;
             const { id } = req.params;
+            console.log(new Date())
             const sql = "UPDATE Post SET title = ?, description = ?, datePublication = ? WHERE idPost = ?";
-            const [rows] = await pool.query(sql, [title, description, new Date(datePublication), id]);
+            const [rows] = await pool.query(sql, [title, description, new Date(), id]);
             res.json({ data: rows });
         } catch (error) {
             handleError(res, error);

@@ -1,12 +1,29 @@
 .dropdown{
-  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.dropdown button{
+  border:none;
+  outline:none;
+  padding:10px;
+  color:white;
+  margin-right:10px;
+  cursor:pointer;
+  border-radius: 30px;
+}
+.button-delete{
+  background-color: #C23028;
+}
+
+.button-edit{
+  background-color: #F6B339;
 }
 .post-actions {
   display: none;
-  position: absolute;
+  /* position: absolute; */
   top: 100%;
   right: 0;
-  background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 5px;
 }
@@ -14,7 +31,8 @@ h3{
   color: #F0F0F0;
 }
 
-.dropdown:hover .post-actions {
+/* .dropdown:hover  */
+.post-actions {
   display: block;
 }
 
@@ -32,19 +50,34 @@ h3{
     color:grey
   }
 
-  ul {
+  .commentBody{
+    width:100vw;
+    display: flex;
+    justify-content: center;
+
+  }
+  .commentBody ul {
     list-style-type: none;
-    padding: 0;
+    padding: 10px;
+    width:53%;
+
+    
   }
   
-  li {
+  .commentBody li {
     margin-bottom: 15px;
+    background-color:#191919;
+    border:1px solid black;
+    padding:10px;
+    border-radius: 5px;
+    color:white;
+    word-break: break-all;
   }
   
   
 
   .post-detail-container{
-    background-color: #f47521
+    background-color: #FBFBFB
 
   }
 
@@ -52,7 +85,8 @@ h3{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f47521;
+    background-color: #FBFBFB;
+    flex-direction: column;
   }
   
   .post-detail {
@@ -63,20 +97,33 @@ h3{
     margin-bottom: 20px;
     margin-top: 20px;
     width: 50%;
-    background-color:black;
+    color:white;
+    background-color:#191919;
+  }
+
+  .post-detail input{
+    color:white;
+    background:black;
+    margin-bottom:20px;
+  }
+
+  .post-detail textarea{
+    margin-bottom:30px;
+  }
+  .post-title{
+    color:#191919;
+
   }
   
   .postDetail-card img {
-    width: 40%;
+    width: 200px;
+    height: 100px;
+    border-radius: 30px;
   }
 
   .postDetail-card p {
     font-size: 1rem;
     color: #F0F0F0;
-  }
-  
-  .commentBody{
-    margin : 0 30% 0 25%;
   }
   
   .comment-form {
@@ -96,7 +143,17 @@ h3{
   .deletePost{
     color: white;
   }
-  
+  .editing{
+    display: flex;
+    flex-direction: column;
+  }
+  textarea{
+    resize:none !important;
+    background:#191919;
+    color:white;
+    outline:none;
+  }
+
   @media screen and (max-width: 600px) {
     h2 {
       font-size: 1.2rem;
@@ -119,7 +176,7 @@ h3{
     }
 
   .post-detail-container {
-    display: flex;
+    /* display: flex; */
     max-width: 800px;
     margin: 0 auto;
   }

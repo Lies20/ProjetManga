@@ -8,7 +8,7 @@ function Header() {
 
   return (
     <nav>
-      <div className="topnav" id="myTopnav">
+      <div className="topnav">
         <div className="logo-container">
           <Link to="/">
             <img src='../img/logo.png' alt="Dreamanga Logo" className="logo" />
@@ -19,7 +19,7 @@ function Header() {
             <span className="pseudo">
               <p>Bienvenue, {user.pseudo} !</p>
               <span className="button">
-                <button onClick={logOut} >Déconnexion</button>
+                <button className="logOut" onClick={logOut} >Déconnexion</button>
               </span>
             </span>
           ) : (

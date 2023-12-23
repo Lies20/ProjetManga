@@ -167,6 +167,8 @@ const PostDetail = () => {
     <div className="post-detail-container">
       <BurgerMenu />
       <div className="postBody">
+      <h2 className="post-title"> Titre du post : {post.title}</h2>
+
         <div className="post-detail">
           {isPostEditing ? (
               <>
@@ -187,34 +189,39 @@ const PostDetail = () => {
                   setEditedPost({ ...editedPost, description: e.target.value })
                 }
               />
-              <button onClick={handleEditSave}>Enregistrer les modifications</button>
-              <button onClick={handleEditCancel}>Annuler</button>
+              {/* <button onClick={handleEditSave}>Enregistrer les modifications</button>
+              <button onClick={handleEditCancel}>Annuler</button> */}
+              <div className="dropdown">
+              <div className="post-actions">
+                <button className="button-edit" onClick={handleEditSave}>
+                Enregistrer
+                </button>
+                <button className="button-delete" onClick={handleEditCancel}>
+                Annuler
+                </button>
+              </div> 
+              </div>
+              
             </> 
           ) : (
             <>
           <div className="postDetail-card">
             <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img>
-              <h2> Titre du post : {post.title}</h2>
-              <hr></hr>
               <p> Fait par : {post.pseudo}</p>
               <p> Fait le : {formatDate(post.datePublication)}</p>
+              <hr></hr>
               <p> Contenu du post: {post.description}</p>
               {user.pseudo === post.pseudo && (
                 <>
             <div className="dropdown">
-              <button className="edit-post-btn" onClick={handleToggleActions}>
-              ...
-              </button>
-              {showPostActions && (
               <div className="post-actions">
-                <button className="edit-post-btn" onClick={handlePostEdit}>
-                  Modifier le post
+                <button className="button-edit" onClick={handlePostEdit}>
+                  Modifier
                 </button>
-                <button className="delete-post-btn" onClick={handlePostDelete}>
-                  Supprimer le post
+                <button className="button-delete" onClick={handlePostDelete}>
+                  Supprimer
                 </button>
               </div>
-              )}
             </div>
               </>
               )}
@@ -222,8 +229,7 @@ const PostDetail = () => {
             </>
           )}
         </div>
-      </div>
-      <div className="commentBody">
+        <div className="commentBody">
         {user && (
           <ul className="comment-list">
             {comments.map((comment) => (
@@ -231,9 +237,9 @@ const PostDetail = () => {
       <p>Publié le : {formatDate(comment.datePublication)}</p>
       <p>Par : {comment.pseudo}</p>
       {isCommentEditing && editedComment.idCommentary === comment.idCommentary ? (
-        <>
-          <label htmlFor="editedComment">Modifier le commentaire :</label>
+        <div className="editing">
           <textarea
+
             id="editedComment"
             value={editedComment.subject}
             onChange={(e) =>
@@ -243,23 +249,27 @@ const PostDetail = () => {
               })
             }
           />
-          <button onClick={() => handleCommentSaveEdit(comment.idCommentary)}>
-            Enregistrer les modifications
-          </button>
-          <button onClick={handleCommentCancelEdit}>Annuler</button>
-        </>
+          <div className="dropdown">
+              <button className="button-delete"nClick={handleCommentCancelEdit}>
+                Supprimer
+              </button>
+              <button className="button-edit" onClick={() => handleCommentSaveEdit(comment.idCommentary)}>
+                Modifier
+              </button>
+            </div>
+        </div>
       ) : (
         <>
           <p>{comment.subject}</p>
           {user && user.pseudo === comment.pseudo && (
-            <>
-              <button onClick={() => handleCommentEdit(comment)}>
-                Modifier le commentaire
+            <div className="dropdown">
+              <button className="button-delete" onClick={() => handleCommentDelete(comment.idCommentary)}>
+                Supprimer
               </button>
-              <button onClick={() => handleCommentDelete(comment.idCommentary)}>
-                Supprimer le commentaire
+              <button className="button-edit" onClick={() => handleCommentEdit(comment)}>
+                Modifier
               </button>
-            </>
+            </div>
           )}
         </>
       )}
@@ -267,6 +277,7 @@ const PostDetail = () => {
               ))}
           </ul>
         )}  
+      </div>
       </div>
       {user && (
         <div className="comment-form">
@@ -278,11 +289,11 @@ const PostDetail = () => {
         </div>
       )}
       <div className="post-actions">
-        {user.pseudo === post.pseudo && (
+        {/* {user.pseudo === post.pseudo && (
           <button className="delete-post-btn" onClick={handlePostDelete}>
             Supprimer le post
           </button>
-        )}
+        )} */}
       </div>
       <span className="deletePost">{deleteMessage}</span>
     </div>

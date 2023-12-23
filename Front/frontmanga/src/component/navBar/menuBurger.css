@@ -21,6 +21,7 @@
   justify-content: space-between;
   align-items: center;
   height: 4.5rem;
+  /* width:100vw; */
 }
   
 .topnav a {
@@ -45,8 +46,76 @@
 .pseudo{
   color: white;
 }
+/* @media screen and (min-width: 280px) and (max-width: 599px) {
 
-@media screen and (max-width: 600px) {
+  .topnav {
+    display: flex;
+    overflow: hidden;
+    text-align: right;
+    background-color: #23252b;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.5rem;
+  }
+
+  .logo-container {
+    text-align: center;
+    margin-right: 0;
+  }
+  .logo-container img {
+    width: 50%;
+    height: 50%;
+  }
+
+  .nav-options{
+    margin-right:50%;
+  }
+  .topnav.responsive {
+    position: relative;
+  }
+  
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive a.logout-button {
+    display: none;
+  }
+  .nav-options a {
+    display: none;
+  }
+  .topnav a.icon {
+    display: block;
+    position: absolute;
+    right:0;
+  }
+  .button{
+    display: none;
+  }
+  .pseudo{
+    display: none;
+  }
+} */
+
+/* @media screen and (max-width: 600px) {
+
+  .topnav {
+    display: flex;
+    overflow: hidden;
+    text-align: right;
+    background-color: #23252b;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 4.5rem;
+  }
 
   .logo-container {
     text-align: center;
@@ -93,17 +162,16 @@
   }
 }
 
-@media  only screen and (min-width: 600px) and (max-width: 1200px) {
+@media  only screen and (min-width: 601px) and (max-width: 1200px) {
 
   .logo-container {
     text-align: center;
     margin-right: 0;
   }
-  .nav-options{
+  /* .nav-options{
     margin-right:50%;
-
-  }
-  .topnav.responsive {
+  } */
+  /* .topnav.responsive {
     position: relative;
   }
   .topnav.responsive .icon {
@@ -119,5 +187,8 @@
   .topnav.responsive a.logout-button {
     display: none;
   }
-}
+  .logOut{
+    
+  }
+} */
   
