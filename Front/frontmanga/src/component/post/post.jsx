@@ -53,9 +53,9 @@ const LatestPosts = () => {
                 <li>
                   <Link to={`/post-detail/${post.idPost}`}>
                     <div className='posts'>
-                      <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img>
+                      {/* <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img> */}
                       <div className='posts-info'>
-                        <h3>{post.title}</h3>
+                        <h3> Titre du post :{post.title}</h3>
                         <hr/>
                         <p>{reduce(post.description)}</p>
                         <p>Date de publication:{formatDate(post.datePublication)}</p>

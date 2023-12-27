@@ -55,14 +55,15 @@
 }
 
 .inscription-card button {
-  width: 50%;
-  padding: 1em 2em;
-  margin-top: 4%;
-  margin-bottom: 60px;
-  border-radius: 2px;
-  border: none;
-  background-color: #f47521;
-  color : black;
+    background: #191919;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    padding: 10px;
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 30px;
 }
 
 .inscription-card button:hover {
@@ -72,7 +73,7 @@
 }
 
 .connexion-link {
-  margin-top: -12%;
+  margin-top: 0%;
 }
 
 .erreur {
@@ -89,16 +90,20 @@
   color: #F3B632;
 }
 
-@media (max-width: 600px) {
+@media only screen and (min-width :280px) and (max-width: 600px) {
   .signUp {
     margin-top: 5%;
     width: 80%;
     height: 100%;
   }
-  .inscription-card {
+  /* .inscription-card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
     padding: 10%;
-  }
+    margin: 0;
+  } */
   .inscription-card-title h2 {
     margin-top: 10%;
     font-size: 1.5rem;
@@ -107,10 +112,15 @@
     display: none;
   }
   .inscription-card button {
-    width: 60%;
-    height: 10%;
-    font-size: 0.6rem;
-    margin : 5% 0 10% 0;
+    background: #191919;
+    border: none;
+    outline: none;
+    margin-top: 20px;
+    padding: 10px;
+    color: white;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 15px;
   }
 }
 

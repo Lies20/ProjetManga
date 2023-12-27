@@ -189,8 +189,6 @@ const PostDetail = () => {
                   setEditedPost({ ...editedPost, description: e.target.value })
                 }
               />
-              {/* <button onClick={handleEditSave}>Enregistrer les modifications</button>
-              <button onClick={handleEditCancel}>Annuler</button> */}
               <div className="dropdown">
               <div className="post-actions">
                 <button className="button-edit" onClick={handleEditSave}>
@@ -206,7 +204,7 @@ const PostDetail = () => {
           ) : (
             <>
           <div className="postDetail-card">
-            <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img>
+            {/* <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img> */}
               <p> Fait par : {post.pseudo}</p>
               <p> Fait le : {formatDate(post.datePublication)}</p>
               <hr></hr>
@@ -283,19 +281,13 @@ const PostDetail = () => {
       {user && (
         <div className="comment-form">
           <textarea
+            placeholder="Ajouter un commentaire ..."
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
           />
           <button className="new-comment" onClick={handleCommentSubmit}>Poster un commentaire</button>
         </div>
       )}
-      <div className="post-actions">
-        {/* {user.pseudo === post.pseudo && (
-          <button className="delete-post-btn" onClick={handlePostDelete}>
-            Supprimer le post
-          </button>
-        )} */}
-      </div>
       <span className="deletePost">{deleteMessage}</span>
     </div>
   );

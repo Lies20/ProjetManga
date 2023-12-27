@@ -35,13 +35,6 @@ CREATE TABLE IF NOT EXISTS DreamangaDataBase.Commentary (
   CONSTRAINT fk_idUser_Commentary FOREIGN KEY (idUser) REFERENCES User (idUser)
 );
 
-CREATE TABLE IF NOT EXISTS DreamangaDataBase.Rubrique (
-  ID INT AUTO_INCREMENT PRIMARY KEY,
-  NomRubrique VARCHAR(255) UNIQUE NOT NULL,
-  Description VARCHAR(1000)
-);
-
-
 -- Lies93@simplon
 INSERT INTO DreamangaDataBase.User
 VALUES (NULL, 'lies', '1991-03-22', 'hocini.lies@gmail.com', '$2y$10$uuF.XfGqZ2gHwAeVFxUfUe/wey4vBtQ.me8D.bDfVtbCRLGHE7LRq', 'admin');
