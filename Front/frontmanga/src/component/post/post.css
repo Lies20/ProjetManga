@@ -27,6 +27,7 @@
 
 .posts-container-title h2 {
   margin-left: 3%;
+  color: #f47521;
 }
 
 .posts-info{
@@ -79,7 +80,7 @@
   padding:20px;
   font-size: 1rem;
   background-color: black;
-  color: white;
+  color: #f47521;
   text-align: center;
   text-decoration: none;
   border-radius: 5px;

@@ -8,16 +8,39 @@ const CreateAccount = () => {
   const [birthday, setBirthday] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isUserCreated, setIsUserCreated] = useState('');
+  const [errors, setErrors] = useState({
+    pseudo: '',
+    birthday: '',
+    email: '',
+    password: '',
+  });
+  const [isUserCreated, setIsUserCreated] = useState(false);
 
   const handleCreateAccount = async () => {
-    try {
-      if (!isValidDate(birthday)) {
-        setError('Veuillez entrer une date de naissance valide.');
-        return;
-      }
+    const newErrors = {};
 
+    if (pseudo.trim() === '') {
+      newErrors.pseudo = 'Le pseudo est requis.';
+    }
+
+    if (birthday.trim() === '' || !isValidDate(birthday)) {
+      newErrors.birthday = 'Veuillez entrer une date de naissance valide.';
+    }
+
+    if (email.trim() === '') {
+      newErrors.email = 'L\'email est requis.';
+    }
+
+    if (password.trim() === '') {
+      newErrors.password = 'Le mot de passe est requis.';
+    }
+
+    if (Object.values(newErrors).some((error) => error !== '')) {
+      setErrors(newErrors);
+      return;
+    }
+
+    try {
       const response = await axios.post('http://localhost:3006/api/users/create', {
         pseudo,
         birthday,
@@ -25,21 +48,17 @@ const CreateAccount = () => {
         password,
       });
 
-      console.log(response.data);
-
-      setIsUserCreated(true)
+      setIsUserCreated(true);
       setPseudo('');
       setBirthday('');
       setEmail('');
       setPassword('');
-      setError('');
+      setErrors({});
     } catch (error) {
-      console.error('Erreur lors de la création du compte :', error);
-      
       if (error.response.status === 400) {
-        setError(error.response.data.message);
+        setErrors({ email: error.response.data.message });
       } else {
-        setError('Une erreur s\'est produite lors de la création du compte.');
+        setErrors({ email: 'Une erreur s\'est produite lors de la création du compte.' });
       }
     }
   };
@@ -48,6 +67,7 @@ const CreateAccount = () => {
     const regex = /^\d{4}-\d{2}-\d{2}$/;
     return dateString.match(regex) !== null;
   };
+
   return (
     <div className='signUp-container'>
       <div className="inscription-card-title">
@@ -57,26 +77,57 @@ const CreateAccount = () => {
         <div className="inscription-card-img">
           <img src='../img/inscription.png' alt='logo' />
         </div>
-        <div  className="inscription-card">
+        <div className="inscription-card">
           <form>
-            <input type="text" value={pseudo} onChange={(e) => setPseudo(e.target.value)} placeholder="Pseudo"/>
-            <input type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} placeholder="Date de naissance jj/mm/aaaa"/>
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email"/>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Mot de passe"/>
-            {error && <p className="erreur">{error}</p>}
+            <input
+              type="text"
+              value={pseudo}
+              onChange={(e) => setPseudo(e.target.value)}
+              placeholder="Pseudo"
+              required
+            />
+            {errors.pseudo && <p className="erreur">{errors.pseudo}</p>}
+            <input
+              type="date"
+              value={birthday}
+              onChange={(e) => setBirthday(e.target.value)}
+              placeholder="Date de naissance jj/mm/aaaa"
+              required
+            />
+            {errors.birthday && <p className="erreur">{errors.birthday}</p>}
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              required
+            />
+            {errors.email && <p className="erreur">{errors.email}</p>}
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Mot de passe"
+              required
+            />
+            {errors.password && <p className="erreur">{errors.password}</p>}
 
             <button type="button" onClick={handleCreateAccount}>
               Créer le compte
             </button>
           </form>
           <div className="connexion-link">
-            <p>Vous avez déjà un compte ? <a href="/connexion">Connectez-vous</a>  </p>
+            <p>
+              Vous avez déjà un compte ? <Link to="/connexion">Connectez-vous</Link>{' '}
+            </p>
           </div>
         </div>
         {isUserCreated && (
           <div>
             <p>Votre compte a été créé avec succès !</p>
-            <Link to="/connexion" className="active">Connectez vous ici </Link>
+            <Link to="/connexion" className="active">
+              Connectez vous ici
+            </Link>
           </div>
         )}
       </div>

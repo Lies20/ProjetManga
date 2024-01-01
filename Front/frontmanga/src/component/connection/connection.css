@@ -8,7 +8,7 @@
   text-align: center;
   font-size: 2rem;
   margin: 5% 0 0 0;
-  color: white;
+  color: #f47521;
   font-family: Lato,Helvetica Neue,helvetica,sans-serif;
 }
 
@@ -71,9 +71,9 @@
   margin-top: 10px;
 }
 
-.inscription-link{
+/* .inscription-link{
   margin-top: -12%;
-}
+} */
 
 .login a {
   color: black;
@@ -104,6 +104,9 @@
     width: 100%;
     height: 10%;
     font-size: 1rem;
+  }
+  .inscription-link{
+    margin-top: -20%;
   }
 }
 

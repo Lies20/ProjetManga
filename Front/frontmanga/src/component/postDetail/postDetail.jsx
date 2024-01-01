@@ -74,6 +74,7 @@ const PostDetail = () => {
       console.error('Erreur lors du post du commentaire :', error);
     }
   };
+  
   const handlePostDelete = async () => {
     try {
       if (user && user.pseudo === post.pseudo) {
@@ -89,6 +90,11 @@ const PostDetail = () => {
     }
   };
   
+  
+  const handleEditCancel = () => {
+    setIsPostEditing(false);
+  };
+  
   const handlePostEdit = () => {
     setIsPostEditing(true);
     setEditedPost({
@@ -96,11 +102,6 @@ const PostDetail = () => {
       description: post.description,
     });
   };
-  
-  const handleEditCancel = () => {
-    setIsPostEditing(false);
-  };
-
   const handleEditSave = async () => {
     try {
       await axios.put(`http://localhost:3006/api/post/${postId}`, editedPost);

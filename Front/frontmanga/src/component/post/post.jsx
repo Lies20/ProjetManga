@@ -39,9 +39,11 @@ const LatestPosts = () => {
 }
   return (
     <section className="latest-posts">
+      {user && (
         <Link to="/create-post">
           <button  className="create-post-btn" >Créer un post</button>
         </Link>
+      )}
       <div className='posts-container-title'>
           <h2>Nouveautés sur Dreamanga</h2>
       </div>

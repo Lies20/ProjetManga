@@ -4,17 +4,22 @@ import axios from 'axios';
 import './createPost.css';
 import { useUser } from '../../contexte/UserContext';
 
-
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [isPostCreated, setIsPostCreated] = useState('');
+  const [isPostCreated, setIsPostCreated] = useState(false);
+  const [error, setError] = useState('');
   const { user, updateUser } = useUser();
 
   const [uploadedImages, setUploadedImages] = useState([]);
-  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleCreatePost = async () => {
+
+    if (!title || !description) {
+      setError('Les champs "Titre" et "Description" sont obligatoires.');
+      return;
+    }
+
     try {
       await axios.post('http://localhost:3006/api/post/createPost', {
         title,
@@ -26,7 +31,7 @@ const CreatePost = () => {
       setIsPostCreated(true);
       setTitle('');
       setDescription('');
-      setUploadedImages([]);
+      setError(''); 
     } catch (error) {
       console.error('Erreur lors de la création du post :', error);
     }
@@ -42,7 +47,7 @@ const CreatePost = () => {
           <div className='createpost-title'>
             <label>
               Titre :
-              <br/>
+              <br />
               <input
                 maxLength="50"
                 type="text"
@@ -54,7 +59,7 @@ const CreatePost = () => {
           <div className='createpost-description'>
             <label>
               Description :
-              <br/>
+              <br />
               <textarea
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -65,6 +70,7 @@ const CreatePost = () => {
           <button className='create-post-button' type="button" onClick={handleCreatePost}>
             Créer le post
           </button>
+          {error && <p className="error-message">{error}</p>}
         </form>
       </div>
       {isPostCreated && (
