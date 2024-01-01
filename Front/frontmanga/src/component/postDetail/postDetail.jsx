@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-
 const PostDetail = () => {
   const { postId } = useParams();
   const { user } = useUser();
@@ -42,6 +41,10 @@ const PostDetail = () => {
     const fetchPostAndComments = async () => {
       try {
         const postResponse = await axios.get(`http://localhost:3006/api/post/${postId}`);
+        if(!postResponse.data){
+          navigate('/')
+        }
+        console.log('ok')
         setPost(postResponse.data.data.shift());
 
         const commentsResponse = await axios.get(`http://localhost:3006/api/commentary/comments/post/${postId}`);
@@ -164,7 +167,25 @@ const PostDetail = () => {
     });
   };
 
+
+  useEffect(()=>{
+    console.log(user)
+    console.log(localStorage.getItem('token'), user.token, post.id)
+
+  }, [user])
+  const deleteAdmin = async (id)=>{
+    const req = await axios.delete(`http://localhost:3006/api/admin/${postId}`, {
+      headers: {
+        Authorization: `Bearer ${user.token}`
+      }
+    });
+    
+    navigate('/')
+
+    console.log(localStorage.getItem('token'), user.token, id)
+  }
   return (
+    
     <div className="post-detail-container">
       <BurgerMenu />
       <div className="postBody">
@@ -227,7 +248,16 @@ const PostDetail = () => {
           </div>
             </>
           )}
+
+                {user.role === "admin" && (
+                  <div onClick={()=>{deleteAdmin(post.idPost)}
+                  }>
+                    supprimer
+                    </div>
+                )}
         </div>
+
+
         <div className="commentBody">
         {user && (
           <ul className="comment-list">

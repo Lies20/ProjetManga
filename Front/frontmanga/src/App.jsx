@@ -4,6 +4,7 @@ import Inscription from '../Pages/Inscription.jsx'
 import Connection from '../Pages/connection.jsx'
 import CreatePost from '../Pages/createPost.jsx'
 import PostDetail from './component/postDetail/postDetail.jsx'
+import AdminPage from './component/adminPage/adminPage.jsx'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
         <Route path='/connexion' element={<Connection/>}/>
         <Route path='/create-post' element={<CreatePost/>}/>
         <Route path='/post-detail/:postId' element={<PostDetail />} />
+        <Route path='/admin' element={<AdminPage/>}/>
       </Routes>
       
     </>

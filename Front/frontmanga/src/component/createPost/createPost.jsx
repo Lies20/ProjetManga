@@ -11,8 +11,6 @@ const CreatePost = () => {
   const [error, setError] = useState('');
   const { user, updateUser } = useUser();
 
-  const [uploadedImages, setUploadedImages] = useState([]);
-
   const handleCreatePost = async () => {
 
     if (!title || !description) {
@@ -25,7 +23,6 @@ const CreatePost = () => {
         title,
         description,
         idUser: user.userId,
-        uploadedImages,
       });
 
       setIsPostCreated(true);

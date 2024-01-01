@@ -47,6 +47,7 @@ try {
       });
 
   const {userData } = response.data;
+  localStorage.setItem('token', userData.token);
   updateUser(userData);
   
   navigate('/');

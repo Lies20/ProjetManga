@@ -32,7 +32,10 @@ const CreateAccount = () => {
     }
 
     if (password.trim() === '') {
+      
       newErrors.password = 'Le mot de passe est requis.';
+    } else if (password.trim().length < 8) {
+      newErrors.password = 'Le mot de passe doit avoir au moins 8 caractères.';
     }
 
     if (Object.values(newErrors).some((error) => error !== '')) {

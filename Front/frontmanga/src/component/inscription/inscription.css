@@ -96,14 +96,7 @@
     width: 80%;
     height: 100%;
   }
-  /* .inscription-card {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    padding: 10%;
-    margin: 0;
-  } */
+
   .inscription-card-title h2 {
     margin-top: 10%;
     font-size: 1.5rem;

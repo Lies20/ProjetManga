@@ -24,7 +24,6 @@
 
 .connexion-card {
   width: 60%;
-  height: 400px;
 }
 
 .connexion-card-img{
@@ -71,10 +70,6 @@
   margin-top: 10px;
 }
 
-/* .inscription-link{
-  margin-top: -12%;
-} */
-
 .login a {
   color: black;
 }
@@ -107,6 +102,14 @@
   }
   .inscription-link{
     margin-top: -20%;
+  }
+
+}@media only screen and (min-width :280px) and (max-width: 600px) {
+
+  .login {
+    margin-top: 5%;
+    width: 60%;
+    height: 100%;
   }
 }
 
