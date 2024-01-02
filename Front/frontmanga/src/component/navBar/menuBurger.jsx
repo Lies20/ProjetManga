@@ -21,6 +21,10 @@ function Header() {
             <span className="pseudo">
               <p>Bienvenue, {user.pseudo} !</p>
               <span className="button">
+                {user.role === "admin" ? (
+                  <Link to="/admin">admin</Link>
+                )
+                 : null}
                 <button className="logOut" onClick={logOut} >Déconnexion</button>
               </span>
             </span>

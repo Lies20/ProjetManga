@@ -6,7 +6,7 @@ const postController = {
             const [rows] = await pool.query(
                 "SELECT Post.*, User.pseudo FROM Post JOIN User ON Post.idUser = User.idUser"
             );
-            res.json({ data: rows });
+            res.json({ data: rows.reverse() });
         } catch (error) {
             handleError(res, error);
         }

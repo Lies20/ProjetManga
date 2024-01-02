@@ -36,23 +36,24 @@ const PostDetail = () => {
   
   const navigate = useNavigate();
 
-
-  useEffect(() => {
-    const fetchPostAndComments = async () => {
-      try {
-        const postResponse = await axios.get(`http://localhost:3006/api/post/${postId}`);
-        if(!postResponse.data){
-          navigate('/')
-        }
-        console.log('ok')
-        setPost(postResponse.data.data.shift());
-
-        const commentsResponse = await axios.get(`http://localhost:3006/api/commentary/comments/post/${postId}`);
-        setComments(commentsResponse.data.data);
-      } catch (error) {
-        console.error(error);
+  const fetchPostAndComments = async () => {
+    try {
+      const postResponse = await axios.get(`http://localhost:3006/api/post/${postId}`);
+      if(!postResponse.data){
+        navigate('/')
       }
-    };
+      console.log('ok')
+      setPost(postResponse.data.data.shift());
+
+      const commentsResponse = await axios.get(`http://localhost:3006/api/commentary/comments/post/${postId}`);
+      setComments(commentsResponse.data.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  useEffect(() => {
+
 
     fetchPostAndComments();
   }, [update]);
@@ -184,6 +185,21 @@ const PostDetail = () => {
 
     console.log(localStorage.getItem('token'), user.token, id)
   }
+
+  const deleteCommentaryAdmin = async (id)=>{
+    const req = await axios.delete(`http://localhost:3006/api/admin/comment/${id}`, {
+      headers:{
+        Authorization: `Bearer ${user.token}`
+      }
+    })
+
+    console.log(req)
+    if(req.data.success){
+      fetchPostAndComments();
+
+    }
+  }
+
   return (
     
     <div className="post-detail-container">
@@ -248,16 +264,17 @@ const PostDetail = () => {
           </div>
             </>
           )}
-
                 {user.role === "admin" && (
-                  <div onClick={()=>{deleteAdmin(post.idPost)}
+                                <div className="dropdown">
+                                <div className="post-actions">
+                                <button className="button-delete" onClick={()=>{deleteAdmin(post.idPost)}
                   }>
                     supprimer
-                    </div>
+                    </button>
+                                </div>
+                              </div>
                 )}
         </div>
-
-
         <div className="commentBody">
         {user && (
           <ul className="comment-list">
@@ -303,6 +320,16 @@ const PostDetail = () => {
           )}
         </>
       )}
+                      {user.role === "admin" && (
+                                <div className="dropdown">
+                                <div className="post-actions">
+                                <button className="button-delete" onClick={()=>{deleteCommentaryAdmin(comment.idCommentary)}
+                  }>
+                    supprimer
+                    </button>
+                                </div>
+                              </div>
+                )}
             </li>
               ))}
           </ul>

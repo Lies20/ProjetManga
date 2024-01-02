@@ -1,0 +1,59 @@
+.admin{
+    padding:2%;
+    padding-right:5%;
+    padding-left:5%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.welcome-admin{
+    width:20%;
+
+}
+.welcome-admin .message{
+    background:white;
+    text-align: center;
+    padding:10px;
+    border-radius: 5Px;
+    margin-bottom:30px;
+}
+.welcome-admin img{
+    width:100%;
+}
+.admin-color{
+    color:rgb(224, 146, 0);
+    font-size:1.2rem;
+    font-weight: bold;
+
+}
+
+/* .info-posts{
+    padding-left:5%;
+    padding-right:5%;
+} */
+
+.card{
+    background-color: white;
+    width: 200px;
+    padding:10px;
+    height: 200px;
+    border-radius: 5px;
+    margin-bottom:20px;
+    text-align: center;
+}
+
+.card-title{
+    font-size: 1.5rem;
+}
+
+.card-info{
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.info-users{
+    background-color: white;
+    border-radius: 5px;
+    padding:20px;
+    height:440px;
+}
