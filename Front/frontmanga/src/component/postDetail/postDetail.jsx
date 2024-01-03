@@ -260,7 +260,7 @@ const PostDetail = () => {
                               </div>
                 )}
         </div>
-        <div className="commentBody">
+        {/* <div className="commentBody">
         {user && (
           <ul className="comment-list">
             {comments?.map((comment) => (
@@ -319,7 +319,7 @@ const PostDetail = () => {
               ))}
           </ul>
         )}  
-      </div>
+      </div> */}
       </div>
       {user && (
         <div className="comment-form">
