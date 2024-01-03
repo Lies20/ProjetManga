@@ -45,6 +45,7 @@ const PostDetail = () => {
       setPost(postResponse.data.data.shift());
       const commentsResponse = await axios.get(`https://projet-manga.vercel.app/api/commentary/comments/post/${postId}`);
       setComments(commentsResponse.data.data);
+      console.log('les commentaire que je recois au chargement de la page ::::', commentsResponse.data)
     } catch (error) {
       console.error(error);
     }
@@ -69,6 +70,7 @@ const PostDetail = () => {
         idPost: postId,
       });
       const newCommentData = response.data.data;
+      console.log("voici les commentaires du post !!" , newCommentData)
       setComments([...comments, newCommentData]);
       setNewComment('');
       setUpdate(!update);
