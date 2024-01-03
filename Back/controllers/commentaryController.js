@@ -8,7 +8,6 @@ const commentaryController = {
         data: rows,
       });
     } catch (error) {
-      console.log(error);
       res.json({
         state: "error",
       });
@@ -23,7 +22,6 @@ const commentaryController = {
         data: rows,
       });
     } catch (error) {
-      console.log(error);
       res.json({
         state: "error",
       });
@@ -39,7 +37,6 @@ const commentaryController = {
         data: rows,
       });
     } catch (error) {
-      console.log(error);
       res.json({
         state: "error",
       });
@@ -58,7 +55,6 @@ const commentaryController = {
         data: rows,
       });
     } catch (error) {
-      console.log(error);
       res.json({
         state: "error",
       });
@@ -74,7 +70,6 @@ const commentaryController = {
         data: rows,
       });
     } catch (error) {
-      console.log(error);
       res.json({
         state: "error",
       });
@@ -89,7 +84,6 @@ const commentaryController = {
         data: rows,
       });
     } catch (error) {
-      console.log(error);
       res.json({
         state: "error",
       });

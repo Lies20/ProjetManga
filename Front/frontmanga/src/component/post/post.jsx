@@ -17,7 +17,6 @@ const LatestPosts = () => {
         const sortedPosts = response.data.data.sort((a, b) => new Date(b.datePublication) - new Date(a.datePublication));
         setPosts(sortedPosts || []);
       } catch (error) {
-        console.log("Error details", error.response);
       }
     };
 

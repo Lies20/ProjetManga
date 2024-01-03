@@ -53,7 +53,6 @@ try {
   navigate('/');
 
 } catch (error) {
-  console.log('Erreur lors de la connexion :', error);
   setErreurMotDePasse('Mot de passe invalide');
 
 }

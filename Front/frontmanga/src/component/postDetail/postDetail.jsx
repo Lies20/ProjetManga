@@ -42,9 +42,7 @@ const PostDetail = () => {
       if(!postResponse.data){
         navigate('/')
       }
-      console.log('ok')
       setPost(postResponse.data.data.shift());
-
       const commentsResponse = await axios.get(`http://localhost:3006/api/commentary/comments/post/${postId}`);
       setComments(commentsResponse.data.data);
     } catch (error) {
@@ -147,10 +145,6 @@ const PostDetail = () => {
         idUser: editedComment.idUser,
         idPost: editedComment.idPost,
       });
-      
-      console.log("datePublication", editedComment.datePublication);
-      console.log("idUser", editedComment.idUser);
-
       setUpdate(!update);
       setIsCommentEditing(false);
     } catch (error) {
@@ -170,9 +164,6 @@ const PostDetail = () => {
 
 
   useEffect(()=>{
-    console.log(user)
-    console.log(localStorage.getItem('token'), user.token, post.id)
-
   }, [user])
   const deleteAdmin = async (id)=>{
     const req = await axios.delete(`http://localhost:3006/api/admin/${postId}`, {
@@ -180,10 +171,7 @@ const PostDetail = () => {
         Authorization: `Bearer ${user.token}`
       }
     });
-    
     navigate('/')
-
-    console.log(localStorage.getItem('token'), user.token, id)
   }
 
   const deleteCommentaryAdmin = async (id)=>{
@@ -192,11 +180,8 @@ const PostDetail = () => {
         Authorization: `Bearer ${user.token}`
       }
     })
-
-    console.log(req)
     if(req.data.success){
       fetchPostAndComments();
-
     }
   }
 

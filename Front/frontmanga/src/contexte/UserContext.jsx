@@ -10,13 +10,10 @@ export const UserProvider = ({ children }) => {
   
 
   const updateUser = (userData) => {
-    console.log('Mise à jour de l\'utilisateur :', userData);
     setUser(userData);
   };
 
   const logOut = () => {
-    console.log('Déconnexion de l\'utilisateur');
-    console.log('Mise à jour de l\'utilisateur aprés la deconnexion :', user);
     navigate("/")
     
     setUser(""); 

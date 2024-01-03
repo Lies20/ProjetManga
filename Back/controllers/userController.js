@@ -33,7 +33,6 @@ const verifyToken = (req, res, next) => {
                     data: rows
                 })
             } catch(error) {
-                console.log(error)
                 res.json({
                 state : "error"
                 })
@@ -48,7 +47,6 @@ const verifyToken = (req, res, next) => {
                     data: rows
                 })
             } catch(error) {
-                console.log(error)
                 res.json({
                     state : "error"
                     })
@@ -63,7 +61,6 @@ const verifyToken = (req, res, next) => {
                     data: rows
                 })
             } catch(error) {
-                console.log(error)
                 res.json({
                     state : "error"
                     })
@@ -99,7 +96,6 @@ const verifyToken = (req, res, next) => {
             const { email, password } = req.body;
 
             const [user] = await pool.query("SELECT * FROM User WHERE email = ?", [email]);
-            console.log(user)
             if (user.length === 0) {
                 return res.status(401).json({ message: "Utilisateur non trouvé." });
             }
@@ -138,7 +134,6 @@ const verifyToken = (req, res, next) => {
                     data: rows
                 })
             } catch(error) {
-                console.log(error)
                 res.json({
                     state : "error"
                     })
@@ -154,7 +149,6 @@ const verifyToken = (req, res, next) => {
                     data: rows
                 })
             } catch(error) {
-                console.log(error)
                 res.json({
                     state : "error"
                     })
