@@ -83,14 +83,14 @@ const adminController = {
                 const user = userRows[0];
 
                 if (user.role === "admin") {
-                  const posts = await pool.query('SELECT * FROM DreamangaDatabase.post')
+                  const posts = await pool.query('SELECT * FROM dreamanga_db.post')
 
-                  const users = await pool.query('SELECT * FROM DreamangaDatabase.User')
+                  const users = await pool.query('SELECT * FROM dreamanga_db.User')
 
                   const topUsersWithMostPosts = await pool.query(`
                     SELECT u.pseudo, COUNT(p.idPost) AS nombreDePosts
-                    FROM DreamangaDatabase.User u
-                    JOIN DreamangaDatabase.Post p ON u.idUser = p.idUser
+                    FROM dreamanga_db.User u
+                    JOIN dreamanga_db.Post p ON u.idUser = p.idUser
                     GROUP BY u.idUser, u.pseudo
                     ORDER BY nombreDePosts DESC
                     LIMIT 5;
