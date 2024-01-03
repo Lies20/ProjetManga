@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import { useUser } from "../../contexte/UserContext";
 import React, { useState, useEffect } from 'react';
-import './PostDetail.css'
+import './postDetail.css'
 import BurgerMenu from "../navBar/menuBurger"
 import { useNavigate } from 'react-router-dom';
 
