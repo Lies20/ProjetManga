@@ -1,10 +1,12 @@
 const express = require('express');
 const multer = require('multer');
 const cloudinary = require('cloudinary').v2;
+const cors = require('cors')
 
 const app = express();
 const port = 3006;
 
+app.use(cors())
 cloudinary.config({
   cloud_name: 'dreamanga',
   api_key: '181138134563512',
