@@ -5,7 +5,11 @@ const cors = require('cors')
 const app = express();
 const port = 3006;
 
-app.use(cors())
+app.use(cors({
+  credentials: true,
+  origin: '*', // Remplace cela par le domaine de ton frontend
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+}))
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://projet-manga-ph95.vercel.app');
