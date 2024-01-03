@@ -83,7 +83,7 @@ const adminController = {
                 const user = userRows[0];
 
                 if (user.role === "admin") {
-                  const posts = await pool.query('SELECT * FROM dreamanga_db.post')
+                  const posts = await pool.query('SELECT * FROM dreamanga_db.Post')
 
                   const users = await pool.query('SELECT * FROM dreamanga_db.User')
 
@@ -95,6 +95,7 @@ const adminController = {
                     ORDER BY nombreDePosts DESC
                     LIMIT 5;
                    `);
+                   console.log(posts, users, topUsersWithMostPosts)
                     res.status(200).json({
                         posts:posts[0],
                         users:users[0],
