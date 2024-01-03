@@ -308,7 +308,7 @@ const PostDetail = () => {
                       {user.role === "admin" && (
                                 <div className="dropdown">
                                 <div className="post-actions">
-                                <button className="button-delete" onClick={()=>{deleteCommentaryAdmin(comment.idCommentary)}
+                                <button className="button-delete" onClick={()=>{deleteCommentaryAdmin(comment?.idCommentary)}
                   }>
                     supprimer
                     </button>
