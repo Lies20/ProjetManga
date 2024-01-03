@@ -263,7 +263,7 @@ const PostDetail = () => {
         <div className="commentBody">
         {user && (
           <ul className="comment-list">
-            {comments?.map((comment) => (
+            {comments && comments?.map((comment) => (
             <li key={comment.idCommentary}>
       <p>Publié le : {formatDate(comment.datePublication)}</p>
       <p>Par : {comment.pseudo}</p>
