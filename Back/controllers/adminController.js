@@ -21,7 +21,7 @@ const adminController = {
 
                 if (user.role === "admin") {
                     const { id } = req.params;
-                    await pool.query("DELETE FROM DreamangaDataBase.Commentary WHERE idPost = ?", [id]);
+                    await pool.query("DELETE FROM dreamanga_db.Commentary WHERE idPost = ?", [id]);
                     const [postRows] = await pool.query("DELETE FROM Post WHERE idPost = ?", [id]);
                     res.json({ data: postRows });
                 } else {
@@ -52,7 +52,7 @@ const adminController = {
 
                 if (user.role === "admin") {
                     const { id } = req.params;
-                    await pool.query("DELETE FROM DreamangaDataBase.Commentary WHERE idCommentary = ?", [id]);
+                    await pool.query("DELETE FROM dreamanga_db.Commentary WHERE idCommentary = ?", [id]);
 
                     res.json({ success:true });
                 } else {

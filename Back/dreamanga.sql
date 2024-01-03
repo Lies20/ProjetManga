@@ -1,10 +1,10 @@
-DROP DATABASE IF EXISTS DreamangaDataBase;
+-- DROP DATABASE IF EXISTS DreamangaDataBase;
 
-CREATE DATABASE DreamangaDataBase;
+-- CREATE DATABASE dreamanga_db;
 
-USE DreamangaDataBase;
+USE dreamanga_db;
 
-CREATE TABLE IF NOT EXISTS DreamangaDataBase.User (
+CREATE TABLE IF NOT EXISTS dreamanga_db.User (
   idUser INT AUTO_INCREMENT PRIMARY KEY,
   pseudo VARCHAR(20) NOT NULL UNIQUE,
   birthday DATETIME NULL,
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS DreamangaDataBase.User (
 );
   
 
-CREATE TABLE IF NOT EXISTS DreamangaDataBase.Post (
+CREATE TABLE IF NOT EXISTS dreamanga_db.Post (
   idPost INT AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(45) NOT NULL,
   description VARCHAR(1000) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS DreamangaDataBase.Post (
   CONSTRAINT fk_idUser FOREIGN KEY (idUser) REFERENCES User (idUser)
 );
 
-CREATE TABLE IF NOT EXISTS DreamangaDataBase.Commentary (
+CREATE TABLE IF NOT EXISTS dreamanga_db.Commentary (
   idCommentary INT AUTO_INCREMENT PRIMARY KEY,
   subject VARCHAR(1000) NOT NULL ,
   datePublication DATETIME NOT NULL ,
@@ -36,5 +36,5 @@ CREATE TABLE IF NOT EXISTS DreamangaDataBase.Commentary (
 );
 
 -- salutsalut
-INSERT INTO DreamangaDataBase.User
+INSERT INTO dreamanga_db.User
 VALUES (NULL, 'lies', '1991-03-22', 'hocini.lies@gmail.com', '$2b$10$cV77Ii7E6tD4IzE88JAGYOxzweSvk7l1Ld2Yjo1/.1MBQUhHunsQi', 'admin');
