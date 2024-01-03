@@ -79,7 +79,15 @@ const commentaryController = {
   getCommentsByPostId: async (req, res) => {
     try {
       const { id } = req.params;
-      const [rows, fields] = await pool.query("SELECT Commentary.*, User.* FROM Commentary JOIN User ON User.idUser = Commentary.idUser  WHERE idPost = ? ORDER BY commentary.datePublication", [id]);
+      console.log('voici l', id)
+      const [rows, fields] = await pool.query(`
+        SELECT Commentary.*, User.*
+        FROM Commentary
+        JOIN User ON User.idUser = Commentary.idUser
+        WHERE idPost = ?
+        ORDER BY Commentary.datePublication
+      `, [id]);
+
       res.json({
         data: rows,
       });
@@ -89,6 +97,7 @@ const commentaryController = {
       });
     }
   },
+  
 };
 
 module.exports = commentaryController;
