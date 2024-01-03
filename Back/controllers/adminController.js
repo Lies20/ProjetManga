@@ -84,7 +84,9 @@ const adminController = {
 
                 if (user.role === "admin") {
                   const posts = await pool.query('SELECT * FROM DreamangaDatabase.post')
-                  const commentary = await pool.query('SELECT * FROM DreamangaDatabase.Commentary')
+
+                  const users = await pool.query('SELECT * FROM DreamangaDatabase.User')
+
                   const topUsersWithMostPosts = await pool.query(`
                     SELECT u.pseudo, COUNT(p.idPost) AS nombreDePosts
                     FROM DreamangaDatabase.User u
@@ -95,7 +97,7 @@ const adminController = {
                    `);
                     res.status(200).json({
                         posts:posts[0],
-                        commentary:commentary[0],
+                        users:users[0],
                         topUsers:topUsersWithMostPosts[0]
                     })
                 } else {

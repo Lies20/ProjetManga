@@ -50,9 +50,9 @@ export default function adminPage(){
             </div>
             <div className="card">
                 <p className="card-title">
-                    Nombre de commentaires
+                    Nombre d'utilisateurs
                 </p>
-                <p className="card-info">{info?.commentary?.length}</p>
+                <p className="card-info">{info?.users?.length}</p>
             </div>
         </div>
 

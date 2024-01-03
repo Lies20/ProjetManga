@@ -2,28 +2,6 @@ const pool = require("../Databases/index.js");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const generateToken = (userId) => {
-    const token = jwt.sign({ userId }, 'salutsaluttokensecret', { expiresIn: '1h' });
-    return token;
-};
-
-const verifyToken = (req, res, next) => {
-    const token = req.headers.authorization;
-
-    if (!token) {
-        return res.status(401).json({ message: 'Token missing' });
-    }
-
-    jwt.verify(token, 'salutsaluttokensecret', (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ message: 'Invalid token' });
-        }
-
-        req.userId = decoded.userId;
-        next();
-    });
-}
-
     const userController = {
         
         getAll: async  (req, res) => {
@@ -82,7 +60,9 @@ const verifyToken = (req, res, next) => {
 
             const hashedPassword = await bcrypt.hash(password, 10);
             const sql = "INSERT INTO User (pseudo, birthday, email, password, role) VALUES (?, ?, ?, ?, 'user')";
+            console.log(pseudo, birthday, email, hashedPassword)
             const [rows] = await pool.query(sql, [pseudo, birthday, email, hashedPassword]);
+            console.log(rows)
             res.json({ message: "Compte créé avec succès.", data: rows });
         } catch (error) {
             res.json({
@@ -107,7 +87,7 @@ const verifyToken = (req, res, next) => {
             }
 
             const token = jwt.sign({ userId: user[0].idUser }, 'salutsalutsecretkey', { expiresIn: '1h' });
-
+            console.log('token', token)
             res.json({
                 message: "Connexion réussie.",
                 userData: {

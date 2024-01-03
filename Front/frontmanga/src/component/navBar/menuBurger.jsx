@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useUser } from "../../contexte/UserContext";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./menuBurger.css";
 
 function Header() {
   const { user, logOut } = useUser();
   const [burger, setBurger] = useState(true)
+  const navigate = useNavigate()
+
+  const dashboard = ()=>{
+    navigate('/admin')
+  }
   return (
     <nav>
       <div className="topnav">
@@ -22,7 +27,7 @@ function Header() {
               <p>Bienvenue, {user.pseudo} !</p>
               <span className="button">
                 {user.role === "admin" ? (
-                  <Link to="/admin">admin</Link>
+                  <button onClick={dashboard}>Dashboard</button>
                 )
                  : null}
                 <button className="logOut" onClick={logOut} >Déconnexion</button>
