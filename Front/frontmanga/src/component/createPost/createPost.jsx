@@ -19,7 +19,7 @@ const CreatePost = () => {
     }
 
     try {
-      await axios.post('http://localhost:3006/api/post/createPost', {
+      await axios.post('https://projet-manga.vercel.app/api/post/createPost', {
         title,
         description,
         idUser: user.userId,

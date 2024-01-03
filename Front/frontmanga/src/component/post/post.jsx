@@ -13,7 +13,7 @@ const LatestPosts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3006/api/post');
+        const response = await axios.get('https://projet-manga.vercel.app/api/post');
         const sortedPosts = response.data.data.sort((a, b) => new Date(b.datePublication) - new Date(a.datePublication));
         setPosts(sortedPosts || []);
       } catch (error) {

@@ -38,12 +38,12 @@ const PostDetail = () => {
 
   const fetchPostAndComments = async () => {
     try {
-      const postResponse = await axios.get(`http://localhost:3006/api/post/${postId}`);
+      const postResponse = await axios.get(`https://projet-manga.vercel.app/api/post/${postId}`);
       if(!postResponse.data){
         navigate('/')
       }
       setPost(postResponse.data.data.shift());
-      const commentsResponse = await axios.get(`http://localhost:3006/api/commentary/comments/post/${postId}`);
+      const commentsResponse = await axios.get(`https://projet-manga.vercel.app/api/commentary/comments/post/${postId}`);
       setComments(commentsResponse.data.data);
     } catch (error) {
       console.error(error);
@@ -63,7 +63,7 @@ const PostDetail = () => {
 
   const handleCommentSubmit = async () => {
     try {
-      const response = await axios.post(`http://localhost:3006/api/commentary/create`, {
+      const response = await axios.post(`https://projet-manga.vercel.app/api/commentary/create`, {
         subject: newComment,
         idUser: user.userId,
         idPost: postId,
@@ -80,7 +80,7 @@ const PostDetail = () => {
   const handlePostDelete = async () => {
     try {
       if (user && user.pseudo === post.pseudo) {
-        await axios.delete(`http://localhost:3006/api/post/${postId}`);
+        await axios.delete(`https://projet-manga.vercel.app/api/post/${postId}`);
         setDeleteMessage('Le post a été supprimé avec succès.'); 
         setTimeout(() => {
           setDeleteMessage(''); 
@@ -106,7 +106,7 @@ const PostDetail = () => {
   };
   const handleEditSave = async () => {
     try {
-      await axios.put(`http://localhost:3006/api/post/${postId}`, editedPost);
+      await axios.put(`https://projet-manga.vercel.app/api/post/${postId}`, editedPost);
       setUpdate(!update);
       setIsPostEditing(false);
     } catch (error) {
@@ -116,7 +116,7 @@ const PostDetail = () => {
 
   const handleCommentDelete = async (commentId) => {
     try {
-      await axios.delete(`http://localhost:3006/api/commentary/${commentId}`);
+      await axios.delete(`https://projet-manga.vercel.app/api/commentary/${commentId}`);
       setDeleteMessage('Le commentaire a été supprimé avec succès.'); 
         setDeleteMessage(''); 
         setUpdate(!update); 
@@ -139,7 +139,7 @@ const PostDetail = () => {
   
   const handleCommentSaveEdit = async (commentId) => {
     try {
-      await axios.put(`http://localhost:3006/api/commentary/${commentId}`, {
+      await axios.put(`https://projet-manga.vercel.app/api/commentary/${commentId}`, {
         subject: editedComment.subject,
         datePublication: new Date(), 
         idUser: editedComment.idUser,
@@ -166,7 +166,7 @@ const PostDetail = () => {
   useEffect(()=>{
   }, [user])
   const deleteAdmin = async (id)=>{
-    const req = await axios.delete(`http://localhost:3006/api/admin/${postId}`, {
+    const req = await axios.delete(`https://projet-manga.vercel.app/api/admin/${postId}`, {
       headers: {
         Authorization: `Bearer ${user.token}`
       }
@@ -175,7 +175,7 @@ const PostDetail = () => {
   }
 
   const deleteCommentaryAdmin = async (id)=>{
-    const req = await axios.delete(`http://localhost:3006/api/admin/comment/${id}`, {
+    const req = await axios.delete(`https://projet-manga.vercel.app/api/admin/comment/${id}`, {
       headers:{
         Authorization: `Bearer ${user.token}`
       }

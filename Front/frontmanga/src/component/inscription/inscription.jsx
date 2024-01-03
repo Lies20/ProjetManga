@@ -44,7 +44,7 @@ const CreateAccount = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3006/api/users/create', {
+      const response = await axios.post('https://projet-manga.vercel.app/api/users/create', {
         pseudo,
         birthday,
         email,

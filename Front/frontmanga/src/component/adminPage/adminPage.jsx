@@ -11,7 +11,7 @@ export default function adminPage(){
     const navigate = useNavigate()
 
     const fetchInfo = async ()=>{
-        const req = await axios.get('http://localhost:3006/api/admin/infos',  {
+        const req = await axios.get('https://projet-manga.vercel.app/api/admin/infos',  {
             headers:{
              
                 Authorization: `Bearer ${user.token}`
