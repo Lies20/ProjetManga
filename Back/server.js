@@ -1,31 +1,18 @@
 const express = require('express');
 const multer = require('multer');
-const cloudinary = require('cloudinary').v2;
 const cors = require('cors')
 
 const app = express();
 const port = 3006;
 
 app.use(cors())
-cloudinary.config({
-  cloud_name: 'dreamanga',
-  api_key: '181138134563512',
-  api_secret: 'EGdGxWO_G_bAZWaPtbFE9SkCtxU',
-});
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
-
-app.post('/upload', upload.single('image'), async (req, res) => {
-  try {
-    const result = await cloudinary.uploader.upload(req.file.buffer, { folder: 'imageDreamanga' });
-
-    res.json({ public_id: result.public_id, url: result.secure_url });
-  } catch (error) {
-    console.error('Error uploading image to Cloudinary:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://projet-manga-ph95.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
 });
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
