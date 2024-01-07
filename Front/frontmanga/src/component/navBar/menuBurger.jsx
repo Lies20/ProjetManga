@@ -21,15 +21,14 @@ function Header() {
         </div>
         <div className="nav-options">
           <div className="desktop-navbar">
-
           {user && user.pseudo ? (
             <span className="pseudo">
               <p>Bienvenue, {user.pseudo} !</p>
-              <span className="button">
                 {user.role === "admin" ? (
                   <button onClick={dashboard}>Dashboard</button>
                 )
                  : null}
+              <span className="button">
                 <button className="logOut" onClick={logOut} >Déconnexion</button>
               </span>
             </span>

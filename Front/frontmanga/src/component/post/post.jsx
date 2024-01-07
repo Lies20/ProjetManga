@@ -35,12 +35,10 @@ const LatestPosts = () => {
     return resultat;
   }
 
-  // Pagination
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Calcul du nombre de pages
   const totalPages = Math.ceil(posts.length / postsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
