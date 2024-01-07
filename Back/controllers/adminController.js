@@ -68,6 +68,8 @@ const adminController = {
         try {
             const token = req.headers.authorization;
 
+            
+
             const toktok = token.split(' ')[1];
             if (!token) {
                 return res.status(401).json({ message: 'Token missing' });

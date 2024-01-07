@@ -233,7 +233,7 @@ const PostDetail = () => {
               <p> Fait par : {post.pseudo}</p>
               <p> Fait le : {formatDate(post.datePublication)}</p>
               <hr></hr>
-              <p> Contenu du post: {post.description}</p>
+              <p> {post.description}</p>
               {user.pseudo === post.pseudo && (
                 <>
             <div className="dropdown">
