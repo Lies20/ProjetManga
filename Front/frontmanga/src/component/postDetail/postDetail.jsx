@@ -227,7 +227,6 @@ const PostDetail = () => {
           ) : (
             <>
           <div className="postDetail-card">
-            {/* <img src='https://dojotaku.com/cdn/shop/articles/roronoa-zoro-one-piece.webp?v=1686739204'></img> */}
               <p> Fait par : {post.pseudo}</p>
               <p> Fait le : {formatDate(post.datePublication)}</p>
               <hr></hr>
@@ -261,7 +260,6 @@ const PostDetail = () => {
                 )}
         </div>
         <div className="commentBody">
-        {user && (
           <ul className="comment-list">
             {comments && comments?.map((comment) => (
             <li key={comment.idCommentary}>
@@ -318,7 +316,7 @@ const PostDetail = () => {
             </li>
               ))}
           </ul>
-        )}  
+          
       </div>
       </div>
       {user && (
