@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useUser } from "../../contexte/UserContext";
 import { Link, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
+
 import "./menuBurger.css";
 
 function Header() {
@@ -34,8 +37,12 @@ function Header() {
             </span>
           ) : (
             <>
-                <Link to="/inscription">Inscription</Link>
-                <Link to="/connexion">Connexion</Link>
+                <Link to="/inscription">
+                    <FontAwesomeIcon icon={faUserPlus} /> Inscription
+                </Link>
+                <Link to="/connexion">
+                    <FontAwesomeIcon icon={faSignInAlt} /> Connexion
+                </Link>
               </>
           )}
           </div>
