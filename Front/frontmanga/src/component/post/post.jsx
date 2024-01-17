@@ -63,7 +63,6 @@ const LatestPosts = () => {
                   <div className='posts'>
                     <div className='posts-info'>
                       <h3> Titre du post :{post.title}</h3>
-                      <hr/>
                       <p>{reduce(post.description)}</p>
                       <p>Date de publication:{formatDate(post.datePublication)}</p>
                       <p>Auteur: {post.pseudo}</p>

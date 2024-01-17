@@ -11,28 +11,28 @@ const CreatePost = () => {
   const [error, setError] = useState('');
   const { user, updateUser } = useUser();
 
-  const handleCreatePost = async () => {
+    const handleCreatePost = async () => {
 
-    if (!title || !description) {
-      setError('Les champs "Titre" et "Description" sont obligatoires.');
-      return;
-    }
+        if (!title || !description) {
+          setError('Les champs "Titre" et "Description" sont obligatoires.');
+          return;
+        }
 
-    try {
-      await axios.post('https://projet-manga.vercel.app/api/post/createPost', {
-        title,
-        description,
-        idUser: user.userId,
-      });
+        try {
+          await axios.post('https://projet-manga.vercel.app/api/post/createPost', {
+            title,
+            description,
+            idUser: user.userId,
+          });
 
-      setIsPostCreated(true);
-      setTitle('');
-      setDescription('');
-      setError(''); 
-    } catch (error) {
-      console.error('Erreur lors de la création du post :', error);
-    }
-  };
+          setIsPostCreated(true);
+          setTitle('');
+          setDescription('');
+          setError(''); 
+        } catch (error) {
+          console.error('Erreur lors de la création du post :', error);
+        }
+    };
 
   return (
     <div className='create-post-container'>

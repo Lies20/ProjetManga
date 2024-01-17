@@ -104,6 +104,7 @@ const PostDetail = () => {
       description: post.description,
     });
   };
+  
   const handleEditSave = async () => {
     try {
       await axios.put(`https://projet-manga.vercel.app/api/post/${postId}`, editedPost);
