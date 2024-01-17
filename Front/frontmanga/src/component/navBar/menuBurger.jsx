@@ -38,7 +38,7 @@ function Header() {
           ) : (
             <>
                 <Link to="/inscription">
-                    <FontAwesomeIcon icon={faUserPlus} /> Inscriptio
+                    <FontAwesomeIcon icon={faUserPlus} /> Inscripti
                 </Link>
                 <Link to="/connexion">
                     <FontAwesomeIcon icon={faSignInAlt} /> Connexion
