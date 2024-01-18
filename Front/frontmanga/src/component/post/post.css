@@ -92,7 +92,12 @@ body {
 }
 
 @media  only screen and (min-width: 280px) and (max-width: 600px) {
+  
+
   .posts-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 2%;
     width: 91%;
   }

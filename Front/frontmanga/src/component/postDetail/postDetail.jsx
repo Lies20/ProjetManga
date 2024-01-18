@@ -190,10 +190,10 @@ const PostDetail = () => {
     
     <div className="post-detail-container">
       <BurgerMenu />
-      <div className="postBody">
-      <h2 className="post-title"> Titre du post : {post.title}</h2>
+      <div className="updatepostBody">
+        <h2 className="new-post-title"> Titre du post : {post.title}</h2>
 
-        <div className="post-detail">
+        <div className="new-post-details">
           {isPostEditing ? (
               <>
               <label htmlFor="editedTitle">Nouveau titre :</label>
@@ -213,116 +213,90 @@ const PostDetail = () => {
                   setEditedPost({ ...editedPost, description: e.target.value })
                 }
               />
-              <div className="dropdown">
               <div className="post-actions">
-                <button className="button-edit" onClick={handleEditSave}>
-                Enregistrer
-                </button>
-                <button className="button-delete" onClick={handleEditCancel}>
+                <button className="button-cancel" onClick={handleEditCancel}>
                 Annuler
                 </button>
+                <button className="button-save" onClick={handleEditSave}>
+                Enregistrer
+                </button>
               </div> 
-              </div>
               
             </> 
-          ) : (
-            <>
-          <div className="postDetail-card">
-            <div className="post">
-              <div className="post-content">
-                <p className="post-date">Créé le : {formatDate(post.datePublication)} par <a class="post-author" href="#">{post.pseudo}</a></p>
-                <div className="post-excerpt">
-                  <p>{post.description}</p>
+            ) : (
+              <>
+            <div className="postDetail-card">
+              <div className="post-details">
+                <div className="post-content">
+                  <p className="post-date">Créé le : {formatDate(post.datePublication)} par <a class="post-author" href="#">{post.pseudo}</a></p>
+                  <div className="post-description" style={{ whiteSpace: 'pre-line' }}>
+                    <p>{post.description}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-              {user.pseudo === post.pseudo && (
-                <>
-                  <div className="dropdown">
-                    <div className="post-actions">
-                      <button className="button-edit" onClick={handlePostEdit}>
-                        Modifier
-                      </button>
-                      <button className="button-delete" onClick={handlePostDelete}>
-                        Supprimer
-                      </button>
-                    </div>
+                {user && (user.pseudo === post.pseudo || user.role === "admin" ) && (
+                  <>
+                  <div className="post-actions">
+                    <button className="button-edit" onClick={handlePostEdit}>
+                      Modifier
+                    </button>
+                    <button className="button-delete" onClick={handlePostDelete}>
+                      Supprimer
+                    </button>
                   </div>
                 </>
               )}
           </div>
             </>
           )}
-                {user.role === "admin" && (
-                                <div className="dropdown">
-                                <div className="post-actions">
-                                <button className="button-delete" onClick={()=>{deleteAdmin(post.idPost)}
-                  }>
-                    supprimer
-                    </button>
-                                </div>
-                              </div>
-                )}
         </div>
-        <div className="commentBody">
+        <div className="comment-form-list">
           <ul className="comment-list">
             {comments && comments?.map((comment) => (
             <li key={comment.idCommentary}>
-      <p>Publié le : {formatDate(comment.datePublication)}</p>
-      <p>Par : {comment.pseudo}</p>
-      <hr/>
-      {isCommentEditing && editedComment.idCommentary === comment.idCommentary ? (
-        <div className="editing">
-          <textarea
+              <p className="comment-author">{comment.pseudo} <a className="comment-date"> - {formatDate(comment.datePublication)}</a></p>
+              {isCommentEditing && editedComment.idCommentary === comment.idCommentary ? (
+                <div className="editing">
+                  <textarea
 
-            id="editedComment"
-            value={editedComment.subject}
-            onChange={(e) =>
-              setEditedComment({
-                ...editedComment,
-                subject: e.target.value,
-              })
-            }
-          />
-          <div className="dropdown">
-              <button className="button-delete" onClick={handleCommentCancelEdit}>
-                Supprimer
-              </button>
-              <button className="button-edit" onClick={() => handleCommentSaveEdit(comment.idCommentary)}>
-                Modifier
-              </button>
-            </div>
-        </div>
-      ) : (
-        <>
-          <p>{comment.subject}</p>
-          {user && user.pseudo === comment.pseudo && (
-            <div className="dropdown">
-              <button className="button-delete" onClick={() => handleCommentDelete(comment.idCommentary)}>
-                Supprimer
-              </button>
-              <button className="button-edit" onClick={() => handleCommentEdit(comment)}>
-                Modifier
-              </button>
-            </div>
-          )}
-        </>
-      )}
-                      {user.role === "admin" && (
-                                <div className="dropdown">
-                                <div className="post-actions">
-                                <button className="button-delete" onClick={()=>{deleteCommentaryAdmin(comment?.idCommentary)}
-                  }>
-                    supprimer
+                    id="editedComment"
+                    value={editedComment.subject}
+                    onChange={(e) =>
+                      setEditedComment({
+                        ...editedComment,
+                        subject: e.target.value,
+                      })
+                    }
+                  />
+                  <div className="post-actions">
+                    <button className="button-delete" onClick={handleCommentCancelEdit}>
+                      Supprimer
                     </button>
-                                </div>
-                              </div>
+                    <button className="button-edit" onClick={() => handleCommentSaveEdit(comment.idCommentary)}>
+                      Modifier
+                    </button>
+                  </div>
+                </div>
+                ) : (
+                  <>
+                    <p>{comment.subject}</p>
+                    {user && (user.pseudo === comment.pseudo || user.role === "admin") && (
+                      <div className="post-actions">
+                        <button className="button-delete" onClick={() => handleCommentDelete(comment.idCommentary)}>
+                          Supprimer
+                        </button>
+                        <button className="button-edit" onClick={() => handleCommentEdit(comment)}>
+                          Modifier
+                        </button>
+                      </div>
+                    )}
+                  </>
                 )}
             </li>
               ))}
           </ul>
           
-      </div>
+        </div>
       </div>
       {user && (
         <div className="comment-form">
