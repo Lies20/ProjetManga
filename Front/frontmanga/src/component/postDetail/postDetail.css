@@ -41,14 +41,38 @@
   background-color: #F2F2F2;
   overflow: hidden;
   resize: none;
-  height: 30em;
+  height: auto;
+  min-height: 30em;
 }
 
-.post-actions{
+.post-actions {
   display: flex;
   justify-content: center;
   padding: 5px;
   width: 100%;
+}
+
+.comment-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+  width: 100%;
+}
+
+.comment-button-delete {
+  border-radius: 20px;
+  width: 12%;
+  height: 30px;
+  border: 2px solid #C23028;
+  margin: 1%;
+}
+
+.comment-button-edit {
+  border-radius: 20px;
+  width: 12%;
+  height: 30px;
+  border: 2px solid #f47521;
+  margin: 1%;
 }
 
 .button-cancel {
@@ -62,7 +86,7 @@
 }
 
 .button-save {
-  background-color: #F6B339;
+  background-color: #f47521;
   cursor:pointer;
   border-radius: 30px;
   width: 10%;
@@ -72,7 +96,7 @@
 }
 
 .button-edit {
-  background-color: rgb(75, 75, 210);
+  background-color: #f47521;
   border-radius: 30px;
   width: 10%;
   height: 50px;
@@ -155,6 +179,13 @@
   list-style-type: none;
   width: 100%;
   background-color: #F2F2F2;
+  padding: 0;
+}
+
+.comment-list li {
+  margin :2%;
+  background-color: white;
+  padding: 2%;
 }
 
 .comment-date {
@@ -200,12 +231,50 @@
   background-color: #c82333; 
 }
 
-@media screen and (max-width: 600px) {
+@media  screen and (max-width: 479px) {
+
+  .delete-post-btn {
+    padding: 8px 12px; 
+  }
+
+  .button-edit {
+    width: 30%;
+    font-size: 11px;
+  }
+
+  .button-delete {
+    width: 30%;
+    font-size: 11px;
+  }
+
+  .comment-button-delete {
+    width: 30%;
+    font-size: 11px;
+  }
+
+  .comment-button-edit {
+    width: 30%;
+    font-size: 11px;
+  }
+
+  .button-cancel {
+    width: 30%;
+    font-size: 11px;
+  }
+  
+  .button-save {
+    width: 30%;
+    font-size: 11px;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 900px) {
     
   .post-detail-container {
     max-width: 800px;
     margin: 0 auto;
   }
+
   h2 {
       font-size: 1.2rem;
   }
@@ -220,10 +289,6 @@
 
   textarea {
     height: 80px;
-  }
-
-  button {
-    padding: 8px 12px;
   }
 
   .new-post-detail {
@@ -249,7 +314,6 @@
   .comment-list li {
     list-style: none;
     padding: 10px;
-    width:85%;
   }
 
   .comment-item {
@@ -276,17 +340,35 @@
   .delete-post-btn {
     padding: 8px 12px; 
   }
-}
 
-@media screen and (max-width: 400px) {
-  .new-post-detail {
-    padding: 5px;
+  .button-edit {
+    width: 20%;
+    font-size: 11px;
   }
-  .comment-item {
-    padding: 3px;
+
+  .button-delete {
+    width: 20%;
+    font-size: 11px;
   }
-  .delete-post-btn {
-    padding: 6px 10px; 
+
+  .comment-button-delete {
+    width: 20%;
+    font-size: 11px;
+  }
+
+  .comment-button-edit {
+    width: 20%;
+    font-size: 11px;
+  }
+
+  .button-cancel {
+    width: 20%;
+    font-size: 11px;
+  }
+  
+  .button-save {
+    width: 20%;
+    font-size: 11px;
   }
 }
 

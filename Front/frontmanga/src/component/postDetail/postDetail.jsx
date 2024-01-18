@@ -281,11 +281,11 @@ const PostDetail = () => {
                   <>
                     <p>{comment.subject}</p>
                     {user && (user.pseudo === comment.pseudo || user.role === "admin") && (
-                      <div className="post-actions">
-                        <button className="button-delete" onClick={() => handleCommentDelete(comment.idCommentary)}>
+                      <div className="comment-actions">
+                        <button className="comment-button-delete" onClick={() => handleCommentDelete(comment.idCommentary)}>
                           Supprimer
                         </button>
-                        <button className="button-edit" onClick={() => handleCommentEdit(comment)}>
+                        <button className="comment-button-edit" onClick={() => handleCommentEdit(comment)}>
                           Modifier
                         </button>
                       </div>

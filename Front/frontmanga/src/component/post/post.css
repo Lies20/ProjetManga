@@ -106,4 +106,17 @@ body {
     display: flex;
     flex-direction: column;
   }
+
+  .post-content {
+    padding: 20px 30px;
+    overflow: auto;
+  }
+
+  .post-link {
+    width: 40%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

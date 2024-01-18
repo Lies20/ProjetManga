@@ -26,13 +26,13 @@ function Header() {
             <span className="pseudo">
               <p>Bienvenue, {user.pseudo} !</p>
               <span className="button">
-                {user.role === "admin" ? (
-                  <button onClick={dashboard}>Dashboard</button>
-                )
-                 : null}
-                <a className="logOut" onClick={logOut}>
-                  <img src="./public/img/logout-icon.png" alt="Déconnexion" />
-                </a>
+                <div className="menu-buttons">
+                  {user.role === "admin" ? (
+                    <button className="dashboard-btn" onClick={dashboard}>Dashboard</button>
+                  )
+                  : null}
+                  <button className="logOut" onClick={logOut} >Déconnexion</button>
+                 </div>
               </span>
             </span>
           ) : (
@@ -57,7 +57,14 @@ function Header() {
                 <span className="pseudo">
                   <p>Bienvenue, {user.pseudo} !</p>
                   <span className="button">
+                  <div className="menu-buttons">
+                    {user.role === "admin" ? (
+                      <button className="dashboard-btn" onClick={dashboard}>Dashboard</button>
+                    )
+                    : null}
                     <button className="logOut" onClick={logOut} >Déconnexion</button>
+                 </div>
+                    
                   </span>
                 </span>
               ) : (
