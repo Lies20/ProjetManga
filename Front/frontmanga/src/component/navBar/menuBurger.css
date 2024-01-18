@@ -35,11 +35,22 @@
 .topnav .icon {
   display: none;
 }
+
 .pseudo{
   color: white;
 }
+
 .mobile-navbar{
   display:none;
+}
+
+.logOut  {
+  width: 15%;
+  height: 5%;
+}
+
+.logOut img {
+  width: 30%;
 }
 
   @media screen and (min-width: 280px) and (max-width: 599px) {
@@ -69,6 +80,7 @@
       border-bottom: 2px solid #f3b632;
     }
   }
+
  /* @media screen and (min-width: 280px) and (max-width: 599px) {
 
   .topnav {

@@ -30,7 +30,7 @@ const LatestPosts = () => {
 
   function reduce(paragraphe) {
     const mots = paragraphe.split(/\s+/);
-    const mots50 = mots.slice(0, 50);
+    const mots50 = mots.slice(0, 30);
     const resultat = mots50.join(' ');
     return resultat;
   }
@@ -46,9 +46,11 @@ const LatestPosts = () => {
   return (
     <section className="latest-posts">
       {user && (
-        <Link to="/create-post">
-          <button className="create-post-btn">Créer un post</button>
-        </Link>
+        <div className="create-post_div">
+          <Link to="/create-post">
+            <button className="create-post-btn">Créer un post</button>
+          </Link>
+        </div>
       )}
       <div className='posts-container-title'>
         <h2>Nouveautés sur Dreamanga</h2>
@@ -57,28 +59,29 @@ const LatestPosts = () => {
         <ul>
           {currentPosts.map((post, index) => (
             <React.Fragment key={post.id}>
-              {index !== 0 && <hr />}
-              <li>
-                <Link to={`/post-detail/${post.idPost}`}>
-                  <div className='posts'>
-                    <div className='posts-info'>
-                      <h3> Titre du post :{post.title}</h3>
+              {index !== 0}
+              {
+                <div className="post">
+                  <div className="post-content">
+                    <p className="post-date">Créé le : {formatDate(post.datePublication)} par <a class="post-author" href="#">{post.pseudo}</a></p>
+                    <h2 className="post-title">{post.title}</h2>
+                    <div className="post-excerpt">
                       <p>{reduce(post.description)}</p>
-                      <p>Date de publication:{formatDate(post.datePublication)}</p>
-                      <p>Auteur: {post.pseudo}</p>
                     </div>
+                    <Link className="post-link" to={`/post-detail/${post.idPost}`}>Voir plus
+                    </Link>
                   </div>
-                </Link>
-              </li>
+                </div>
+              }
             </React.Fragment>
           ))}
         </ul>
       </div>
-        <div className="pagination">
-          <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>Précédent</button>
-          <p>Page {currentPage} sur {totalPages}</p>
-          <button onClick={() => paginate(currentPage + 1)} disabled={indexOfLastPost >= posts.length}>Suivant</button>
-        </div>
+      <div className="pagination">
+        <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>Précédent</button>
+        <p>Page {currentPage} sur {totalPages}</p>
+        <button onClick={() => paginate(currentPage + 1)} disabled={indexOfLastPost >= posts.length}>Suivant</button>
+      </div>
     </section>
   );
 };

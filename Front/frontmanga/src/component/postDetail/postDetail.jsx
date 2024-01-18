@@ -228,23 +228,27 @@ const PostDetail = () => {
           ) : (
             <>
           <div className="postDetail-card">
-              <p> Fait par : {post.pseudo}</p>
-              <p> Fait le : {formatDate(post.datePublication)}</p>
-              <hr></hr>
-              <p> {post.description}</p>
-              {user.pseudo === post.pseudo && (
-                <>
-            <div className="dropdown">
-              <div className="post-actions">
-                <button className="button-edit" onClick={handlePostEdit}>
-                  Modifier
-                </button>
-                <button className="button-delete" onClick={handlePostDelete}>
-                  Supprimer
-                </button>
+            <div className="post">
+              <div className="post-content">
+                <p className="post-date">Créé le : {formatDate(post.datePublication)} par <a class="post-author" href="#">{post.pseudo}</a></p>
+                <div className="post-excerpt">
+                  <p>{post.description}</p>
+                </div>
               </div>
             </div>
-              </>
+              {user.pseudo === post.pseudo && (
+                <>
+                  <div className="dropdown">
+                    <div className="post-actions">
+                      <button className="button-edit" onClick={handlePostEdit}>
+                        Modifier
+                      </button>
+                      <button className="button-delete" onClick={handlePostDelete}>
+                        Supprimer
+                      </button>
+                    </div>
+                  </div>
+                </>
               )}
           </div>
             </>
@@ -281,7 +285,7 @@ const PostDetail = () => {
             }
           />
           <div className="dropdown">
-              <button className="button-delete"nClick={handleCommentCancelEdit}>
+              <button className="button-delete" onClick={handleCommentCancelEdit}>
                 Supprimer
               </button>
               <button className="button-edit" onClick={() => handleCommentSaveEdit(comment.idCommentary)}>

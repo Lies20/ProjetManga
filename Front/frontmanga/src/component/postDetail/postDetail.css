@@ -1,3 +1,35 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.post {
+  width: 100%;
+  box-shadow: 0 5px 15px 0 #777;
+}
+
+.post-date {
+  font-size: 13px;
+  color: #bbb;
+}
+
+.post-author {
+  color: #555;
+  text-decoration: none;
+}
+
+.post-excerpt {
+  letter-spacing: 1px;
+  line-height: 1.33;
+}
+
+.post-content {
+  padding: 20px 30px;
+}
+
 .dropdown{
   display: flex;
   flex-direction: row-reverse;
@@ -19,10 +51,12 @@
 .button-edit{
   background-color: #F6B339;
 }
+
 .comment-form textarea{
   color:black;
   border:1px solid black ; 
 }
+
 .new-comment{
   background:#191919;
   border:none;
@@ -34,6 +68,7 @@
   cursor:pointer;
   border-radius: 30px;
 }
+
 .post-actions {
   display: none;
   top: 100%;
@@ -41,6 +76,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 5px;
 }
+
 h3{
   color: #F0F0F0;
 }
@@ -49,15 +85,12 @@ h3{
   display: block;
 }
 
-  h2 {
-    font-size: 1.5rem;
+h2 {
+  font-size: 1.5rem;
     margin-bottom: 10px;
     align-items: left;
     color: #F0F0F0;
-  }
-
- 
-
+}
   hr{
     border-bottom: 2px #7166664a;
     color:grey
@@ -109,33 +142,24 @@ h3{
     margin-top: 20px;
     width: 50%;
     color:white;
-    background-color:#191919;
   }
 
   .post-detail input{
     color:white;
-    background:black;
     margin-bottom:20px;
   }
 
   .post-detail textarea{
     margin-bottom:30px;
   }
+
   .post-title{
     color:#191919;
   }
 
-
-  
-  .postDetail-card img {
-    width: 200px;
-    height: 100px;
-    border-radius: 30px;
-  }
-
   .postDetail-card p {
     font-size: 1rem;
-    color: #F0F0F0;
+    color: black;
   }
   
   .comment-form {
@@ -152,13 +176,16 @@ h3{
     border:none;
     background-color: #F2F2F2;
   }
+  
   .deletePost{
     color: black;
   }
+  
   .editing{
     display: flex;
     flex-direction: column;
   }
+  
   .post-detail textarea{
     resize:none !important;
     background:#191919;

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { useUser } from "../../contexte/UserContext";
 import { Link, useNavigate } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 
 import "./menuBurger.css";
 
@@ -32,17 +30,15 @@ function Header() {
                   <button onClick={dashboard}>Dashboard</button>
                 )
                  : null}
-                <button className="logOut" onClick={logOut} >Déconnexion</button>
+                <a className="logOut" onClick={logOut}>
+                  <img src="./public/img/logout-icon.png" alt="Déconnexion" />
+                </a>
               </span>
             </span>
           ) : (
             <>
-                <Link to="/inscription">
-                    <FontAwesomeIcon icon={faUserPlus} /> Inscripti
-                </Link>
-                <Link to="/connexion">
-                    <FontAwesomeIcon icon={faSignInAlt} /> Connexion
-                </Link>
+                <Link to="/inscription"> Inscription</Link>
+                <Link to="/connexion">Connexion</Link>
               </>
           )}
           </div>
