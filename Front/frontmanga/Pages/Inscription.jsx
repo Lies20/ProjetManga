@@ -1,3 +1,4 @@
+import Footer from "../src/component/footer/footer.jsx"
 import Formulaire from  "../src/component/inscription/inscription.jsx"
 import BurgerMenu from "../src/component/navBar/menuBurger.jsx"
 
@@ -7,6 +8,7 @@ function Inscription() {
     <>
       <BurgerMenu />
       <Formulaire />
+      <Footer/>
     </>
   )
 }
