@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './createPost.css';
 import { useUser } from '../../contexte/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
@@ -10,6 +11,7 @@ const CreatePost = () => {
   const [isPostCreated, setIsPostCreated] = useState(false);
   const [error, setError] = useState('');
   const { user, updateUser } = useUser();
+  const navigate = useNavigate();
 
     const handleCreatePost = async () => {
 
@@ -28,7 +30,8 @@ const CreatePost = () => {
           setIsPostCreated(true);
           setTitle('');
           setDescription('');
-          setError(''); 
+          setError('');
+          navigate('/');
         } catch (error) {
           console.error('Erreur lors de la création du post :', error);
         }
