@@ -112,6 +112,14 @@
   border: none;
   margin: 1%;
 }
+.button-delete-admin {
+  background-color: #525552;
+  border-radius: 30px;
+  width: 10%;
+  height: 50px;
+  border: none;
+  margin: 1%;
+}
 
 .postDetail-card {
   display: flex;

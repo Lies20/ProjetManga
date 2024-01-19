@@ -124,15 +124,15 @@ const CreateAccount = () => {
               Vous avez déjà un compte ? <Link to="/connexion">Connectez-vous</Link>{' '}
             </p>
           </div>
+          {isUserCreated && (
+            <div className='succes-msg'>
+                <p>Votre compte a été créé avec succès !</p>
+                <Link to="/connexion" className="active">
+                  Connectez vous ici
+                </Link>
+            </div>
+          )}
         </div>
-        {isUserCreated && (
-          <div>
-            <p>Votre compte a été créé avec succès !</p>
-            <Link to="/connexion" className="active">
-              Connectez vous ici
-            </Link>
-          </div>
-        )}
       </div>
     </div>
   );

@@ -84,6 +84,10 @@
   color: #F3B632;
 }
 
+.succes-msg{
+  color: green;
+}
+
 @media only screen and (min-width :280px) and (max-width: 600px) {
   .signUp {
     margin-top: 5%;

@@ -234,7 +234,7 @@ const PostDetail = () => {
                   </div>
                 </div>
               </div>
-                {user && (user.pseudo === post.pseudo || user.role === "admin" ) && (
+                {user && (user.pseudo === post.pseudo && user.role != "admin" ) && (
                   <>
                   <div className="post-actions">
                     <button className="button-edit" onClick={handlePostEdit}>
@@ -249,6 +249,16 @@ const PostDetail = () => {
           </div>
             </>
           )}
+                {user.role === "admin" && (
+                                <div className="dropdown">
+                                <div className="post-actions">
+                                <button className="button-delete" onClick={()=>{deleteAdmin(post.idPost)}
+                  }>
+                    supprimer
+                    </button>
+                                </div>
+                                </div>
+                )}
         </div>
         <div className="comment-form-list">
           <ul className="comment-list">
