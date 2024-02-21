@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../contexte/UserContext';
-// import FavoriteIcon from '@mui/icons-material/Favorite';
 import './post.css';
 
 const LatestPosts = () => {
@@ -63,7 +62,6 @@ const LatestPosts = () => {
               {index !== 0}
               {
                 <div className="post">
-                  {/* < FavoriteIcon /> */}
                   <div className="post-content">
                     <p className="post-date">Créé le : {formatDate(post.datePublication)} par <a class="post-author" href="#">{post.pseudo}</a></p>
                     <h2 className="post-title">{post.title}</h2>
