@@ -53,7 +53,7 @@ const LatestPosts = () => {
         </div>
       )}
       <div className='posts-container-title'>
-        <h2>Nouveautés sur Dreamanga</h2>
+        <h2>Nouveautés sur Dreamangaa</h2>
       </div>
       <div className="posts-container">
         <ul>
