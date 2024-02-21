@@ -63,6 +63,7 @@ const LatestPosts = () => {
               {index !== 0}
               {
                 <div className="post">
+                  < FavoriteIcon />
                   <div className="post-content">
                     <p className="post-date">Créé le : {formatDate(post.datePublication)} par <a class="post-author" href="#">{post.pseudo}</a></p>
                     <h2 className="post-title">{post.title}</h2>
