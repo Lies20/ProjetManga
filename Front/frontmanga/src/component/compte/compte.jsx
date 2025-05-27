@@ -1,24 +1,46 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUser } from '../../contexte/UserContext';
 import { useNavigate } from 'react-router-dom';
 import Header from '../navBar/menuBurger.jsx';
+import axios from 'axios';
 import './compte.css';
 
 function Compte() {
-  const { user, updateUser } = useUser();
+  const { user, updateUser, logOut } = useUser();
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
+  const [userPosts, setUserPosts] = useState([]);
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const [showPosts, setShowPosts] = useState(false);
   const [formData, setFormData] = useState({
     pseudo: user?.pseudo || '',
     email: user?.email || '',
-    // Ajoute d'autres champs selon tes besoins
   });
 
-  // Redirection si pas connecté
+  const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
+
+
   if (!user || !user.pseudo) {
     navigate('/connexion');
     return null;
   }
+
+  const fetchUserPosts = async () => {
+    try {
+      const response = await axios.get(`${API_URL}/api/post`);
+      const allPosts = response.data.data;
+      const filteredPosts = allPosts.filter(post => post.pseudo === user.pseudo);
+      setUserPosts(filteredPosts);
+    } catch (error) {
+      console.error('Erreur lors du chargement des posts:', error);
+    }
+  };
+
+  useEffect(() => {
+    if (showPosts) {
+      fetchUserPosts();
+    }
+  }, [showPosts, user.pseudo]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -31,10 +53,7 @@ function Compte() {
     e.preventDefault();
     
     try {
-      // Ici tu peux ajouter ta logique pour sauvegarder les modifications
-      // Par exemple, appel API pour modifier les données utilisateur
-      
-      // Mise à jour du contexte utilisateur
+
       updateUser({ ...user, ...formData });
       setIsEditing(false);
       
@@ -42,6 +61,25 @@ function Compte() {
     } catch (error) {
       console.error('Erreur lors de la mise à jour:', error);
     }
+  };
+
+  const handleDeleteAccount = async () => {
+    try {
+      await axios.delete(`${API_URL}/api/users/${user.userId}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`
+        }
+      });
+      
+      logOut();
+      navigate('/');
+    } catch (error) {
+      console.error('Erreur lors de la suppression du compte:', error);
+    }
+  };
+
+  const togglePosts = () => {
+    setShowPosts(!showPosts);
   };
 
   const cancelEdit = () => {
@@ -126,21 +164,75 @@ function Compte() {
             )}
           </div>
 
-          {/* Section pour d'autres fonctionnalités */}
           <div className="account-actions">
             <h3>Actions du compte</h3>
             <div className="actions-list">
               <button className="action-btn">
                 Changer le mot de passe
               </button>
-              <button className="action-btn">
-                Mes publications
+              <button className="action-btn" onClick={togglePosts}>
+                {showPosts ? 'Masquer mes publications' : 'Mes publications'}
               </button>
-              <button className="action-btn danger">
+              <button 
+                className="action-btn danger" 
+                onClick={() => setShowDeleteConfirm(true)}
+              >
                 Supprimer le compte
               </button>
             </div>
           </div>
+
+
+          {showDeleteConfirm && (
+            <div className="delete-confirm-modal">
+              <div className="delete-confirm-content">
+                <h3>⚠️ Supprimer le compte</h3>
+                <p>Êtes-vous sûr de vouloir supprimer définitivement votre compte ?</p>
+                <p><strong>Cette action est irréversible !</strong></p>
+                <div className="delete-confirm-buttons">
+                  <button 
+                    className="confirm-delete-btn" 
+                    onClick={handleDeleteAccount}
+                  >
+                    Oui, supprimer
+                  </button>
+                  <button 
+                    className="cancel-delete-btn" 
+                    onClick={() => setShowDeleteConfirm(false)}
+                  >
+                    Annuler
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {showPosts && (
+            <div className="user-posts">
+              <h3>Mes publications ({userPosts.length})</h3>
+              {userPosts.length === 0 ? (
+                <p className="no-posts">Vous n'avez encore écrit aucune publication.</p>
+              ) : (
+                <div className="posts-list">
+                  {userPosts.map((post) => (
+                    <div key={post.idPost} className="post-item">
+                      <h4>{post.title}</h4>
+                      <p className="post-excerpt">{post.description.substring(0, 150)}...</p>
+                      <div className="post-meta">
+                        <span>Publié le : {new Date(post.datePublication).toLocaleDateString('fr-FR')}</span>
+                        <button 
+                          className="view-post-btn"
+                          onClick={() => navigate(`/post-detail/${post.idPost}`)}
+                        >
+                          Voir le post
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </>

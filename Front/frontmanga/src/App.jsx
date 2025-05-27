@@ -6,6 +6,7 @@ import CreatePost from '../Pages/createPost.jsx'
 import PostDetail from './component/postDetail/postDetail.jsx'
 import AdminPage from './component/adminPage/adminPage.jsx'
 import Compte from './component/compte/compte.jsx'
+import ForgotPassword from './component/forgotMdp/forgotMdp.jsx'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/connexion' element={<Connection/>}/>
         <Route path='/create-post' element={<CreatePost/>}/>
         <Route path='/post-detail/:postId' element={<PostDetail />} />
+        <Route path="/mot-de-passe-oublie" element={<ForgotPassword />} />
         <Route path='/admin' element={<AdminPage/>}/>
         <Route path='/compte' element={<Compte/>}/>
       </Routes>

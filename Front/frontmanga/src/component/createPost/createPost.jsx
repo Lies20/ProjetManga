@@ -13,29 +13,28 @@ const CreatePost = () => {
   const { user, updateUser } = useUser();
   const navigate = useNavigate();
 
-    const handleCreatePost = async () => {
+  const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
 
-        if (!title || !description) {
-          setError('Les champs "Titre" et "Description" sont obligatoires.');
-          return;
-        }
-
-        try {
-          await axios.post('https://projet-manga.vercel.app/api/post/createPost', {
-            title,
-            description,
-            idUser: user.userId,
-          });
-
-          setIsPostCreated(true);
-          setTitle('');
-          setDescription('');
-          setError('');
-          navigate('/');
-        } catch (error) {
-          console.error('Erreur lors de la création du post :', error);
-        }
-    };
+  const handleCreatePost = async () => {
+    if (!title || !description) {
+      setError('Les champs "Titre" et "Description" sont obligatoires.');
+      return;
+    }
+    try {
+      await axios.post(`${API_URL}/api/post/createPost`, {
+        title,
+        description,
+        idUser: user.userId,
+      });
+      setIsPostCreated(true);
+      setTitle('');
+      setDescription('');
+      setError('');
+      navigate('/');
+    } catch (error) {
+      console.error('Erreur lors de la création du post :', error);
+    }
+  };
 
   return (
     <div className='create-post-container'>

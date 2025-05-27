@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useUser } from '../../contexte/UserContext.jsx';
 import './connection.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function Connection() {
   const [email, setEmail] = useState('');
   const [motDePasse, setMotDePasse] = useState('');
   const [erreurEmail, setErreurEmail] = useState('');
   const [erreurMotDePasse, setErreurMotDePasse] = useState('');
-  const { user, updateUser } = useUser();
+  const { updateUser } = useUser();
   const navigate = useNavigate();
 
   const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
@@ -31,7 +31,7 @@ function Connection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (motDePasse.length < 7 ) {
+    if (motDePasse.length < 7 || !isEmailValid(email)) {
       if (motDePasse.length < 7) {
         setErreurMotDePasse('Mot de passe invalide');
       }
@@ -42,12 +42,12 @@ function Connection() {
     }
 
     try {
-    const response = await axios.post(`${API_URL}/api/users/login`, {
-    email: email,
-    password: motDePasse,
-  });
+      const response = await axios.post(`${API_URL}/api/users/login`, {
+        email: email,
+        password: motDePasse,
+      });
 
-      const {userData } = response.data;
+      const { userData } = response.data;
       localStorage.setItem('token', userData.token);
       updateUser(userData);
       navigate('/');
@@ -67,19 +67,33 @@ function Connection() {
         </div>
         <div className="connexion-card">
           <form onSubmit={handleSubmit}>
-            <p> Veuillez vous connecter à votre compte</p>
+            <p>Veuillez vous connecter à votre compte</p>
             <div>
-              <input type="email" value={email} onChange={handleEmailChange} placeholder="Votre adresse mail"/>
+              <input
+                type="email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Votre adresse mail"
+              />
               {erreurEmail && <p className="erreur">{erreurEmail}</p>}
             </div>
             <div>
-              <input type="password" value={motDePasse} onChange={handleMotDePasseChange} placeholder="Votre mot de passe"/>
+              <input
+                type="password"
+                value={motDePasse}
+                onChange={handleMotDePasseChange}
+                placeholder="Votre mot de passe"
+              />
               {erreurMotDePasse && <p className="erreur">{erreurMotDePasse}</p>}
             </div>
-            <button type="submit"className='btn-connexion'>Connexion</button>
+            <button type="submit" className='btn-connexion'>Connexion</button>
           </form>
           <div className="inscription-link">
-            <p>Vous n'avez pas de compte ? <a href="/inscription">Inscrivez-vous</a></p>
+            <p>
+              Vous n'avez pas de compte ? <Link to="/inscription">Inscrivez-vous</Link>
+              <span className="separator"> | </span>
+              <Link to="/mot-de-passe-oublie">Mot de passe oublié ?</Link>
+            </p>
           </div>
         </div>
       </div>
