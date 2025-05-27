@@ -9,7 +9,6 @@ app.use(express.urlencoded({ extended: false }))
 app.use(cors())
 app.use(express.json())
 
-
 const PORT = process.env.PORT || 3006
 
 const userRouter = require("./Routes/user.router")
