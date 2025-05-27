@@ -5,9 +5,9 @@ import Connection from '../Pages/connection.jsx'
 import CreatePost from '../Pages/createPost.jsx'
 import PostDetail from './component/postDetail/postDetail.jsx'
 import AdminPage from './component/adminPage/adminPage.jsx'
+import Compte from './component/compte/compte.jsx'
 
 function App() {
-
   return (
     <>
       <Routes>
@@ -17,10 +17,10 @@ function App() {
         <Route path='/create-post' element={<CreatePost/>}/>
         <Route path='/post-detail/:postId' element={<PostDetail />} />
         <Route path='/admin' element={<AdminPage/>}/>
+        <Route path='/compte' element={<Compte/>}/>
       </Routes>
-      
+     
     </>
   )
 }
-
 export default App

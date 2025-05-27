@@ -9,10 +9,10 @@ function Connection() {
   const [motDePasse, setMotDePasse] = useState('');
   const [erreurEmail, setErreurEmail] = useState('');
   const [erreurMotDePasse, setErreurMotDePasse] = useState('');
-
-
   const { user, updateUser } = useUser();
   const navigate = useNavigate();
+
+  const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -40,23 +40,22 @@ function Connection() {
       }
       return;
     }
-try {
-      const response = await axios.post('https://projetmanga-backend.onrender.com/api/users/login', {
-        email: email,
-        password: motDePasse,
-      });
 
-  const {userData } = response.data;
-  localStorage.setItem('token', userData.token);
-  updateUser(userData);
-  
-  navigate('/');
+    try {
+    const response = await axios.post(`${API_URL}/api/users/login`, {
+    email: email,
+    password: motDePasse,
+  });
 
-} catch (error) {
-  setErreurMotDePasse('Mot de passe invalide');
-
-}
+      const {userData } = response.data;
+      localStorage.setItem('token', userData.token);
+      updateUser(userData);
+      navigate('/');
+    } catch (error) {
+      setErreurMotDePasse('Mot de passe invalide');
+    }
   };
+
   return (
     <div className='login-container'>
       <div className="connexion-card-title">

@@ -16,6 +16,9 @@ const CreateAccount = () => {
   });
   const [isUserCreated, setIsUserCreated] = useState(false);
 
+  // Configuration API avec fallback pour la production
+  const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
+
   const handleCreateAccount = async () => {
     const newErrors = {};
 
@@ -32,7 +35,6 @@ const CreateAccount = () => {
     }
 
     if (password.trim() === '') {
-      
       newErrors.password = 'Le mot de passe est requis.';
     } else if (password.trim().length < 8) {
       newErrors.password = 'Le mot de passe doit avoir au moins 8 caractères.';
@@ -44,7 +46,7 @@ const CreateAccount = () => {
     }
 
     try {
-      const response = await axios.post('https://projetmanga-backend.onrender.com/api/users/create', {
+      const response = await axios.post(`${API_URL}/api/users/create`, {
         pseudo,
         birthday,
         email,

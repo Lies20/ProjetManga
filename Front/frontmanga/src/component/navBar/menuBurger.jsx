@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { useUser } from "../../contexte/UserContext";
 import { Link, useNavigate } from 'react-router-dom';
-
 import "./menuBurger.css";
 
 function Header() {
   const { user, logOut } = useUser();
   const [burger, setBurger] = useState(true)
   const navigate = useNavigate()
-
+  
   const dashboard = ()=>{
     navigate('/admin')
   }
+  
   return (
     <nav>
       <div className="topnav">
@@ -27,6 +27,7 @@ function Header() {
               <p>Bienvenue, {user.pseudo} !</p>
               <span className="button">
                 <div className="menu-buttons">
+                  <Link to="/compte" className="compte-link">Mon compte</Link>
                   {user.role === "admin" ? (
                     <button className="dashboard-btn" onClick={dashboard}>Dashboard</button>
                   )
@@ -42,29 +43,27 @@ function Header() {
               </>
           )}
           </div>
-
           <a href="#menu-toggle" onClick={()=>{setBurger(!burger)}} className="icon">
             <i>///</i>
           </a>
-
         </div>
       </div>
           {
             burger && (
               <div className="mobile-navbar">
-
               {user && user.pseudo ? (
                 <span className="pseudo">
                   <p>Bienvenue, {user.pseudo} !</p>
                   <span className="button">
                   <div className="menu-buttons">
+                    <Link to="/compte" className="compte-link">Mon compte</Link>
                     {user.role === "admin" ? (
                       <button className="dashboard-btn" onClick={dashboard}>Dashboard</button>
                     )
                     : null}
                     <button className="logOut" onClick={logOut} >Déconnexion</button>
                  </div>
-                    
+                   
                   </span>
                 </span>
               ) : (

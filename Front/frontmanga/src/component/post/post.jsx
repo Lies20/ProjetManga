@@ -10,16 +10,18 @@ const LatestPosts = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 4;
 
+  // Configuration API avec fallback pour la production
+  const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://projetmanga-backend.onrender.com/api/post');
+        const response = await axios.get(`${API_URL}/api/post`);
         const sortedPosts = response.data.data.sort((a, b) => new Date(b.datePublication) - new Date(a.datePublication));
         setPosts(sortedPosts || []);
       } catch (error) {
       }
     };
-
     fetchData();
   }, []);
 
@@ -38,9 +40,7 @@ const LatestPosts = () => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-
   const totalPages = Math.ceil(posts.length / postsPerPage);
-
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
