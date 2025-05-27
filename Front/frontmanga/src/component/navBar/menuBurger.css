@@ -1,3 +1,4 @@
+/* Styles existants à conserver... */
 .logo-container a img{
   width: 80px;
   height:60px;
@@ -39,12 +40,13 @@
   display:none;
 }
 
+
 .menu-buttons {
   width: 100%;
   margin: 2%;
   display: flex;
   flex-direction: row;
-  gap: 12px;
+  gap: 12px; 
   align-items: center;
 }
 
@@ -52,18 +54,17 @@
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white !important;
   text-decoration: none;
-  padding: 4px 10px;
-  border-radius: 15px;
+  padding: 6px 14px;
+  border-radius: 20px;
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
   position: relative;
   overflow: hidden;
   border: 2px solid transparent;
-  display: inline-block;
 }
 
 .compte-link::before {
@@ -91,19 +92,20 @@
   transform: translateY(0);
 }
 
+/* Bouton Dashboard - Style admin */
 .dashboard-btn {
   background: linear-gradient(135deg, #f093fb, #f5576c);
   color: white;
   border: none;
-  padding: 4px 10px;
-  border-radius: 15px;
+  padding: 6px 14px;
+  border-radius: 20px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(240, 147, 251, 0.3);
+  box-shadow: 0 3px 10px rgba(240, 147, 251, 0.3);
   margin: 0;
   position: relative;
   overflow: hidden;
@@ -129,19 +131,20 @@
   box-shadow: 0 8px 25px rgba(240, 147, 251, 0.4);
 }
 
+/* Bouton Déconnexion - Style moderne */
 .logOut {
   background: linear-gradient(135deg, #ff6b6b, #ee5a52);
   color: white;
   border: none;
-  padding: 4px 10px;
-  border-radius: 15px;
+  padding: 6px 14px;
+  border-radius: 20px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.5px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+  box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
   margin: 0;
   position: relative;
   overflow: hidden;
@@ -171,6 +174,7 @@
   transform: translateY(0);
 }
 
+/* === RESPONSIVE === */
 @media screen and (min-width: 280px) and (max-width: 599px) {
   .topnav .icon{
     display:flex;
@@ -197,6 +201,7 @@
     border-bottom: 2px solid #f3b632;
   }
   
+  /* Boutons mobile - Version adaptée */
   .menu-buttons {
     width: 90%;
     margin: 15px auto;
@@ -207,18 +212,20 @@
   }
   
   .compte-link, .dashboard-btn, .logOut {
-    width: 120px;
+    width: 160px;
     text-align: center;
-    padding: 6px 12px;
-    font-size: 0.7rem;
+    padding: 8px 16px;
+    font-size: 0.85rem;
   }
   
+  /* Ajustements pour mobile */
   .compte-link {
     margin-right: 0;
     margin-bottom: 0;
   }
 }
 
+/* Animation de pulsation pour attirer l'attention */
 @keyframes pulse {
   0% {
     box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
@@ -231,6 +238,7 @@
   }
 }
 
+/* Optionnel : Animation pour le bouton Mon compte */
 .compte-link:focus {
   animation: pulse 2s infinite;
 }
