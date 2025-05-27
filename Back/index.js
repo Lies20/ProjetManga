@@ -1,16 +1,20 @@
 const express = require("express")
 const cors = require('cors')
-
 const app = express()
-
 require('dotenv').config()
 
 app.use(express.urlencoded({ extended: false }))
-app.use(cors())
+app.use(cors({
+  credentials: true,
+  origin: 'https://projet-manga.vercel.app', 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type, Authorization',
+}))
 app.use(express.json())
 
-const PORT = process.env.PORT || 3006
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
+const PORT = process.env.PORT || 3006
 const userRouter = require("./Routes/user.router")
 const postRouter = require("./Routes/post.router")
 const commentaryController = require("./Routes/commentaryController.router")
