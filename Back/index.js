@@ -6,7 +6,7 @@ require('dotenv').config()
 app.use(express.urlencoded({ extended: false }))
 app.use(cors({
   credentials: true,
-  origin: 'https://projet-manga.vercel.app', 
+  origin: ['https://projet-manga.vercel.app','https://dreamanga.alwaysdata.net'], 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: 'Content-Type, Authorization',
 }))
