@@ -38,12 +38,12 @@ const PostDetail = () => {
 
   const fetchPostAndComments = async () => {
     try {
-      const postResponse = await axios.get(`https://projet-manga.vercel.app/api/post/${postId}`);
+      const postResponse = await axios.get(`https://projetmanga-backend.onrender.com/api/post/${postId}`);
       if(!postResponse.data){
         navigate('/')
       }
       setPost(postResponse.data.data.shift());
-      const commentsResponse = await axios.get(`https://projet-manga.vercel.app/api/commentary/comments/post/${postId}`);
+      const commentsResponse = await axios.get(`https://projetmanga-backend.onrender.com/api/commentary/comments/post/${postId}`);
       setComments(commentsResponse.data.data);
     } catch (error) {
       console.error(error);
