@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
+const xss = require('xss-clean');
 require('dotenv').config();
 
 const app = express();
