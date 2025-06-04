@@ -4,6 +4,9 @@ const rateLimit = require('express-rate-limit');
 const xss = require('xss-clean');
 require('dotenv').config();
 
+const mongoConnection = require('./Databases/mongodb');
+const cacheService = require("./Services/cacheService");
+
 const app = express();
 
 const limiter = rateLimit({
@@ -13,8 +16,8 @@ const limiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
 });
-app.use(limiter);
 
+app.use(limiter);
 app.use(xss());
 
 const corsOptions = {
@@ -31,12 +34,22 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); 
-
+app.options('*', cors(corsOptions));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get('/favicon.ico', (req, res) => res.status(204).end());
+
+async function initializeDatabases() {
+  try {
+    await mongoConnection.connect();
+    await cacheService.init();
+  } catch (error) {
+    console.error("Erreur initialisation bases de données:", error);
+  }
+}
+
+initializeDatabases();
 
 const userRouter = require("./Routes/user.router");
 const postRouter = require("./Routes/post.router");
@@ -49,6 +62,19 @@ app.use("/api/commentary", commentaryController);
 app.use("/api/admin", adminController);
 
 const PORT = process.env.PORT || 3006;
+
 app.listen(PORT, () => {
   console.log("🚀 Serveur démarré sur le port " + PORT);
+});
+
+process.on('SIGINT', async () => {
+  console.log('🛑 Arrêt du serveur...');
+  await mongoConnection.close();
+  process.exit(0);
+});
+
+process.on('SIGTERM', async () => {
+  console.log('🛑 Arrêt du serveur...');
+  await mongoConnection.close();
+  process.exit(0);
 });
