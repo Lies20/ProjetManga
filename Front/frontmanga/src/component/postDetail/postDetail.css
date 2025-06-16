@@ -10,8 +10,17 @@
   flex-direction: column;
 }
 
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 20px;
+}
+
 .new-post-title {
   color:#191919;
+  margin: 0;
 }
 
 .new-post-details {
@@ -241,6 +250,12 @@
 
 @media  screen and (max-width: 479px) {
 
+  .post-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+
   .delete-post-btn {
     padding: 8px 12px; 
   }
@@ -281,6 +296,12 @@
   .post-detail-container {
     max-width: 800px;
     margin: 0 auto;
+  }
+
+  .post-header {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
   }
 
   h2 {
@@ -413,5 +434,3 @@
   }
 }
 }
-
-

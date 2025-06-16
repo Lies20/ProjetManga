@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import './postDetail.css'
 import BurgerMenu from "../navBar/menuBurger"
 import { useNavigate } from 'react-router-dom';
+import LikeButton from '../post/LikeButton';
 
 const PostDetail = () => {
   const { postId } = useParams();
@@ -28,8 +29,7 @@ const PostDetail = () => {
   });
   const [showPostActions, setShowPostActions] = useState(false);
 
-  // Configuration API avec fallback pour la production
-  const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
+  const API_URL = 'http://localhost:3006' || 'https://projetmanga-backend.onrender.com';
 
   const handleToggleActions = () => {
     setShowPostActions(!showPostActions);
@@ -185,7 +185,10 @@ const PostDetail = () => {
     <div className="post-detail-container">
       <BurgerMenu />
       <div className="updatepostBody">
-        <h2 className="new-post-title"> Titre du post : {post.title}</h2>
+        <div className="post-header">
+          <h2 className="new-post-title"> Titre du post : {post.title}</h2>
+          <LikeButton postId={postId} size="normal" />
+        </div>
 
         <div className="new-post-details">
           {isPostEditing ? (
