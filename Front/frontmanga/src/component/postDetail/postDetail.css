@@ -378,6 +378,40 @@
     width: 20%;
     font-size: 11px;
   }
+  .post-interactions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+  padding: 15px 0;
+  border-top: 1px solid #e1e5e9;
+  border-bottom: 1px solid #e1e5e9;
+}
+
+.post-stats {
+  display: flex;
+  gap: 20px;
+  color: #65676b;
+  font-size: 14px;
+}
+
+.comments-count {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@media (max-width: 768px) {
+  .post-interactions {
+    flex-direction: column;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .post-stats {
+    justify-content: center;
+  }
+}
 }
 
 

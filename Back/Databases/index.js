@@ -9,19 +9,13 @@ const pool = mysql.createPool({
 });
 
 pool.getConnection((err, connection) => {
-      if (err) {
+    if (err) {
         console.error("Erreur de connexion à la base de données:", err.message);
-      } else {
+    } else {
         console.log("Connecté à la base de données MySQL");
-    
-        connection.release(); 
-      }
-    });
+        connection.release();
+    }
+});
 
-// Utilisez la méthode promise() pour obtenir une version compatible promesse
 const promisePool = pool.promise();
-
-// Exportez le pool de promesses
 module.exports = promisePool;
-
-

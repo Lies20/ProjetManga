@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useUser } from '../../contexte/UserContext';
+import LikeButton from '../post/LikeButton'; 
 import './post.css';
 
 const LatestPosts = () => {
@@ -9,10 +10,9 @@ const LatestPosts = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 4;
-
   // Configuration API avec fallback pour la production
   const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,25 +24,25 @@ const LatestPosts = () => {
     };
     fetchData();
   }, []);
-
+  
   const formatDate = (dateString) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('fr-FR', options);
   };
-
+  
   function reduce(paragraphe) {
     const mots = paragraphe.split(/\s+/);
     const mots50 = mots.slice(0, 30);
     const resultat = mots50.join(' ');
     return resultat;
   }
-
+  
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
   const totalPages = Math.ceil(posts.length / postsPerPage);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
+  
   return (
     <section className="latest-posts">
       {user && (
@@ -63,13 +63,15 @@ const LatestPosts = () => {
               {
                 <div className="post">
                   <div className="post-content">
-                    <p className="post-date">Créé le : {formatDate(post.datePublication)} par <a class="post-author" href="#">{post.pseudo}</a></p>
+                    <p className="post-date">Créé le : {formatDate(post.datePublication)} par <a className="post-author" href="#">{post.pseudo}</a></p>
                     <h2 className="post-title">{post.title}</h2>
                     <div className="post-excerpt">
                       <p>{reduce(post.description)}</p>
                     </div>
-                    <Link className="post-link" to={`/post-detail/${post.idPost}`}>Voir plus
-                    </Link>
+                      <Link className="post-link" to={`/post-detail/${post.idPost}`}>
+                        Voir plus
+                      </Link>
+                      <LikeButton postId={post.idPost} size="small" />
                   </div>
                 </div>
               }

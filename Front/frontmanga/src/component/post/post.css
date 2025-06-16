@@ -8,8 +8,8 @@ body {
 
 .create-post-btn {
   margin: 10px 0;
-  width:300px;
-  padding:20px;
+  width: 300px;
+  padding: 20px;
   font-size: 1rem;
   background-color: #F2F2F2;
   color: #f47521;
@@ -20,21 +20,21 @@ body {
   border: none;
 }
 
-.posts-container-title{
+.create-post_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.posts-container-title {
   display: flex;
   flex-direction: column;
   align-items: center;
-} 
+}
 
 .posts-container-title h2 {
   margin-left: 3%;
   color: #f47521;
-}
-
-.create-post_div{
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .post {
@@ -43,6 +43,10 @@ body {
   height: 250px;
   margin: 50px auto;
   box-shadow: 0 5px 15px 0 #777;
+}
+
+.post-content {
+  padding: 20px 30px;
 }
 
 .post-date {
@@ -60,10 +64,6 @@ body {
   line-height: 1.33;
 }
 
-.post-content {
-  padding: 20px 30px;
-}
-
 .post-link {
   display: inline-block;
   margin: 0 0 15px;
@@ -74,44 +74,50 @@ body {
   border-radius: 4em;
 }
 
-.pagination{
+.post-actions-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.pagination {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding:10px;
+  padding: 10px;
 }
 
-.pagination button{
-  border:none;
-  outline:none;
+.pagination button {
+  border: none;
+  outline: none;
   border-radius: 5px;
-  margin:10px;
-  background:#f47521;
-  color:white;
-  padding:10px;
+  margin: 10px;
+  background: #f47521;
+  color: white;
+  padding: 10px;
 }
 
-@media  only screen and (min-width: 280px) and (max-width: 600px) {
-  
 
-  .posts-container{
+@media only screen and (min-width: 280px) and (max-width: 600px) {
+  .posts-container {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2%;
     width: 91%;
   }
-
-  .post{
+  
+  .post {
     display: flex;
     flex-direction: column;
   }
-
+  
   .post-content {
     padding: 20px 30px;
     overflow: auto;
   }
-
+  
   .post-link {
     width: 40%;
     height: 20%;

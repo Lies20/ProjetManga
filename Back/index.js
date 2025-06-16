@@ -6,6 +6,7 @@ require('dotenv').config();
 
 const mongoConnection = require('./Databases/mongodb');
 const cacheService = require("./Services/cacheService");
+const likesModel = require('./Databases/likesModels');
 
 const app = express();
 
@@ -44,8 +45,10 @@ async function initializeDatabases() {
   try {
     await mongoConnection.connect();
     await cacheService.init();
+    await likesModel.initializeIndexes();
+    console.log("✅ Toutes les bases de données sont initialisées");
   } catch (error) {
-    console.error("Erreur initialisation bases de données:", error);
+    console.error("❌ Erreur initialisation bases de données:", error);
   }
 }
 
@@ -55,11 +58,13 @@ const userRouter = require("./Routes/user.router");
 const postRouter = require("./Routes/post.router");
 const commentaryController = require("./Routes/commentaryController.router");
 const adminController = require("./Routes/admin.router");
+const likesRouter = require("./Routes/likes.router");
 
 app.use("/api/users", userRouter);
 app.use("/api/post", postRouter);
 app.use("/api/commentary", commentaryController);
 app.use("/api/admin", adminController);
+app.use("/api/likes", likesRouter);
 
 const PORT = process.env.PORT || 3006;
 
