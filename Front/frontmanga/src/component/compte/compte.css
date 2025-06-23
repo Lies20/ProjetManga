@@ -514,3 +514,124 @@
 .account-actions {
   animation-delay: 0.2s;
 }
+
+.liked-post {
+  background: linear-gradient(135deg, #fef5e7, #fed7aa);
+  border: 1px solid #f59e0b;
+  position: relative;
+  overflow: hidden;
+}
+
+.liked-post::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.liked-post:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+  border-color: #d97706;
+}
+
+.post-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.post-item-header h4 {
+  margin: 0;
+  flex: 1;
+  color: #92400e;
+  font-weight: 700;
+}
+
+.liked-indicator {
+  font-size: 20px;
+  margin-left: 15px;
+  animation: heartbeat 2s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(245, 158, 11, 0.3));
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+.liked-post .post-excerpt {
+  color: #78350f;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  border-left: 3px solid #f59e0b;
+}
+
+.liked-post .post-meta {
+  border-top: 1px solid #f59e0b;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 -20px -20px -20px;
+  padding: 15px 20px;
+  border-radius: 0 0 12px 12px;
+}
+
+.liked-post .post-meta span {
+  color: #92400e;
+  font-weight: 600;
+}
+
+.liked-post .view-post-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.liked-post .view-post-btn:hover {
+  background: linear-gradient(135deg, #d97706, #b45309);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.user-posts h3 {
+  position: relative;
+}
+
+.user-posts h3::before {
+  content: '❤️';
+  margin-right: 10px;
+  font-size: 1.2em;
+  animation: heartbeat 2s ease-in-out infinite;
+}
+
+
+@media (max-width: 768px) {
+  .post-item-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .liked-indicator {
+    margin-left: 0;
+    align-self: flex-end;
+  }
+  
+  .liked-post .post-meta {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}

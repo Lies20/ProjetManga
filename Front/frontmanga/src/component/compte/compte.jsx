@@ -10,15 +10,16 @@ function Compte() {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [userPosts, setUserPosts] = useState([]);
+  const [likedPosts, setLikedPosts] = useState([]); 
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [showPosts, setShowPosts] = useState(false);
+  const [showLikedPosts, setShowLikedPosts] = useState(false);
   const [formData, setFormData] = useState({
     pseudo: user?.pseudo || '',
     email: user?.email || '',
   });
 
   const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
-
 
   if (!user || !user.pseudo) {
     navigate('/connexion');
@@ -36,11 +37,41 @@ function Compte() {
     }
   };
 
+  const fetchLikedPosts = async () => {
+    try {
+      const likedResponse = await axios.get(`${API_URL}/api/likes/user/${user.userId}`);
+      const likedPostIds = likedResponse.data.data.map(like => like.postId);
+      
+      if (likedPostIds.length === 0) {
+        setLikedPosts([]);
+        return;
+      }
+
+      const postsResponse = await axios.get(`${API_URL}/api/post`);
+      const allPosts = postsResponse.data.data;
+      
+      const filteredLikedPosts = allPosts.filter(post => 
+        likedPostIds.includes(post.idPost.toString())
+      );
+      
+      setLikedPosts(filteredLikedPosts);
+    } catch (error) {
+      console.error('Erreur lors du chargement des posts likés:', error);
+      setLikedPosts([]);
+    }
+  };
+
   useEffect(() => {
     if (showPosts) {
       fetchUserPosts();
     }
   }, [showPosts, user.pseudo]);
+
+  useEffect(() => {
+    if (showLikedPosts) {
+      fetchLikedPosts();
+    }
+  }, [showLikedPosts, user.userId]);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -53,10 +84,8 @@ function Compte() {
     e.preventDefault();
     
     try {
-
       updateUser({ ...user, ...formData });
       setIsEditing(false);
-      
       console.log('Profil mis à jour avec succès');
     } catch (error) {
       console.error('Erreur lors de la mise à jour:', error);
@@ -80,6 +109,16 @@ function Compte() {
 
   const togglePosts = () => {
     setShowPosts(!showPosts);
+    if (!showPosts && showLikedPosts) {
+      setShowLikedPosts(false);
+    }
+  };
+
+  const toggleLikedPosts = () => {
+    setShowLikedPosts(!showLikedPosts);
+    if (!showLikedPosts && showPosts) {
+      setShowPosts(false);
+    }
   };
 
   const cancelEdit = () => {
@@ -173,6 +212,9 @@ function Compte() {
               <button className="action-btn" onClick={togglePosts}>
                 {showPosts ? 'Masquer mes publications' : 'Mes publications'}
               </button>
+              <button className="action-btn" onClick={toggleLikedPosts}>
+                {showLikedPosts ? 'Masquer mes likes' : 'Posts que j\'ai likés'}
+              </button>
               <button 
                 className="action-btn danger" 
                 onClick={() => setShowDeleteConfirm(true)}
@@ -181,7 +223,6 @@ function Compte() {
               </button>
             </div>
           </div>
-
 
           {showDeleteConfirm && (
             <div className="delete-confirm-modal">
@@ -220,6 +261,36 @@ function Compte() {
                       <p className="post-excerpt">{post.description.substring(0, 150)}...</p>
                       <div className="post-meta">
                         <span>Publié le : {new Date(post.datePublication).toLocaleDateString('fr-FR')}</span>
+                        <button 
+                          className="view-post-btn"
+                          onClick={() => navigate(`/post-detail/${post.idPost}`)}
+                        >
+                          Voir le post
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {showLikedPosts && (
+            <div className="user-posts">
+              <h3>Posts que j'ai likés ({likedPosts.length})</h3>
+              {likedPosts.length === 0 ? (
+                <p className="no-posts">Vous n'avez encore liké aucune publication.</p>
+              ) : (
+                <div className="posts-list">
+                  {likedPosts.map((post) => (
+                    <div key={`liked-${post.idPost}`} className="post-item liked-post">
+                      <div className="post-item-header">
+                        <h4>{post.title}</h4>
+                        <span className="liked-indicator">❤️</span>
+                      </div>
+                      <p className="post-excerpt">{post.description.substring(0, 150)}...</p>
+                      <div className="post-meta">
+                        <span>Par {post.pseudo} • {new Date(post.datePublication).toLocaleDateString('fr-FR')}</span>
                         <button 
                           className="view-post-btn"
                           onClick={() => navigate(`/post-detail/${post.idPost}`)}
