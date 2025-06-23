@@ -20,21 +20,62 @@ body {
   border: none;
 }
 
-.create-post_div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .posts-container-title {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+/* ✅ SEULE MODIFICATION : Animation sur le titre */
 .posts-container-title h2 {
   margin-left: 3%;
-  color: #f47521;
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #ffd89b, #19547b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(255, 216, 155, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 216, 155, 0.8));
+  }
+}
+
+.posts-container-title h2::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, #ffd89b, #19547b);
+  border-radius: 2px;
+  animation: lineExpand 2s ease-in-out infinite;
+}
+
+@keyframes lineExpand {
+  0%, 100% {
+    width: 100px;
+  }
+  50% {
+    width: 150px;
+  }
+}
+
+.create-post_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .post {
@@ -43,10 +84,6 @@ body {
   height: 250px;
   margin: 50px auto;
   box-shadow: 0 5px 15px 0 #777;
-}
-
-.post-content {
-  padding: 20px 30px;
 }
 
 .post-date {
@@ -62,6 +99,10 @@ body {
 .post-excerpt {
   letter-spacing: 1px;
   line-height: 1.33;
+}
+
+.post-content {
+  padding: 20px 30px;
 }
 
 .post-link {
@@ -98,7 +139,6 @@ body {
   padding: 10px;
 }
 
-
 @media only screen and (min-width: 280px) and (max-width: 600px) {
   .posts-container {
     display: flex;
@@ -124,6 +164,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    float: right;
+  }
+  
+  .posts-container-title h2 {
+    font-size: 2rem;
+    text-align: center;
   }
 }
