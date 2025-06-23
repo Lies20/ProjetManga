@@ -29,7 +29,7 @@ const PostDetail = () => {
   });
   const [showPostActions, setShowPostActions] = useState(false);
 
-  const API_URL = 'http://localhost:3006' || 'https://projetmanga-backend.onrender.com';
+const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
 
   const handleToggleActions = () => {
     setShowPostActions(!showPostActions);
