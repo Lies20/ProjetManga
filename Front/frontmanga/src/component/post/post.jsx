@@ -10,7 +10,6 @@ const LatestPosts = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 4;
-  // Configuration API avec fallback pour la production
   const API_URL = import.meta.env.VITE_API_URL || 'https://projetmanga-backend.onrender.com';
   
   useEffect(() => {
